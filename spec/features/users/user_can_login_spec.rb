@@ -15,4 +15,36 @@ describe "existing user can login" do
     click_on("Submit")
     expect(page).to have_current_path("/dashboard")
   end
+
+  scenario "existing user is redirected if they provide the wrong password" do
+    user = create(:user)
+
+    visit root_path
+
+    expect(page). to have_content("Login")
+    click_on("Login")
+    expect(current_path).to eq("/login")
+    fill_in("Email", with: user.email)
+    fill_in("Password", with: "wrong password")
+    expect(page).to have_button("Submit")
+    click_on("Submit")
+    expect(page).to have_content("error")
+    expect(page).to have_current_path("/login")
+  end
+
+  scenario "existing user is redirected if they provide the wrong email" do
+    user = create(:user)
+
+    visit root_path
+
+    expect(page). to have_content("Login")
+    click_on("Login")
+    expect(current_path).to eq("/login")
+    fill_in("Email", with: "wrong_email@gmail.com")
+    fill_in("Password", with: user.password)
+    expect(page).to have_button("Submit")
+    click_on("Submit")
+    expect(page).to have_content("error")
+    expect(page).to have_current_path("/login")
+  end
 end
