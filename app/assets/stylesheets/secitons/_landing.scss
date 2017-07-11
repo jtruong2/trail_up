@@ -1,7 +1,3 @@
-.main-title {
-    padding-top: 50px;
-}
-
 h1 {
     text-align: center;
     font-family: 'Amatic SC', cursive;
@@ -10,11 +6,6 @@ h1 {
     padding: 20px;
     margin-bottom: 20px;
     color: #EEE6eD;
-}
-
-#up {
-    font-style: italic;
-    font-weight: 800;
 }
 
 h3 {
@@ -26,7 +17,11 @@ h3 {
     color: #EEE6eD;
 }
 
-.container {
+.main-title {
+    padding-top: 50px;
+}
+
+.landing-container {
     text-align: center;
 }
 
@@ -39,53 +34,11 @@ h3 {
     background-repeat: no-repeat;
 }
 
-input[type=text] {
-    margin-top: 30px;
-    border-style: none;
-    border-radius: 5px;
-    height: 40px;
-    width: 500px;
-    font-size: 30px;
-    padding: 3px;
-    background-color: #EEE6eD
-}
-
-input[type=submit] {
-    margin-top: 5px;
-    border-style: none;
-    height: 45px;
-    width: 505px;
-    border-radius: 5px;
-    background-color: #BF392e;
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 200;
-}
-
 .search-box {
     width: 100%;
 }
 
-::-webkit-input-placeholder {
-    /* Chrome/Opera/Safari */
-    color: lightgray;
-    font-weight: 200;
-}
-
-::-moz-placeholder {
-    /* Firefox 19+ */
-    color: lightgray;
-    font-weight: 200;
-}
-
-:-ms-input-placeholder {
-    /* IE 10+ */
-    color: lightgray;
-    font-weight: 200;
-}
-
-:-moz-placeholder {
-    /* Firefox 18- */
-    color: lightgray;
-    font-weight: 200;
+#up {
+    font-style: italic;
+    font-weight: 800;
 }

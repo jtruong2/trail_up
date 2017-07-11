@@ -14,10 +14,10 @@
  *= require_self
  */
 
-@import url('https://fonts.googleapis.com/css?family=Lato');
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 @import 'reset';
+@import 'fonts';
 @import 'skeleton';
+@import 'forms';
 @import 'secitons/nav';
 @import 'secitons/footer';
 @import 'secitons/landing';
