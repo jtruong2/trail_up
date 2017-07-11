@@ -15,4 +15,8 @@ class HPTrail
     @hp_rating = params[:stars]
     @hp_image = params[:imgSmall]
   end
+
+  def google_coordinates
+    {lng: long, lat: lat}
+  end
 end
