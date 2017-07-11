@@ -11,4 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require_tree .
+//= require jquery
+//= require vendor/marker_cluster/markerclusterer
+//= require maps/simple_map

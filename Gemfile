@@ -24,6 +24,8 @@ gem 'kaminari'
 gem 'carrierwave', '~> 1.0'
 gem 'will_paginate', '~> 3.1.0'
 
+gem 'figaro'
+
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
