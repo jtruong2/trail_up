@@ -1,0 +1,27 @@
+<section class='trails'>
+    <% @trails.collection.each do |trail|%>
+        <div class='trail'>
+            <%= image_tag(trail.hp_image)%>
+                <div class="trail-vital">
+                    <h3>
+                        <%=trail.name%>
+                    </h3>
+                    <h5>
+                        Difficulty:
+                        <%=trail.difficulty%>
+                    </h5>
+                    <h5>
+                        Length:
+                        <%=trail.length%>
+                    </h5>
+                    <h5>
+                        Rating:
+                        <%=trail.hp_rating%>
+                    </h5>
+                </div>
+                <p>
+                    <%=trail.summary%>
+                </p>
+        </div>
+        <%end%>
+</section>
