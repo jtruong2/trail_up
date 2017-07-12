@@ -1,0 +1,30 @@
+.trails {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.trail {
+    text-align: center;
+    margin: 20px auto;
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    img {
+        height: 100px;
+        width: 100px;
+        border-radius: 100%;
+        display: inline-block;
+    }
+    h3 {
+        color: black;
+        font-size: 16px;
+        font-family: "Lato";
+        width: 100px;
+    }
+}
+
+.trail-vital {
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
