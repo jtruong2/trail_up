@@ -33,7 +33,7 @@ RSpec.describe "Guest registers a new account" do
     expect(page).to have_current_path("/signup")
   end
 
-  scenario "guest tries to create an account without an email" do
+  scenario "guest tries to create an account without an email and password" do
     visit root_path
     expect(page).to have_content("SignUp")
     click_on("SignUp")
@@ -44,6 +44,7 @@ RSpec.describe "Guest registers a new account" do
     expect(page).to have_button("Submit")
     click_on("Submit")
     expect(page).to have_content("Email can't be blank")
+    expect(page).to have_content("Password can't be blank")
     expect(page).to have_current_path("/signup")
   end
 

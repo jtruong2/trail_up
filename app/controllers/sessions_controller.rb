@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to dashboard_path
     else
-      flash[:error] = "Invalid credentials. Please check your email and password."
+      flash[:error] = ["Invalid credentials. Please check your email and password."]
       redirect_to "/login"
     end
   end
