@@ -1,22 +1,21 @@
 require "rails_helper"
 
-describe "user can view profile information" do
-  scenario "user can navigate to profile page and view basic content" do
+describe "user profile page has vanity url" do
+  scenario "they see /:user" do
     user = create(:user)
 
     visit root_path
 
-    expect(page).to have_content("Login")
+    expect(page). to have_content("Login")
     click_on("Login")
+    expect(current_path).to eq("/login")
     fill_in("Username or Email", with: user.email)
     fill_in("Password", with: user.password)
+    expect(page).to have_button("Submit")
     click_on("Submit")
+    expect(page).to have_current_path("/dashboard")
 
-    expect(page).to have_content(user.username)
     click_on(user.username)
     expect(current_path).to eq("/users/#{user.slug}")
-
-    expect(page).to have_content(user.username)
-    expect(page).to have_content(user.email)
   end
 end
