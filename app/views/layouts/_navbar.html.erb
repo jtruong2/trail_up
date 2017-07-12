@@ -6,7 +6,11 @@
         <li>Find Trails</li>
         <li>Find Events</li>
         <li>Create Event</li>
-        <li>SignUp</li>
-        <li>Login</li>
+        <% if current_user %>
+          <li><%= link_to "Logout", "/logout" %></li>
+        <% else  %>
+          <li><%= link_to "SignUp", "/signup" %></li>
+          <li><%= link_to "Login", "/login" %></li>
+        <% end  %>
     </ul>
 </nav>
