@@ -1,6 +1,6 @@
 class TrailsPresenter
   def initialize
-    @results = HikingProjectService.search
+    @results ||= HikingProjectService.search
   end
 
   def collection

@@ -1,14 +1,30 @@
 var map;
 
+// window.onload = function() {
+//   var locations = document.getElementById("data").textContent;
+//   var display = document.getElementById("display-data");
+//   var array_locations = locations.split(",")
+//
+//   display.innerHTML = array_locations.length
+//
+//   function displayData() {
+//     for(i = 0; i < array_locations.length; i ++) {
+//       display.innerHTML = array_locations[i]
+//     }
+//   }
+// };
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 39.742043, lng: -104.991531 },
+    center: { lat: 39.742043, lng: -104.991531 },
+    mapTypeId: 'terrain',
     zoom: 8
   } );
 
   var markers = locs.map( function(locs, i) {
     return new google.maps.Marker({
       position: locs,
+      label: 'A'
     });
   });
 
@@ -31,6 +47,8 @@ function initMap() {
     });
   });
 }
+
+
 
 // function eqfeed_callback(results) {
 //   for (var i = 0; i < results.features.length; i++) {

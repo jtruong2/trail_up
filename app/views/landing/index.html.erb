@@ -5,8 +5,15 @@
         <div class='search-box'>
             <input type="text" placeholder="location...">
         </div>
+        <div class='map_holder'>
+          <!-- <div id=data class='data'>{ lat: 40.119043, lng: -104.915531 }, { lat: 40.128043, lng: -104.926531 }, { lat: 40.137043, lng: -104.937531 }, { lat: 40.146043, lng: -104.948531 }, { lat: 40.155043, lng: -104.959531 }, { lat: 40.164043, lng: -104.968531 }</div>
+          <div id='display-data' class='display-data'></div> -->
+          <div id="map" class='map'></div>
+        </div>
         <div>
             <input type="submit" value='Find Events Near You'>
         </div>
     </div>
 </section>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_KEY']%>&callback=initMap" async defer></script>
