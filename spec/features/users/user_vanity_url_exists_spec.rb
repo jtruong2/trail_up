@@ -16,6 +16,6 @@ describe "user profile page has vanity url" do
     expect(page).to have_current_path("/dashboard")
 
     click_on(user.username)
-    expect(current_path).to eq("/#{user.username}")
+    expect(current_path).to eq("/users/#{user.slug}")
   end
 end
