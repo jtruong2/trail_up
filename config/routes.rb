@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   
   get '/dashboard', to: 'dashboards#show'
 
-  resources :users, only: [:create]
-
-  resources :trails, only:[:index]
+  resources :users, only: [:create, :show]
+  resources :trails, only: [:index]
 end
