@@ -4,7 +4,8 @@ describe HPTrail do
   context 'Object wraps data for hiking project service api call' do
     it "returns data" do
 
-      allow(HikingProjectService).to receive(:search).and_return(hp_trail_spec_stub)
+      allow_any_instance_of(HikingProjectService).to receive(:search).and_return(open_fixture('spec/support/fixtures/hiking_project_trails.json'))
+      
       trails = HikingProjectService.search
       hp_trail = HPTrail.new(trails[:trails].first)
 

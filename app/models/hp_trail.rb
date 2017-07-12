@@ -1,5 +1,5 @@
 class HPTrail
-  attr_reader :id, :name, :summary, :difficulty, :location, :length, :long, :lat, :hp_image, :hp_rating 
+  attr_reader :id, :name, :summary, :difficulty, :location, :length, :long, :lat, :hp_image, :hp_rating, :google_coordinates 
   
   def initialize(params={})
     @id = params[:id]
@@ -14,6 +14,7 @@ class HPTrail
     @hp_url = params[:url]
     @hp_rating = params[:stars]
     @hp_image = params[:imgSmall]
+    @google_coordinates = google_coordinates
   end
 
   def google_coordinates

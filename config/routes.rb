@@ -8,7 +8,10 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'dashboards#show'
 
+  namespace :api do
+    resources :all_trails, only: [:index]
+  end
+  
   resources :users, only: [:create, :show]
-  resources :trails, only: [:index]
-
+  resources :trails, only: [:index, :new, :create, :show]
 end
