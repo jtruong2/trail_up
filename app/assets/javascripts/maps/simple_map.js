@@ -1,26 +1,12 @@
 var map;
 
-// window.onload = function() {
-//   var locations = document.getElementById("data").textContent;
-//   var display = document.getElementById("display-data");
-//   var array_locations = locations.split(",")
-//
-//   display.innerHTML = array_locations.length
-//
-//   function displayData() {
-//     for(i = 0; i < array_locations.length; i ++) {
-//       display.innerHTML = array_locations[i]
-//     }
-//   }
-// };
-
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 39.742043, lng: -104.991531 },
     mapTypeId: 'terrain',
     zoom: 8
   } );
-
+  
   var markers = locs.map( function(locs, i) {
     return new google.maps.Marker({
       position: locs,
@@ -30,11 +16,6 @@ function initMap() {
 
   var markerCluster = new MarkerClusterer(map, markers,
     { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-
-  // var script = document.createElement('script');
-  //
-  // script.src = 'https://api.outerspatial.com/v0/trailheads.geojson?per_page=10&outputFormat=text/javascript';
-  // document.getElementsByTagName('head')[0].appendChild(script);
 
   google.maps.event.addListener(map, 'click', function(event) {
     marker = new google.maps.Marker({
@@ -47,16 +28,6 @@ function initMap() {
     });
   });
 }
-
-
-
-// function eqfeed_callback(results) {
-//   for (var i = 0; i < results.features.length; i++) {
-//     var coords = results.features[i].geometry.coordinates;
-//     var latLng = new google.maps.LatLng(coords[1], coords[0]);
-//     var marker = new google.maps.Marker({ position: latLng, map: map });
-//   }
-// }
 
 var locs = [
   { lat: 40.119043, lng: -104.915531 },
