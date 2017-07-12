@@ -1,5 +1,5 @@
 <section class='trails'>
-    <% @trails.collection.each do |trail|%>
+    <% @page_results.each do |trail|%>
         <div class='trail'>
             <%= image_tag(trail.hp_image)%>
                 <div class="trail-vital">
@@ -19,9 +19,7 @@
                         <%=trail.hp_rating%>
                     </h5>
                 </div>
-                <p>
-                    <%=trail.summary%>
-                </p>
         </div>
         <%end%>
 </section>
+<%= will_paginate @page_results %>

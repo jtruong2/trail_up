@@ -19,4 +19,14 @@ class HPTrail
   def google_coordinates
     {lng: long, lat: lat}
   end
+
+  def difficulty
+    @difficulty.gsub!('blueBlack', 'Blue-Black')
+    @difficulty.capitalize!
+  end
+
+  def length
+    "#{@length} miles"
+  end
+  
 end
