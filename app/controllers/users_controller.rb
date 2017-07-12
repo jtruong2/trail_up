@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if user.save
       redirect_to dashboard_path
     else
-      flash[:error] = "There was an error in your login credentials."
+      flash[:error] = user.errors.full_messages
       redirect_to signup_path
     end
   end
