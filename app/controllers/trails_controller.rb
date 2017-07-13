@@ -23,6 +23,7 @@ class TrailsController < ApplicationController
       render :new
       end
   end
+    
   def show
     @trail = Trail.find(params[:id])
   end
