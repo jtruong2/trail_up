@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   get '/dashboard', to: 'dashboards#show'
+  get '/directions', to: 'directions#index'
 
   namespace :api do
     resources :all_trails, only: [:index]
   end
+
   namespace :trails do
    resources :search, only: [:index]
    end

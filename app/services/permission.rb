@@ -13,6 +13,7 @@ class Permission
     return true if user == nil && controller == "trails" && action == "index"
     return true if user == nil && controller == "trails" && action == "index"
     return true if user == nil && controller == "trails/search"
+    return true if user == nil && controller == "directions"
     return true if controller == "landing" && action == "index"
     return true if controller == "sessions" && action.in?(%w(new create destroy))
     return true if controller == "dashboards" && user

@@ -12,23 +12,6 @@ function initMap() {
     var trailheads = $.getJSON('/api/all_trails', coordinateLocation, callback);
 
     function callback(data) {
-        for (i = 0; i < data.length; i++) {
-            $('#display-data').append(data[i].name)
-        };
-
-        // data.forEach(function(element) {
-        //     var infoContainer = document.querySelector('.trail-info')
-        //     var trailInfo = document.createElement('div')
-        //     trailInfo.classList.add('trail')
-        //     trailInfo.innerHTML =
-        //         `     <h3 id=${element.id}>${element.name}</h3>
-        //         <h5><span class='bolden'>Length:</span> ${element.length} <span class='bolden'>| Difficulty:</span> ${element.difficulty} <span class='bolden'>| Rating:</span> ${element.hp_rating}</h5>
-        //         <p>${element.summary}</p>
-
-        //     `
-        //     infoContainer.appendChild(trailInfo)
-        // })
-
 
         markers = data.map(function(datum) {
             return new google.maps.Marker({
@@ -54,13 +37,12 @@ function initMap() {
 
         markers.forEach(function(element) {
             google.maps.event.addListener(element, 'click', function() {
-                var contentString = this.customInfo
-                infoWindow.setContent(contentString)
+                infoWindow.setContent(this.customInfo)
                 infoWindow.open(map, element);
                 map.setCenter(element.getPosition());
-                var div = document.getElementById(this.id);
-                div.scrollIntoView(true);
-                console.log(element.data_object)
+                // var div = document.getElementById(this.id);
+                // div.scrollIntoView(true);
+                // console.log(element.data_object)
             });
         }, this);
 
@@ -83,16 +65,15 @@ function initMap() {
 
         })
     };
-
-
-    // google.maps.event.addListener(map, 'click', function(event) {
-    //     marker = new google.maps.Marker({
-    //         position: event.latLng,
-    //         map: map
-    //     });
-
-    //     google.maps.event.addListener(marker, 'click', function() {
-    //         infowindow.open(map, marker);
-    //     });
-    // });
 }
+
+// google.maps.event.addListener(map, 'click', function(event) {
+//     marker = new google.maps.Marker({
+//         position: event.latLng,
+//         map: map
+//     });
+
+//     google.maps.event.addListener(marker, 'click', function() {
+//         infowindow.open(map, marker);
+//     });
+// });
