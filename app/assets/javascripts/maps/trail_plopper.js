@@ -1,5 +1,6 @@
 var map;
 var markers;
+var plopLocation;
 var coordinateLocation = { lat: 39.742043, lng: -104.991531 }
 
 function plopMarkerMap() {
@@ -67,11 +68,19 @@ function plopMarkerMap() {
             map: map
         });
 
-        var location_params = {
+        plopLocation = {
           lat: marker.getPosition().lat(),
           lng: marker.getPosition().lng()
         };
-
-        $.get('/trails/get_location', location_params)
     });
+
+    var submitButton = document.getElementById('submit');
+
+    submitButton.addEventListener('click', function (){
+      var location = document.getElementById('plop_location');
+      location.value = JSON.stringify(plopLocation);
+      // $.get('/trails/get_location', plopLocation)
+    })
 }
+
+
