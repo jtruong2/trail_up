@@ -8,9 +8,21 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'dashboards#show'
   get '/select_or_create_trail', to: 'events#select_or_create_trail'
+  get '/directions', to: 'directions#index'
 
   namespace :api do
     resources :all_trails, only: [:index]
+  end
+
+  namespace :trails do
+   resources :search, only: [:index]
+  end
+
+  namespace :admin do
+    get '/', to: 'landing#index'
+    resources :trails
+    resources :users
+    resources :events
   end
 
   resources :users, only: [:create, :show]

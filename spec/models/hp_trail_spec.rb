@@ -5,11 +5,11 @@ describe HPTrail do
     it "returns data" do
 
       allow_any_instance_of(HikingProjectService).to receive(:search).and_return(open_fixture('spec/support/fixtures/hiking_project_trails.json'))
-      
-      trails = HikingProjectService.search
+      coordinates = { lat: 39.742043, lng: -104.991531 }
+      trails = HikingProjectService.search(coordinates)
       hp_trail = HPTrail.new(trails[:trails].first)
 
-      expect(hp_trail.id).to eq(7000130)
+      expect(hp_trail.hp_id).to eq(7000130)
       expect(hp_trail.name).to eq("Bear Peak")
       expect(hp_trail.location).to eq("Boulder, Colorado")
       expect(hp_trail.difficulty).to eq("Blue-black")

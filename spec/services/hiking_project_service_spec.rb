@@ -7,7 +7,7 @@ describe HikingProjectService do
         default_trails = HikingProjectService.search
         trail = default_trails[:trails].first
 
-        expect(default_trails[:trails].count).to eq(10)
+        expect(default_trails[:trails].count).to eq(50)
         expect(default_trails).to have_key(:trails)
         expect(default_trails).to have_key(:success)
         expect(trail).to have_key(:id)
@@ -38,29 +38,29 @@ describe HikingProjectService do
     end
     it 'returns a list of trails based on long and lat' do
       VCR.use_cassette('hiking_project_services/lat_long_trail_info') do
-        trails = HikingProjectService.search(39.653599, -105.1911)
+        trails = HikingProjectService.search({lat: 39.653599, lng: -105.1911})
         trail = trails[:trails].last
 
-        expect(trails[:trails].count).to eq(10)
+        expect(trails[:trails].count).to eq(50)
         expect(trails).to have_key(:trails)
         expect(trails).to have_key(:success)
-        expect(trail[:id]).to eq(7017569)
-        expect(trail[:name]).to eq("Marshall Mesa to Spring Brook Loop")
+        expect(trail[:id]).to eq(7004681)
+        expect(trail[:name]).to eq("South Mesa Loop")
         expect(trail[:type]).to eq("Featured Hike")
-        expect(trail[:summary]).to eq("Some of the best trails that Boulder has to offer with a variety of options that never get old.")
+        expect(trail[:summary]).to eq("Stunning scenery and a little history...")
         expect(trail[:difficulty]).to eq("greenBlue")
-        expect(trail[:stars]).to eq(4.5)
+        expect(trail[:stars]).to eq(3.7)
         expect(trail[:location]).to eq("Superior, Colorado")
-        expect(trail[:url]).to eq("https://www.hikingproject.com/trail/7017569/marshall-mesa-to-spring-brook-loop")
-        expect(trail[:imgSmall]).to eq("https://cdn-files.apstatic.com/hike/7002458_small_1428468752.jpg")
-        expect(trail[:length]).to eq(11.1)
-        expect(trail[:longitude]).to eq(-105.2313)
-        expect(trail[:latitude]).to eq(39.9527)
+        expect(trail[:url]).to eq("https://www.hikingproject.com/trail/7004681/south-mesa-loop")
+        expect(trail[:imgSmall]).to eq("https://cdn-files.apstatic.com/hike/7000477_small_1420779399.jpg")
+        expect(trail[:length]).to eq(3)
+        expect(trail[:longitude]).to eq(-105.2582)
+        expect(trail[:latitude]).to eq(39.9388)
       end
     end
     it 'returns a list of trails based on all params' do
       VCR.use_cassette('hiking_project_services/all_params_filter') do
-        trails = HikingProjectService.search(39.633321, -105.317215, {maxDistance: 150, maxResults: 20, sort: "distance", minLength: 6})
+        trails = HikingProjectService.search({lat: 39.633321, lng: -105.317215}, {maxDistance: 150, maxResults: 20, sort: "distance", minLength: 6})
         trail_first = trails[:trails].first
         trail_last = trails[:trails].last
 

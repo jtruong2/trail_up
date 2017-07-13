@@ -7,7 +7,6 @@ RSpec.describe "User can create trail" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     
     visit new_trail_path
-
     fill_in "Name", with: trail.name
     fill_in "Description", with: trail.description
     select "Double Black Diamond", from: "trail[difficulty]"

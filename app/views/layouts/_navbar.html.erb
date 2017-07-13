@@ -1,11 +1,16 @@
 <nav class='navbar'>
-    <div class='logo'>
-        <%=  image_tag('logo_trail_up.png')%>
-    </div>
-    <ul class='nav-links'>
-        <li>Find Trails</li>
-        <li>Find Events</li>
-        <%= render current_partial %>
+    <%=link_to(root_path) do%>
+        <div class='logo'>
+            <%=  image_tag('logo_trail_up.png')%>
+                <span class='brand'>Trail<span class='up'>Up</span></span>
+        </div>
+        <%end%>
+            <ul class='nav-links'>
+                <li>
+                    <%=link_to 'Find Trails', trails_search_index_path%>
+                </li>
+                <li>Find Events</li>
+                <%= render current_partial %>
 
-    </ul>
+            </ul>
 </nav>
