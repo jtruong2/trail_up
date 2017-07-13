@@ -8,4 +8,28 @@ class TrailsController < ApplicationController
       pager.replace(@trails.collection[start, per_page])
     end
   end
+
+  def new
+    @trail = Trail.new
+  end
+
+  def create
+    @trail = Trail.create(trail_params)
+    if @trail.save
+      flash[:success] = ["Trail Created"]
+      redirect_to trail_path(@trail)
+    else
+      flash[:error] = @trail.errors.full_messages
+      render :new
+      end
+  end
+    
+  def show
+    @trail = Trail.find(params[:id])
+  end
+  private 
+
+    def trail_params
+      params.require(:trail).permit(:name, :description, :difficulty, :location, :distance, :rating)
+    end
 end
