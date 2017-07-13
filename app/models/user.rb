@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   before_save :generate_slug
 
+  enum role: %w(admin)
+
   def generate_slug
     self.slug = username.parameterize
   end
