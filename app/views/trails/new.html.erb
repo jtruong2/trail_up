@@ -1,3 +1,11 @@
+<div class='search-box'>
+    <input id="location-search-box" type="text" placeholder="location...">
+    <input id='location-search-button' type="submit" value="Find Trails">
+</div>
+<div class='map_holder'>
+    <div id="map" class='map'></div>
+</div>
+
 <div class='form trail-form'>
   <%= form_for(@trail) do |f| %>
   <%=f.label :name %>
@@ -15,3 +23,5 @@
   <%=f.submit "Create New Trail"%>
   <%end%>
 </div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_KEY']%>&callback=plopMarkerMap" async defer></script>

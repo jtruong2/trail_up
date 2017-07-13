@@ -26,7 +26,7 @@ function initMap() {
                 <p>${datum.summary}</p>
                 <div class='links'>
                 <a href="/event/new?trail=${datum.hp_id}">Select For Event</a>
-                <a href="/directions?lat=${datum.lat}&lng=${datum.long}">Directions</a>  
+                <a href="/directions?orig_lat=${coordinateLocation.lat}&orig_lng=${coordinateLocation.lng}&dest_lat=${datum.lat}&dest_lng=${datum.long}">Directions</a>
                 </div>
                 </div>
                 `,
@@ -67,13 +67,3 @@ function initMap() {
     };
 }
 
-// google.maps.event.addListener(map, 'click', function(event) {
-//     marker = new google.maps.Marker({
-//         position: event.latLng,
-//         map: map
-//     });
-
-//     google.maps.event.addListener(marker, 'click', function() {
-//         infowindow.open(map, marker);
-//     });
-// });
