@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713024811) do
+ActiveRecord::Schema.define(version: 20170713174408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.bigint "trail_id"
+    t.string "name"
+    t.string "description"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["trail_id"], name: "index_events_on_trail_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
 
   create_table "pictures", force: :cascade do |t|
     t.string "image"
@@ -47,4 +59,6 @@ ActiveRecord::Schema.define(version: 20170713024811) do
     t.integer "role"
   end
 
+  add_foreign_key "events", "trails"
+  add_foreign_key "events", "users"
 end

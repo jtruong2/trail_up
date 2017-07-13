@@ -21,5 +21,4 @@ class User < ApplicationRecord
   def generate_slug
     self.slug = username.parameterize
   end
-
 end

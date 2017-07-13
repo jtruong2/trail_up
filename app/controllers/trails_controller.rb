@@ -15,7 +15,11 @@ class TrailsController < ApplicationController
 
   def create
     @trail = Trail.create(trail_params)
-    if @trail.save
+    if @trail.save && session[:redirect_to_new_event_page]
+      flash[:success] = ["Trail Created"]
+      redirect_to new_event_path(trail_id: @trail.id)
+      session[:redirect_to_new_event_page] = false
+    elsif @trail.save && !session[:redirect_to_new_event_page]
       flash[:success] = ["Trail Created"]
       redirect_to trail_path(@trail)
     else
@@ -23,11 +27,12 @@ class TrailsController < ApplicationController
       render :new
       end
   end
-    
+
   def show
     @trail = Trail.find(params[:id])
   end
-  private 
+
+  private
 
     def trail_params
       params.require(:trail).permit(:name, :description, :difficulty, :location, :distance, :rating)
