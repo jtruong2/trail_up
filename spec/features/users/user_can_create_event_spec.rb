@@ -7,6 +7,7 @@ RSpec.describe "User creates an event" do
 
     visit "/"
     click_on "Create Event"
+    expect(current_path).to eq(select_or_create_trail_path)
     expect(page).to have_content("Create a New Trail")
     click_on "Create a New Trail"
     expect(current_path).to eq(new_trail_path)
