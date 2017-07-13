@@ -14,7 +14,9 @@ class Permission
     return true if controller == "landing" && action == "index"
     return true if controller == "sessions" && action.in?(%w(new create destroy))
     return true if controller == "dashboards" && user
-    if user
+    if user.admin?
+      admin_permissions
+    elsif user
       user_permissions
     end
   end
