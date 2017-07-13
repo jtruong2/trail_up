@@ -16,18 +16,18 @@ function initMap() {
             $('#display-data').append(data[i].name)
         };
 
-        data.forEach(function(element) {
-            var infoContainer = document.querySelector('.trail-info')
-            var trailInfo = document.createElement('div')
-            trailInfo.classList.add('trail')
-            trailInfo.innerHTML =
-                `     <h3 id=${element.id}>${element.name}</h3>
-                <h5><span class='bolden'>Length:</span> ${element.length} <span class='bolden'>| Difficulty:</span> ${element.difficulty} <span class='bolden'>| Rating:</span> ${element.hp_rating}</h5>
-                <p>${element.summary}</p>
-                
-            `
-            infoContainer.appendChild(trailInfo)
-        })
+        // data.forEach(function(element) {
+        //     var infoContainer = document.querySelector('.trail-info')
+        //     var trailInfo = document.createElement('div')
+        //     trailInfo.classList.add('trail')
+        //     trailInfo.innerHTML =
+        //         `     <h3 id=${element.id}>${element.name}</h3>
+        //         <h5><span class='bolden'>Length:</span> ${element.length} <span class='bolden'>| Difficulty:</span> ${element.difficulty} <span class='bolden'>| Rating:</span> ${element.hp_rating}</h5>
+        //         <p>${element.summary}</p>
+
+        //     `
+        //     infoContainer.appendChild(trailInfo)
+        // })
 
 
         markers = data.map(function(datum) {
@@ -72,8 +72,8 @@ function initMap() {
 
             function locationDump(data) {
                 coordinateLocation = data.results[0].geometry.location
-                var infoContainer = document.querySelector('.trail-info')
-                infoContainer.innerHTML = ''
+                    // var infoContainer = document.querySelector('.trail-info')
+                    // infoContainer.innerHTML = ''
                 return initMap();
             }
 
