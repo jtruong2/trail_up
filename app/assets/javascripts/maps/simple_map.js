@@ -1,16 +1,15 @@
 var map;
 var markers;
-
-
+var coordinateLocation = { lat: 39.742043, lng: -104.991531 }
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 39.742043, lng: -104.991531 },
+        center: coordinateLocation,
         mapTypeId: 'terrain',
         zoom: 8
     });
 
-    var trailheads = $.getJSON('/api/all_trails', callback);
+    var trailheads = $.getJSON('/api/all_trails', coordinateLocation, callback);
 
     // var location = jQuery.parseJSON(document.getElementById('location').textContent)
 
@@ -77,11 +76,19 @@ function initMap() {
 
         var locationSearch = document.getElementById('location-search-box')
         var searchButton = document.getElementById('location-search-button')
+
         searchButton.addEventListener('click', function() {
-            // return console.log(locationSearch.value)
-            return initMap();
+            var searchQuery = locationSearch.value
+            $.getJSON(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchQuery}&key=AIzaSyCwdTm2xiTCPxTGZr_O7HsvVaQb8nKrS3o`, locationDump);
+
+            function locationDump(data) {
+                coordinateLocation = data.results[0].geometry.location
+                return initMap();
+            }
+
         })
     };
+
 
     // google.maps.event.addListener(map, 'click', function(event) {
     //     marker = new google.maps.Marker({
