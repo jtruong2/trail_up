@@ -28,16 +28,22 @@
 }
 
 .logo {
+    display: flex;
     height: 60px;
     width: 60px;
     margin-left: 30px;
     margin-bottom: 20px;
-    font-family: 'Amatic SC';
-    font-size: 20px;
-    letter-spacing: .1em;
 }
 
 .logo img {
     height: 90%;
     width: 90%;
+}
+
+.brand {
+    font-family: 'Amatic SC';
+    font-size: 50px;
+    letter-spacing: .1em;
+    margin-left: 10px;
+    font-weight: 800;
 }

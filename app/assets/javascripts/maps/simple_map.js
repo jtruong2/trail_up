@@ -6,7 +6,7 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: coordinateLocation,
         mapTypeId: 'terrain',
-        zoom: 8
+        zoom: 9
     });
 
     var trailheads = $.getJSON('/api/all_trails', coordinateLocation, callback);
@@ -41,9 +41,13 @@ function initMap() {
                 </div>
                 <h5><span class='bolden'>Length:</span> ${datum.length} <span class='bolden'>| Difficulty:</span> ${datum.difficulty} <span class='bolden'>| Rating:</span> ${datum.hp_rating}</h5>
                 <p>${datum.summary}</p>
+                <div class='links'>
+                <a href="/event/new?trail=${datum.hp_id}">Select For Event</a>
+                <a href="/directions?lat=${datum.lat}&lng=${datum.long}">Directions</a>  
+                </div>
                 </div>
                 `,
-                id: datum.id,
+                id: datum.hp_id,
                 data_object: datum
             });
         });

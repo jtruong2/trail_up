@@ -1,8 +1,8 @@
 class HPTrail
-  attr_reader :id, :name, :summary, :difficulty, :location, :length, :long, :lat, :hp_image, :hp_rating, :google_coordinates 
+  attr_reader :hp_id, :name, :summary, :difficulty, :location, :length, :long, :lat, :hp_image, :hp_rating, :google_coordinates 
   
   def initialize(params={})
-    @id = params[:id]
+    @hp_id = params[:id]
     @name = params[:name]
     @summary = params[:summary]
     @difficulty = params[:difficulty]
@@ -29,5 +29,6 @@ class HPTrail
   def length
     "#{@length} miles"
   end
+  
   
 end
