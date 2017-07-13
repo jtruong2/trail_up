@@ -7,6 +7,7 @@ describe "admin pages are protected" do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user_1)
 
+    visit "/admin/trails"
     expect{ visit "/admin/trails" }.to raise_error(ActionController::RoutingError)
     expect{ visit "/admin/users" }.to raise_error(ActionController::RoutingError)
     expect{ visit "/admin/users/full-admin" }.to raise_error(ActionController::RoutingError)

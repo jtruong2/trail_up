@@ -8,6 +8,7 @@ class Permission
   end
 
   def authorized?
+    binding.pry
     return true if user == nil && controller == "sessions"
     return true if user == nil && action.in?(%w(new create))
     return true if user == nil && controller == "trails" && action == "index"
