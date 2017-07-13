@@ -26,7 +26,7 @@ function initMap() {
             var trailInfo = document.createElement('div')
             trailInfo.classList.add('trail')
             trailInfo.innerHTML =
-                `     <h3>${element.name}</h3>
+                `     <h3 id=${element.id}>${element.name}</h3>
                 <h5><span class='bolden'>Length:</span> ${element.length} <span class='bolden'>| Difficulty:</span> ${element.difficulty} <span class='bolden'>| Rating:</span> ${element.hp_rating}</h5>
                 <p>${element.summary}</p>
                 
@@ -44,7 +44,8 @@ function initMap() {
                 <h5><span class='bolden'>Length:</span> ${datum.length} <span class='bolden'>| Difficulty:</span> ${datum.difficulty} <span class='bolden'>| Rating:</span> ${datum.hp_rating}</h5>
                 <p>${datum.summary}</p>
                 </div>
-                `
+                `,
+                id: datum.id
             });
         });
 
@@ -55,6 +56,9 @@ function initMap() {
                     content: contentString
                 });
                 infoWindow.open(map, element);
+                var div = document.getElementById(this.id)
+                div.scrollIntoView(true)
+                    // div.parentElement.classList.add('highlight')
             });
         }, this);
 
