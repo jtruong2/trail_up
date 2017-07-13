@@ -7,7 +7,7 @@ class HikingProjectService
     @conn = Faraday.new(:url => 'https://www.hikingproject.com')
   end
 
-  def self.search(coords, add_params={})
+  def self.search(coords={ :lat=> 39.742043, :lng=> -104.991531 }, add_params={})
     response = new(coords, add_params).search
     JSON.parse(response, :symbolize_names => true)
   end
