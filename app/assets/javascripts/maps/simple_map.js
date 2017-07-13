@@ -76,9 +76,10 @@ function initMap() {
             google.maps.event.addListener(element, 'click', function() {
                 // infowindow.close();
                 var contentString = this.customInfo
-                var infoWindow = new google.maps.InfoWindow({
-                    content: contentString
-                });
+                    // var infoWindow = new google.maps.InfoWindow({
+                    //     content: contentString
+                    // });
+                infoWindow.content = contentString
                 infoWindow.open(map, element);
                 map.setCenter(element.getPosition());
                 var div = document.getElementById(this.id)
@@ -87,6 +88,7 @@ function initMap() {
             });
         }, this);
 
+        var infoWindow = new google.maps.InfoWindow()
         var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
     };
 
