@@ -5,8 +5,15 @@
         <div class='search-box'>
             <input type="text" placeholder="location...">
         </div>
+        <div class='map_holder'>
+          <div id='location' class='data'>{ "lat": 39.742043, "lng": -104.991531 }</div>
+          <div id="map" class='map'></div>
+        </div>
+          <div id='display-data' class='display-data'></div>
         <div>
             <input type="submit" value='Find Events Near You'>
         </div>
     </div>
 </section>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_KEY']%>&callback=initMap" async defer></script>

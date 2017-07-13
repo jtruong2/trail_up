@@ -35,7 +35,28 @@ h3 {
 }
 
 .search-box {
-    width: 100%;
+  width: 100%;
+}
+
+.map_holder {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
+.map {
+  border-radius: 7px;
+  height: 500px;
+  width: 500px;
+}
+
+.display-data {
+  background-color: white;
+  width: 300px;
+}
+
+.data {
+  display: none;
 }
 
 #up {
