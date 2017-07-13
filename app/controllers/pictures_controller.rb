@@ -6,7 +6,7 @@ class PicturesController < ApplicationController
   def create
     picture = Picture.new(pic_params)
     picture.save
-    redirect_to "/users/#{picture["imageable_id"]}"
+    redirect_to user_path(:id => current_user.slug)
   end
 
   private

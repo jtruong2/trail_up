@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by(slug: params[:id])
   end
 
   def update

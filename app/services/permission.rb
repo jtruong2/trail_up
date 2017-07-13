@@ -29,6 +29,8 @@ class Permission
   attr_reader :user, :controller, :action, :identifier
 
     def user_permissions
+      return true if controller == "pictures" && action.in?(%w(create))
+      return true if controller == "users" && action.in?(%w(edit))
       return true if controller == "trails" && action.in?(%w(index new create show))
       return true if controller == "users" && action == "show" && user_page_check == true
     end
