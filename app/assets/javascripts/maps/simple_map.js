@@ -21,23 +21,7 @@ function initMap() {
     //     zoom: 8
     // });
 
-    var trailheads = $.getJSON('/api/all_trails', location, callback);
-
-
-    markers = data.map(function(datum) {
-        var marker = new google.maps.Marker({
-            position: datum.google_coordinates
-        });
-
-        marker.addListener('click', function() {
-            infowindow.close();
-            infowindow.setContent("<div id='infowindow'>" + datum.name + "</div>");
-            infowindow.open(map, this);
-            map.setCenter(this.getPosition());
-        });
-
-        return marker
-    });
+    // var trailheads = $.getJSON('/api/all_trails', location, callback);
 
     function callback(data) {
         for (i = 0; i < data.length; i++) {
@@ -63,33 +47,40 @@ function initMap() {
                 position: datum.google_coordinates,
                 customInfo: `
                 <div class='map-info'>
+                <div class='map-info-header'>
+                <img src=${datum.hp_image} alt='Trail Image'>
                 <h3>${datum.name}</h3>
+                </div>
                 <h5><span class='bolden'>Length:</span> ${datum.length} <span class='bolden'>| Difficulty:</span> ${datum.difficulty} <span class='bolden'>| Rating:</span> ${datum.hp_rating}</h5>
                 <p>${datum.summary}</p>
                 </div>
                 `,
-                id: datum.id
+                id: datum.id,
+                data_object: datum
             });
         });
 
         markers.forEach(function(element) {
             google.maps.event.addListener(element, 'click', function() {
-                // infowindow.close();
                 var contentString = this.customInfo
-                    // var infoWindow = new google.maps.InfoWindow({
-                    //     content: contentString
-                    // });
-                infoWindow.content = contentString
+                infoWindow.setContent(contentString)
                 infoWindow.open(map, element);
                 map.setCenter(element.getPosition());
-                var div = document.getElementById(this.id)
-                div.scrollIntoView(true)
-                    // div.parentElement.classList.add('highlight')
+                var div = document.getElementById(this.id);
+                div.scrollIntoView(true);
+                console.log(element.data_object)
             });
         }, this);
 
         var infoWindow = new google.maps.InfoWindow()
         var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+
+        var locationSearch = document.getElementById('location-search-box')
+        var searchButton = document.getElementById('location-search-button')
+        searchButton.addEventListener('click', function() {
+            // return console.log(locationSearch.value)
+            return initMap();
+        })
     };
 
     // google.maps.event.addListener(map, 'click', function(event) {

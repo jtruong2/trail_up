@@ -57,6 +57,17 @@
     .bolden {
         font-weight: 800;
     }
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+    }
+}
+
+.map-info-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .trail-info {
