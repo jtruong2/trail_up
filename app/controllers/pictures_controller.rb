@@ -4,7 +4,6 @@ class PicturesController < ApplicationController
   end
 
   def create
-    binding.pry
     picture = Picture.new(pic_params)
     picture.save
     redirect_to dashboard_path
