@@ -1,6 +1,6 @@
 class TrailsPresenter
-  def initialize
-    @results ||= HikingProjectService.search
+  def initialize(location_params)
+    @results ||= HikingProjectService.search(location_params)
   end
 
   def collection

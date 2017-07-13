@@ -11,17 +11,6 @@ function initMap() {
 
     var trailheads = $.getJSON('/api/all_trails', coordinateLocation, callback);
 
-    // var location = jQuery.parseJSON(document.getElementById('location').textContent)
-
-
-    // map = new google.maps.Map(document.getElementById('map'), {
-    //     center: location,
-    //     mapTypeId: 'terrain',
-    //     zoom: 8
-    // });
-
-    // var trailheads = $.getJSON('/api/all_trails', location, callback);
-
     function callback(data) {
         for (i = 0; i < data.length; i++) {
             $('#display-data').append(data[i].name)
@@ -83,6 +72,8 @@ function initMap() {
 
             function locationDump(data) {
                 coordinateLocation = data.results[0].geometry.location
+                var infoContainer = document.querySelector('.trail-info')
+                infoContainer.innerHTML = ''
                 return initMap();
             }
 
