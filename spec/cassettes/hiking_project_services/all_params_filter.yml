@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 11 Jul 2017 22:19:00 GMT
+      - Thu, 13 Jul 2017 17:32:03 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -29,12 +29,12 @@ http_interactions:
       Pragma:
       - no-cache
       X-Ap-Request-Id:
-      - '08dff79b-26f4-442d-90ee-d5a97990b6e6'
+      - 4af56713-26e4-4517-85a2-0b47760e5975
       Set-Cookie:
-      - XSRF-TOKEN=eyJpdiI6IndqUDYySEtrQ3BhWTkwY1NhNzJwMEE9PSIsInZhbHVlIjoiZUpyVENIeXFaeVwvWHlYeHRDZXBYTG82R2diVkc1amxtNFlnUjFxXC9BY2dKUzg3Wkd4Z1EyQ1owZHZGOVRNOUdkRGxwMUhqYlpvYUpzNXAxZWhCWFhiZz09IiwibWFjIjoiZjVjYTM5Mjg3Y2FlMDMzMTM2Mjc2MDIzMmJhMjVhMmVkOTAwM2I0NjlhNjc0ZGM0NmNhMjg4M2Y5MjJmZGY1YSJ9;
-        expires=Wed, 12-Jul-2017 00:19:00 GMT; Max-Age=7200; path=/; HttpOnly
-      - laravel_session=eyJpdiI6Iit3bXdzWkc2TzlybGlEUHFiQ2U0SkE9PSIsInZhbHVlIjoid054UW1abVwvNFVyVThBbU1HZkVqQ3JRRU5Ta3lha0RIU0JKUHBaWnJ2ejFsbTNkNkZ2TVBscDJBQ1wvREg3NEZEMjZSbVFjQ1oxQU5qMHU2V3ZrUlg0QT09IiwibWFjIjoiMzcwNzM2OTIxMTliMWE2OWEwNmVlMDkwZjQ2OGRhNzE5MmJkMzA5OTZjNmUzMDRhM2RhMDE3NTJjNDk1YTFlZiJ9;
-        expires=Wed, 12-Jul-2017 00:19:00 GMT; Max-Age=7200; path=/; HttpOnly
+      - XSRF-TOKEN=eyJpdiI6IjR2ZXNkWDFsdVArZ1hhb0l5c2VrYkE9PSIsInZhbHVlIjoicU5aZXV0XC9SMmpwa04zUDZrNGRxNHNmRVN3cHRGZEtHZ09PaUJqRUw0enhGclZjRkM2VHdmSTJLN25iTzBWN2d0QWVTc2R0S25WcmtzNjJLRElWZ3J3PT0iLCJtYWMiOiI2ZWIxZDNkOWM4NWIyODJhMjQzNGUyYWM1NjIxYjQ4OGFiMWNjM2UzNTQ3Y2M0MDIzYzQyZjFkYTgxODAzOTYzIn0%3D;
+        expires=Thu, 13-Jul-2017 19:32:03 GMT; Max-Age=7200; path=/; HttpOnly
+      - laravel_session=eyJpdiI6InFIY3l2eFdHSlo0a1Vua2Ztalduamc9PSIsInZhbHVlIjoiRlRrOEc1ODlTXC8zZEpacG0xN25hS0IxbVZVXC9qZFBiZGJRS0U0b1pwazBOM1lWY2JRaXg5NWJySWxSZFA2Vk5VRTJ5QlNuTDB5dGJXeE9jSVpBWHlpQT09IiwibWFjIjoiMzgwOTUxMmQ1ZGIwYWY3ZGJmMWY3NTgxOTQzZTBmYzczY2Q5YTJlM2U1ZDlkM2YyZmVkMDQzYjMxN2JkYWIzZSJ9;
+        expires=Thu, 13-Jul-2017 19:32:03 GMT; Max-Age=7200; path=/; HttpOnly
       Vary:
       - Accept-Encoding
       Content-Length:
@@ -490,5 +490,5 @@ http_interactions:
             "success": 1
         }
     http_version: 
-  recorded_at: Tue, 11 Jul 2017 22:19:00 GMT
+  recorded_at: Thu, 13 Jul 2017 17:32:03 GMT
 recorded_with: VCR 3.0.3

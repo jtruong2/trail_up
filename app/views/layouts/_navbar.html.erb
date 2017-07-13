@@ -1,17 +1,16 @@
 <nav class='navbar'>
-    <div class='logo'>
-        <%=  image_tag('logo_trail_up.png')%>
-    </div>
-    <ul class='nav-links'>
-        <li>Find Trails</li>
-        <li>Find Events</li>
-        <li>Create Event</li>
-        <% if current_user %>
-          <li> <%= link_to current_user.username, user_path(current_user.id) %> </li>
-          <li><%= link_to "Logout", logout_path, :method => :delete %></li>
-        <% else  %>
-          <li><%= link_to "SignUp", "/signup" %></li>
-          <li><%= link_to "Login", "/login" %></li>
-        <% end  %>
-    </ul>
+    <%=link_to(root_path) do%>
+        <div class='logo'>
+            <%=  image_tag('logo_trail_up.png')%>
+                <span class='brand'>Trail<span class='up'>Up</span></span>
+        </div>
+        <%end%>
+            <ul class='nav-links'>
+                <li>
+                    <%=link_to 'Find Trails', trails_search_index_path%>
+                </li>
+                <li>Find Events</li>
+                <%= render current_partial %>
+
+            </ul>
 </nav>
