@@ -12,8 +12,4 @@ describe "User has basic authorization" do
 
     expect{ visit "/users/the-second-user" }.to raise_error(ActionController::RoutingError)
   end
-
-  scenario "user can't view admin pages" do
-
-  end
 end
