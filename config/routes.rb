@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   namespace :api do
     resources :all_trails, only: [:index]
   end
+  namespace :trails do
+   resources :search, only: [:index]
+   end
 
   resources :users, only: [:create, :show]
   resources :trails, only: [:index, :new, :create, :show]

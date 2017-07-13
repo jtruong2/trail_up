@@ -13,7 +13,7 @@ class HikingProjectService
   end
 
   def search
-    response = conn.get '/data/get-trails', {:key => ENV['hiking_project_api_key'], :lat => lat, :lon => long}.merge(add_params)
+    response = conn.get '/data/get-trails', {:key => ENV['hiking_project_api_key'], :lat => lat, :lon => long, :maxResults=> 50}.merge(add_params)
     response.body
   end
 

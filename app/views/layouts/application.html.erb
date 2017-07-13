@@ -4,8 +4,8 @@
 <head>
     <title>TrailUp</title>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+        <%= stylesheet_link_tag    'application', media: 'all' %>
+            <%= javascript_include_tag 'application' %>
 </head>
 
 <body>
@@ -14,15 +14,19 @@
         <%= render 'layouts/navbar' %>
             <div class='site-content'>
                 <% flash.each do |key, value| %>
-                  <% value.each do |message| %>
-                    <%= message %>
-                      <br>
-                  <% end %>
-                <% end  %>
-                <%= yield %>
+                    <% value.each do |message| %>
+                        <%= message %>
+                            <br>
+                            <% end %>
+                                <% end  %>
+                                    <%= yield %>
             </div>
             <%= render 'layouts/footer' %>
     </div>
 </body>
 
 </html>
+
+<script type="text/javascript">
+    appFolder = @Url.Content("~/");
+</script>
