@@ -13,8 +13,4 @@
 //= require rails-ujs
 //= require jquery
 //= require vendor/marker_cluster/markerclusterer
-<<<<<<< HEAD
-=======
-//= require maps/load_trailheads
->>>>>>> Spiking Map Script
 //= require maps/simple_map
