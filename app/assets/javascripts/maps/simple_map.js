@@ -4,17 +4,40 @@ var markers;
 
 
 function initMap() {
+    // map = new google.maps.Map(document.getElementById('map'), {
+    //     center: { lat: 39.742043, lng: -104.991531 },
+    //     mapTypeId: 'terrain',
+    //     zoom: 8
+    // });
+
+    // var trailheads = $.getJSON('/api/all_trails', callback);
+
+    var location = jQuery.parseJSON(document.getElementById('location').textContent)
+
+
     map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 39.742043, lng: -104.991531 },
+        center: location,
         mapTypeId: 'terrain',
         zoom: 8
     });
 
-    var trailheads = $.getJSON('/api/all_trails', callback);
+    var trailheads = $.getJSON('/api/all_trails', location, callback);
 
 
+    markers = data.map(function(datum) {
+        var marker = new google.maps.Marker({
+            position: datum.google_coordinates
+        });
 
+        marker.addListener('click', function() {
+            infowindow.close();
+            infowindow.setContent("<div id='infowindow'>" + datum.name + "</div>");
+            infowindow.open(map, this);
+            map.setCenter(this.getPosition());
+        });
 
+        return marker
+    });
 
     function callback(data) {
         for (i = 0; i < data.length; i++) {
@@ -55,7 +78,9 @@ function initMap() {
                 var infoWindow = new google.maps.InfoWindow({
                     content: contentString
                 });
+                infowindow.close();
                 infoWindow.open(map, element);
+                map.setCenter(element.getPosition());
                 var div = document.getElementById(this.id)
                 div.scrollIntoView(true)
                     // div.parentElement.classList.add('highlight')
