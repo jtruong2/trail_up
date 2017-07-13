@@ -14,8 +14,6 @@
 //= require jquery
 //= require vendor/marker_cluster/markerclusterer
 //= require maps/simple_map
-<<<<<<< HEAD
 //= require maps/trail_plopper
-=======
 //=require maps/directions_map
->>>>>>> developement
+
