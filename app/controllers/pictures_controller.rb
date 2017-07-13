@@ -6,7 +6,7 @@ class PicturesController < ApplicationController
   def create
     picture = Picture.new(pic_params)
     picture.save
-    redirect_to dashboard_path
+    redirect_to "/users/#{picture["imageable_id"]}"
   end
 
   private
