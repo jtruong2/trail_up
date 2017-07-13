@@ -1,6 +1,6 @@
 class TrailsPresenter
-  def initialize
-    @results ||= HikingProjectService.search
+  def initialize(coords={ :lat=> 39.742043, :lng=> -104.991531 })
+    @results ||= HikingProjectService.search(coords)
   end
 
   def collection
