@@ -11,8 +11,7 @@ describe "User has basic authorization" do
     expect(page).to have_content(user_1.username)
 
     visit "/users/the-second-user"
-    expect(page).to_not have_content(user_2.username)
-    expect(current_path).to eq('/')
+    expect(page).to have_content('404 Error. The page you are looking for does not exist.')
   end
 
   scenario "user can't view admin pages" do

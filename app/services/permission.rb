@@ -8,13 +8,13 @@ class Permission
   end
 
   def authorized?
-    return true if controller == "landing_controller" && action == "index"
+    return true if user == nil && controller == "sessions"
+    return true if user == nil && action.in?(%w(new create))
+    return true if user == nil && controller == "trails" && action == "index"
+    return true if controller == "landing" && action == "index"
     return true if controller == "sessions" && action.in?(%w(new create destroy))
-    return true if controller == "dashboard_controller" && user
-
-    if user.admin?
-      admin_permissions
-    else
+    return true if controller == "dashboards" && user
+    if user
       user_permissions
     end
   end
@@ -23,14 +23,13 @@ class Permission
 
   attr_reader :user, :controller, :action, :identifier
 
-    def user_page_check
-      binding.pry
-    end
-
     def user_permissions
-      return true if controller == "trails_controller" && action.in?(%w(index new create show))
-      if
+      return true if controller == "trails" && action.in?(%w(index new create show))
+      return true if controller == "users" && action == "show" && user_page_check == true
     end
 
+    def user_page_check
+      return true if user.slug == identifier || user.id == identifier
+    end
 
 end
