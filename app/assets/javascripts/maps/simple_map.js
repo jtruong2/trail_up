@@ -5,13 +5,14 @@ function initMap() {
 
   var location = jQuery.parseJSON(document.getElementById('location').textContent)
 
+
   map = new google.maps.Map(document.getElementById('map'), {
     center: location,
     mapTypeId: 'terrain',
     zoom: 8
   } );
 
-  var trailheads = $.getJSON('api/all_trails', callback);
+  var trailheads = $.getJSON('api/all_trails', location, callback);
 
   function callback(data) {
     for(i = 0; i < data.length; i ++) {
@@ -48,6 +49,5 @@ function initMap() {
     });
   });
 
-  // Declare an infowindow. Needs to be at end otherwise window loads empty first time
   var infowindow = new google.maps.InfoWindow();
 }
