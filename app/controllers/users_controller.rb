@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @user.build_picture
   end
 
   def create
@@ -13,6 +14,13 @@ class UsersController < ApplicationController
       flash[:error] = user.errors.full_messages
       redirect_to signup_path
     end
+  end
+
+  def edit
+    @user = User.find_by(slug: params[:id])
+  end
+
+  def update
   end
 
   def show

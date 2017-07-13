@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 20170713174408) do
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
+  create_table "pictures", force: :cascade do |t|
+    t.string "image"
+    t.string "imageable_type"
+    t.bigint "imageable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
+  end
+
   create_table "trails", force: :cascade do |t|
     t.string "name"
     t.string "description"
