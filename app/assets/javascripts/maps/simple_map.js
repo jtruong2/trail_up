@@ -1,53 +1,79 @@
 var map;
 var markers;
+var coordinateLocation = { lat: 39.742043, lng: -104.991531 }
 
 function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: coordinateLocation,
+        mapTypeId: 'terrain',
+        zoom: 9
+    });
 
-  var location = jQuery.parseJSON(document.getElementById('location').textContent)
+    var trailheads = $.getJSON('/api/all_trails', coordinateLocation, callback);
 
+    function callback(data) {
 
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: location,
-    mapTypeId: 'terrain',
-    zoom: 8
-  } );
+        markers = data.map(function(datum) {
+            return new google.maps.Marker({
+                position: datum.google_coordinates,
+                customInfo: `
+                <div class='map-info'>
+                <div class='map-info-header'>
+                <img src=${datum.hp_image} alt='Trail Image'>
+                <h3>${datum.name}</h3>
+                </div>
+                <h5><span class='bolden'>Length:</span> ${datum.length} <span class='bolden'>| Difficulty:</span> ${datum.difficulty} <span class='bolden'>| Rating:</span> ${datum.hp_rating}</h5>
+                <p>${datum.summary}</p>
+                <div class='links'>
+                <a href="/event/new?trail=${datum.hp_id}">Select For Event</a>
+                <a href="/directions?lat=${datum.lat}&lng=${datum.long}">Directions</a>  
+                </div>
+                </div>
+                `,
+                id: datum.hp_id,
+                data_object: datum
+            });
+        });
 
-  var trailheads = $.getJSON('api/all_trails', location, callback);
+        markers.forEach(function(element) {
+            google.maps.event.addListener(element, 'click', function() {
+                infoWindow.setContent(this.customInfo)
+                infoWindow.open(map, element);
+                map.setCenter(element.getPosition());
+                // var div = document.getElementById(this.id);
+                // div.scrollIntoView(true);
+                // console.log(element.data_object)
+            });
+        }, this);
 
-  function callback(data) {
-    for(i = 0; i < data.length; i ++) {
-      $('#display-data').append(data[i].name )
+        var infoWindow = new google.maps.InfoWindow()
+        var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+
+        var locationSearch = document.getElementById('location-search-box')
+        var searchButton = document.getElementById('location-search-button')
+
+        searchButton.addEventListener('click', function() {
+            var searchQuery = locationSearch.value
+            $.getJSON(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchQuery}&key=AIzaSyCwdTm2xiTCPxTGZr_O7HsvVaQb8nKrS3o`, locationDump);
+
+            function locationDump(data) {
+                coordinateLocation = data.results[0].geometry.location
+                    // var infoContainer = document.querySelector('.trail-info')
+                    // infoContainer.innerHTML = ''
+                return initMap();
+            }
+
+        })
     };
-
-    markers = data.map( function(datum) {
-      var marker =  new google.maps.Marker({
-        position: datum.google_coordinates
-      });
-
-      marker.addListener('click', function(){
-        infowindow.close();
-        infowindow.setContent( "<div id='infowindow'>" + datum.name + "</div>");
-        infowindow.open(map, this);
-        map.setCenter(this.getPosition());
-      });
-
-      return marker
-    });
-
-    var markerCluster = new MarkerClusterer(map, markers,
-      { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-  };
-
-  google.maps.event.addListener(map, 'click', function(event) {
-    marker = new google.maps.Marker({
-    position: event.latLng,
-    map: map
-    });
-
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map, marker);
-    });
-  });
-
-  var infowindow = new google.maps.InfoWindow();
 }
+
+// google.maps.event.addListener(map, 'click', function(event) {
+//     marker = new google.maps.Marker({
+//         position: event.latLng,
+//         map: map
+//     });
+
+//     google.maps.event.addListener(marker, 'click', function() {
+//         infowindow.open(map, marker);
+//     });
+// });

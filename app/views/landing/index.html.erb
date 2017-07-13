@@ -1,19 +1,17 @@
 <section class="landing-container">
     <div class='jumbotron'>
-        <h1 class='main-title'>Trail<span id='up'>Up</span></h1>
+        <h1 class='main-title'>Trail<span class='up'>Up</span></h1>
         <h3>Find Trails. Find Friends. Get Outside. </h3>
         <div class='search-box'>
             <input type="text" placeholder="location...">
         </div>
-        <div class='map_holder'>
-          <div id='location' class='data'>{ "lat": 39.742043, "lng": -104.991531 }</div>
-          <div id="map" class='map'></div>
-        </div>
-          <div id='display-data' class='display-data'></div>
-        <div>
-            <input type="submit" value='Find Events Near You'>
-        </div>
+
+        <input type="submit" value='Find Events Near You'>
+    </div>
     </div>
 </section>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_KEY']%>&callback=initMap" async defer></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_KEY']%>&callback=initMap" async defer></script> -->
+<!-- <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwdTm2xiTCPxTGZr_O7HsvVaQb8nKrS3o&callback=initMap">
+</script> -->
