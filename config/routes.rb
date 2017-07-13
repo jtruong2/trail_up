@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   namespace :trails do
    resources :search, only: [:index]
+   resources :get_location, only: [:index]
   end
 
   namespace :admin do

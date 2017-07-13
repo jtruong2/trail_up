@@ -8,6 +8,8 @@ class Permission
   end
 
   def authorized?
+    return true if user == nil && controller == "trails/get_location"
+
     return true if user == nil && controller == "sessions"
     return true if user == nil && action.in?(%w(new create))
     return true if user == nil && controller == "trails" && action == "index"
