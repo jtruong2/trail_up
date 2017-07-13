@@ -2,8 +2,11 @@ var map;
 var markers;
 
 function initMap() {
+
+  var location = jQuery.parseJSON(document.getElementById('location').textContent)
+
   map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: 39.742043, lng: -104.991531 },
+    center: location,
     mapTypeId: 'terrain',
     zoom: 8
   } );
@@ -16,9 +19,18 @@ function initMap() {
     };
 
     markers = data.map( function(datum) {
-      return new google.maps.Marker({
-        position: datum.google_coordinates,
+      var marker =  new google.maps.Marker({
+        position: datum.google_coordinates
       });
+
+      marker.addListener('click', function(){
+        infowindow.close();
+        infowindow.setContent( "<div id='infowindow'>" + datum.name + "</div>");
+        infowindow.open(map, this);
+        map.setCenter(this.getPosition());
+      });
+
+      return marker
     });
 
     var markerCluster = new MarkerClusterer(map, markers,
@@ -35,4 +47,7 @@ function initMap() {
       infowindow.open(map, marker);
     });
   });
+
+  // Declare an infowindow. Needs to be at end otherwise window loads empty first time
+  var infowindow = new google.maps.InfoWindow();
 }
