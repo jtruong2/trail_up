@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :show, :edit]
   resources :trails, only: [:index, :new, :create, :show]
   resources :pictures
+  resources :events, only: [:index, :new, :create, :show]
 
 
 end

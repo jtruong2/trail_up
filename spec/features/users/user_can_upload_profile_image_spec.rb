@@ -10,6 +10,6 @@ describe "user can upload profile image" do
     click_on("Edit Settings")
     expect(current_path).to eq("/users/#{user.slug}/edit")
     expect(page).to have_button("Create Picture")
-
+  
   end
 end
