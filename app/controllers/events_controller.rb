@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.trail_id = trail_params_id
-    # still need to associate an event with its creator/host
+    @event.user_id = current_user.id
     @event.save
     redirect_to event_path(@event)
   end
