@@ -12,6 +12,12 @@ Rails.application.routes.draw do
     resources :all_trails, only: [:index]
   end
 
+  namespace :admin do
+    get '/', to: 'landing#index'
+    resources :trails
+    resources :users
+  end
+
   resources :users, only: [:create, :show]
   resources :trails, only: [:index, :new, :create, :show]
 end
