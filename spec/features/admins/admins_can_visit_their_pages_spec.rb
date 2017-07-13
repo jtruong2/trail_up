@@ -12,5 +12,7 @@ describe "full admin has namespace access" do
     expect(current_path).to eq("/admin/users")
     visit "/admin/users/full-admin"
     expect(current_path).to eq("/admin/users/full-admin")
+    visit "/admin/events"
+    expect(current_path).to eq("/admin/events")
   end
 end

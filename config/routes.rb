@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get '/', to: 'landing#index'
     resources :trails
     resources :users
+    resources :events
   end
 
   resources :users, only: [:create, :show]

@@ -37,6 +37,7 @@ class Permission
     def admin_permissions
       return true if controller == "admin/trails" && action.in?(%w(index new create show delete))
       return true if controller == "admin/users" && action.in?(%w(index new create show delete))
+      return true if controller == "admin/events" && action.in?(%w(index new create show delete))
     end
 
 end
