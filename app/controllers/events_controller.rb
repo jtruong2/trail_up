@@ -6,4 +6,25 @@ class EventsController < ApplicationController
   def new
     @event = Event.new(trail_id: params[:trail_id])
   end
+
+  def create
+    @event = Event.new(event_params)
+    @event.trail_id = trail_params_id
+    # still need to associate an event with its creator/host
+    @event.save
+    redirect_to event_path(@event)
+  end
+
+  def show
+    @event = Event.find(params[:id])
+  end
+
+  private
+    def event_params
+      params.require(:event).permit(:name, :description, "date(1i)", "date(2i)", "date(3i)", "date(4i)", "date(5i)")
+    end
+
+    def trail_params_id
+      params.require(:trail_id)
+    end
 end

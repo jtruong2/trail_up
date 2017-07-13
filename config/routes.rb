@@ -15,5 +15,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :show]
   resources :trails, only: [:index, :new, :create, :show]
-  resources :events, only: [:new]
+  resources :events, only: [:new, :create, :show]
 end

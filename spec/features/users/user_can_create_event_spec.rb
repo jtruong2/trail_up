@@ -12,7 +12,7 @@ RSpec.describe "User creates an event" do
     click_on "Create a New Trail"
     expect(current_path).to eq(new_trail_path)
 
-    fill_in "Name", with: "Epic Trail"
+    fill_in "Name", with: "Totally Epic Trail"
     fill_in "Description", with: "This Trail is SOOO Epic"
     select "Double Black Diamond", from: "trail[difficulty]"
     fill_in "Location", with: "Boulder, Colorado"
@@ -29,17 +29,20 @@ RSpec.describe "User creates an event" do
     expect(page).to have_content("30.0")
     expect(page).to have_content("5.0")
 
-    fill_in "Event Name", with: "Sunday Epic Trail Hike"
-    fill_in "Event Description", with: "An epic hike on an epic trail!"
-    select DateTime.now.tomorrow.to_date, from: "event[date]"
-    fill_in "Time", with: "11:00"
+    fill_in "Event Name", with: "Halloween Epic Trail Hike"
+    fill_in "Event Description", with: "A spooky hike on an epic trail!"
+    select 2017, from: "event[date(1i)]"
+    select "October", from: "event[date(2i)]"
+    select 31, from: "event[date(3i)]"
+    select 23, from: "event[date(4i)]"
+    select 59, from: "event[date(5i)]"
     click_on "Publish Event"
 
     expect(current_path).to eq(event_path(Event.first))
-    expect(page).to have_content("Hosted by #{user.name}")
+    expect(page).to have_content("Hosted by #{user.username}")
     expect(page).to have_content("Sunday Epic Trail Hike")
     expect(page).to have_content("An epic hike on an epic trail!")
-    expect(page).to have_content(DateTime.now.tomorrow.to_date)
+    expect(page).to have_content("2017-10-31 23:59:00")
     expect(page).to have_content("11:00")
 
     expect(page).to have_content("Epic Trail")

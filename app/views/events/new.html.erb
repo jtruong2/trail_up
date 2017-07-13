@@ -1,0 +1,20 @@
+<div>Creating an event for this trail:</div>
+Trail Name: <%= @event.trail.name %>
+Trail Description: <%= @event.trail.description %>
+Trail Difficulty: <%= @event.trail.difficulty %>
+Trail Location: <%= @event.trail.location %>
+Trail Distance: <%= @event.trail.distance %>
+Trail Rating: <%= @event.trail.rating %>
+
+<%= form_for @event do |f| %>
+  <%= f.label :name, "Event Name" %>
+  <%= f.text_field :name %>
+  <%= f.label :description, "Event Description" %>
+  <%= f.text_field :description %>
+  <%= f.label :date, "Event Date" %>
+  <%= f.datetime_select :date %>
+  <%= hidden_field_tag(:trail_id, @event.trail.id) %>
+  # hidden field with trail id?
+
+  <%= f.submit "Publish Event" %>
+<% end %>
