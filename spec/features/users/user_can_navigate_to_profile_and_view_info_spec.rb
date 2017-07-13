@@ -14,7 +14,7 @@ describe "user can view profile information" do
 
     expect(page).to have_content(user.username)
     click_on(user.username)
-    expect(current_path).to eq("/users/#{user.id}")
+    expect(current_path).to eq("/users/#{user.slug}")
 
     expect(page).to have_content(user.username)
     expect(page).to have_content(user.email)
