@@ -1,4 +1,5 @@
 class TrailsController < ApplicationController
+  
   def index
     current_page = params[:page]|| 1
     per_page = 10
@@ -23,11 +24,12 @@ class TrailsController < ApplicationController
       render :new
       end
   end
-    
+
   def show
     @trail = Trail.find(params[:id])
   end
-  private 
+
+  private
 
     def trail_params
       params.require(:trail).permit(:name, :description, :difficulty, :location, :distance, :rating)

@@ -2,7 +2,7 @@ var map;
 var markers;
 var coordinateLocation = { lat: 39.742043, lng: -104.991531 }
 
-function initMap() {
+function plopMarkerMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: coordinateLocation,
         mapTypeId: 'terrain',
@@ -40,9 +40,6 @@ function initMap() {
                 infoWindow.setContent(this.customInfo)
                 infoWindow.open(map, element);
                 map.setCenter(element.getPosition());
-                // var div = document.getElementById(this.id);
-                // div.scrollIntoView(true);
-                // console.log(element.data_object)
             });
         }, this);
 
@@ -58,12 +55,23 @@ function initMap() {
 
             function locationDump(data) {
                 coordinateLocation = data.results[0].geometry.location
-                    // var infoContainer = document.querySelector('.trail-info')
-                    // infoContainer.innerHTML = ''
                 return initMap();
             }
 
         })
     };
-}
 
+    google.maps.event.addListener(map, 'click', function(event) {
+        marker = new google.maps.Marker({
+            position: event.latLng,
+            map: map
+        });
+
+        var location_params = {
+          lat: marker.getPosition().lat(),
+          lng: marker.getPosition().lng()
+        };
+
+        $.get('/trails/get_location', location_params)
+    });
+}

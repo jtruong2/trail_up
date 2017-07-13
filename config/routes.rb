@@ -13,10 +13,10 @@ Rails.application.routes.draw do
     resources :all_trails, only: [:index]
   end
 
-
   namespace :trails do
    resources :search, only: [:index]
-   end
+   resources :get_location, only: [:index]
+  end
 
   namespace :admin do
     get '/', to: 'landing#index'
@@ -24,7 +24,6 @@ Rails.application.routes.draw do
     resources :users
     resources :events
   end
-
 
   resources :users, only: [:create, :show]
   resources :trails, only: [:index, :new, :create, :show]
