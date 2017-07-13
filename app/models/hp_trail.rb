@@ -1,6 +1,5 @@
 class HPTrail
   attr_reader :id, :name, :summary, :difficulty, :location, :length, :long, :lat, :hp_image, :hp_rating
-  has_many :pictures, as: :imageable
 
   def initialize(params={})
     @id = params[:id]

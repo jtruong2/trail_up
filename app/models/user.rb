@@ -6,9 +6,9 @@ class User < ApplicationRecord
 
   def avatar
     if self.picture == nil
-      image_tag('default_avatar.png')
+      'default_avatar.png'
     else
-      image_tag("#{self.picture}")
+      self.picture
     end
   end
 

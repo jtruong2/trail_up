@@ -1,0 +1,6 @@
+<%= form_for [@imageable, Picture.new] do |f| %>
+  <%= f.file_field :image %>
+  <% f.text_field :imageable_id, :value => @user.id %>
+  <% f.text_field :imageable_type, :value => @user.class %>
+  <%= f.submit %>
+<% end %>

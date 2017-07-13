@@ -1,1 +1,6 @@
-Welcome <%= @user.name %>
+<%= image_tag("#{@user.avatar}") %>
+<br>
+Upload profile photo
+<%= render "pictures/form", imageable: @user  %>
+<br>
+Welcome <%= @user.username %>
