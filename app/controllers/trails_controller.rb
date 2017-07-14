@@ -1,5 +1,5 @@
 class TrailsController < ApplicationController
-  
+
   def index
     current_page = params[:page]|| 1
     per_page = 10
@@ -15,6 +15,7 @@ class TrailsController < ApplicationController
   end
 
   def create
+    binding.pry
     @trail = Trail.create(trail_params)
     if @trail.save && session[:redirect_to_new_event_page]
       flash[:success] = ["Trail Created"]
