@@ -1,0 +1,37 @@
+.dashboard {
+    h3 {
+        margin: 20px;
+        color: black;
+    }
+    h4 {
+        margin: 16px;
+        color: black;
+        font-family: inherit;
+        padding-bottom: 5px;
+        border-bottom: .05em solid black;
+    }
+    h4:hover {
+        cursor: pointer;
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
+        font-size: 20px;
+    }
+    .display {
+        display: flex;
+        justify-content: center;
+    }
+    .events-container {
+        width: 50%;
+        height: 500px;
+        background-color: #ffffff
+    }
+    .event-filters {
+        display: flex;
+        flex-direction: column;
+        width: 8%;
+        height: 170px;
+        background-color: #ffffff
+    }
+}
