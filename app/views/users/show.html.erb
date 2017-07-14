@@ -1,6 +1,11 @@
-<%= image_tag("#{@user.avatar}") %>
-
-Username: <%= @user.username %>
-Email: <%= @user.email %>
-
-<%= button_to "Edit Settings", "/users/#{params[:id]}/edit", method: :get %>
+<div class="user-profile">
+  <%= image_tag("#{@user.avatar}", size: "30") %>
+  <br></br>
+  <div class="information">
+    <%= @user.username %>
+    <br></br>
+    <%= @user.email %> <br>
+    <br></br>
+  </div>
+  <%= button_to "Edit Settings", "/users/#{params[:id]}/edit", method: :get %>
+</div>
