@@ -8,19 +8,20 @@
 
 <div class='form trail-form'>
   <%= form_for(@trail) do |f| %>
-  <%=f.label :name %>
-  <%=f.text_field :name %>
-  <%=f.label :description %>
-  <%=f.text_field :description %>
-  <%=f.label :difficulty %>
-  <%=f.select :difficulty,options_for_select(trail_ratings)%>
-  <%=f.label :location %>
-  <%=f.text_field :location %>
-  <%=f.label :distance %>
-  <%=f.number_field(:distance, step: 0.1) %>
-  <%=f.label :rating %>
-  <%=f.number_field(:rating, in: 0.0..5.0, step: 0.1) %>
-  <%=f.submit "Create New Trail"%>
+    <%=hidden_field_tag :plop_location %>
+    <%=f.label :name %>
+    <%=f.text_field :name %>
+    <%=f.label :description %>
+    <%=f.text_field :description %>
+    <%=f.label :difficulty %>
+    <%=f.select :difficulty,options_for_select(trail_ratings)%>
+    <%=f.label :location %>
+    <%=f.text_field :location %>
+    <%=f.label :distance %>
+    <%=f.number_field(:distance, step: 0.1) %>
+    <%=f.label :rating %>
+    <%=f.number_field(:rating, in: 0.0..5.0, step: 0.1) %>
+    <%=f.submit "Create New Trail", id: 'submit'%>
   <%end%>
 </div>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">

@@ -1,5 +1,5 @@
 class TrailsController < ApplicationController
-  
+
   def index
     current_page = params[:page]|| 1
     per_page = 10
