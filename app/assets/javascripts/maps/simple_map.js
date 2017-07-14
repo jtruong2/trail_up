@@ -14,12 +14,18 @@ function initMap() {
     function callback(data) {
 
         markers = data.map(function(datum) {
+            var image;
+            if (datum.hp_image.length === 0) {
+                image = '/assets/logo_trail_up.png'
+            } else {
+                image = datum.hp_image
+            }
             return new google.maps.Marker({
                 position: datum.google_coordinates,
                 customInfo: `
                 <div class='map-info'>
                 <div class='map-info-header'>
-                <img src=${datum.hp_image} alt='Trail Image'>
+                <img src=${image} alt='Trail Image'>
                 <h3>${datum.name}</h3>
                 </div>
                 <h5><span class='bolden'>Length:</span> ${datum.length} <span class='bolden'>| Difficulty:</span> ${datum.difficulty} <span class='bolden'>| Rating:</span> ${datum.hp_rating}</h5>
@@ -66,4 +72,3 @@ function initMap() {
         })
     };
 }
-
