@@ -2,7 +2,10 @@
     <%= link_to "Create Event", select_or_create_trail_path %>
 </li>
 <li>
-    <%= link_to current_user.username, user_path(:id => current_user.slug) %>
+    <%= link_to current_user.username, user_path(:id => current_user.slug)%>
+</li>
+<li>
+    <%= link_to 'Dashboard', dashboard_path%>
 </li>
 <li>
     <%= link_to "Logout", logout_path, :method => :delete %>
