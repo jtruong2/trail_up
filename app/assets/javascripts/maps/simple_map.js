@@ -2,6 +2,14 @@ var map;
 var markers;
 var coordinateLocation = { lat: 39.742043, lng: -104.991531 }
 
+var check_image = function(trail) {
+    if (trail.hp_image.length === 0) {
+        return '/assets/logo_trail_up.png'
+    } else {
+        return trail.hp_image
+    }
+}
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: coordinateLocation,
@@ -11,15 +19,11 @@ function initMap() {
 
     var trailheads = $.getJSON('/api/all_trails', coordinateLocation, callback);
 
+
     function callback(data) {
 
         markers = data.map(function(datum) {
-            var image;
-            if (datum.hp_image.length === 0) {
-                image = '/assets/logo_trail_up.png'
-            } else {
-                image = datum.hp_image
-            }
+            var image = check_image(datum)
             return new google.maps.Marker({
                 position: datum.google_coordinates,
                 customInfo: `
