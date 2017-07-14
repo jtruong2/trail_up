@@ -15,5 +15,7 @@
 //= require vendor/marker_cluster/markerclusterer
 //= require maps/simple_map
 //= require maps/trail_plopper
-//=require maps/directions_map
+//= require maps/directions_map
+
+
 
