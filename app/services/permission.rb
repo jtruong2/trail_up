@@ -9,7 +9,7 @@ class Permission
 
   def authorized?
     return true if user == nil && controller == "trails/get_location"
-
+    return true if controller == "trails/search" && action.in?(%w(index))
     return true if user == nil && controller == "sessions"
     return true if user == nil && action.in?(%w(new create))
     return true if user == nil && controller == "trails" && action == "index"
@@ -31,6 +31,7 @@ class Permission
   attr_reader :user, :controller, :action, :identifier
 
     def user_permissions
+      return true if controller == "directions" && action.in?(%w(index))
       return true if controller == "events" && action.in?(%w(select_or_create_trail new create show))
       return true if controller == "pictures" && action.in?(%w(create))
       return true if controller == "users" && action.in?(%w(edit))
