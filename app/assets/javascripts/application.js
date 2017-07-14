@@ -15,9 +15,4 @@
 //= require vendor/marker_cluster/markerclusterer
 //= require maps/simple_map
 //= require maps/trail_plopper
-<<<<<<< HEAD
 //=require maps/directions_map
-=======
-//=require maps/directions_map
-
->>>>>>> 533eb7c03cfe589dcb1907f4429a054f73f13b44
