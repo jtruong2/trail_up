@@ -15,7 +15,6 @@ class TrailsController < ApplicationController
   end
 
   def create
-    binding.pry
     @trail = Trail.create(trail_params)
     if @trail.save && session[:redirect_to_new_event_page]
       flash[:success] = ["Trail Created"]
