@@ -10,6 +10,9 @@
         padding-bottom: 5px;
         border-bottom: .05em solid black;
     }
+    h4:hover {
+        cursor: pointer;
+    }
     a {
         text-decoration: none;
         color: inherit;
