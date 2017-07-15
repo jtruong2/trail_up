@@ -9,10 +9,13 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.trail_id = trail_params_id
-    @event.user_id = current_user.id
-    @event.save
-    redirect_to event_path(@event)
+    if @event.save
+      current_user.hosting << @event
+      flash[:success] = ["Event Created"]
+      redirect_to event_path(@event)
+    else
+      render :new
+    end
   end
 
   def show
@@ -21,10 +24,10 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(:name, :description, "date(1i)", "date(2i)", "date(3i)", "date(4i)", "date(5i)")
+      params.require(:event).permit(:name, :description, "date(1i)", "date(2i)", "date(3i)", "date(4i)", "date(5i)").merge(trail_params)
     end
 
-    def trail_params_id
-      params.require(:trail_id)
+    def trail_params
+      params.permit(:trail_id)
     end
 end

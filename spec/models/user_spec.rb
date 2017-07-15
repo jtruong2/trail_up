@@ -12,6 +12,4 @@ RSpec.describe User, type: :model do
   it {should have_many(:attending).through(:event_guests).source(:event)}
   it {should have_many(:event_hosts)}
   it {should have_many(:hosting).through(:event_hosts).source(:event)}
-  
-
 end
