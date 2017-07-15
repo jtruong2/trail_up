@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  geocoded_by :trail_location   
+  geocoded_by :trail_location
   after_validation :geocode       
 
   belongs_to :trail
@@ -14,6 +14,6 @@ class Event < ApplicationRecord
 
 
   def trail_location
-    self.trail.location
+    trail.location if trail
   end
 end
