@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "As a guest" do
   it "can search for an event from the landing page" do
-    allow(Geocoder).to receive(:coordinates).and_return([39.6751269, -104.9680914])
     create(:trail, name: "Clear Creek Canyon", latitude: 39.7967637, longitude:-105.0426542)
     event_one = create(:event, trail_id: Trail.first.id)
 
