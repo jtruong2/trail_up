@@ -3,10 +3,6 @@ class Events::SearchController < ApplicationController
     @events = Event.near(get_location, get_radius).map{ |event| EventPresenter.new(event)}
   end
   
-  def new
-      
-  end
-  
   private
     def get_location
       Geocoder.coordinates(params[:event_search]) unless params[:event_search].empty?
