@@ -28,7 +28,6 @@ gem 'kaminari'
 gem 'carrierwave', '~> 1.0'
 gem 'will_paginate', '~> 3.1.0'
 
-gem 'figaro'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -42,7 +41,6 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'pry-rails'
-  gem 'launchy'
 end
 
 group :test do

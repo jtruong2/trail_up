@@ -6,7 +6,8 @@ RSpec.describe "As a guest" do
     event_one = create(:event)
 
     visit root_path
-    fill_in 'event-search', with: "80210"
+    fill_in :event_search, with: "80210"
+    click_on "Find Events Near You"
     expect(current_path).to eq(events_search_index_path)
     expect(page).to have_content(event_one.name)
     expect(page).to have_content(event_one.description)
