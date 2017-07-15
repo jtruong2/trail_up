@@ -3,7 +3,7 @@ FactoryGirl.define do
     name { generate(:trail_name) }
     description { generate(:description) }
     difficulty 'Double Black Diamond'
-    location "Boulder, Colorado"
+    location "Denver, Colorado"
     distance 30.0
     rating 5.0
     longitude 30.000

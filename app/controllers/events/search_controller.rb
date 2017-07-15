@@ -4,7 +4,7 @@ class Events::SearchController < ApplicationController
   end
 
   def get_location
-    Geocoder.coordinates(params[:event_search])
+    Geocoder.coordinates(params[:event_search]) unless params[:event_search].empty?
   end
 
   def get_radius

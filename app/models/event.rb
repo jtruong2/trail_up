@@ -14,6 +14,10 @@ class Event < ApplicationRecord
 
 
   def trail_location
-    trail.location if trail
+    trail.coordinates if trail
+  end
+
+  def coordinates
+    [latitude, longitude]
   end
 end
