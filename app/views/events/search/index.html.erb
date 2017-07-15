@@ -1,3 +1,8 @@
+<h5>Your search returned
+  <%=@events.count%>
+  results
+</h5>
+
 <% @events.each do |event|%>
 <%=event.name %>
 <%=event.description %>

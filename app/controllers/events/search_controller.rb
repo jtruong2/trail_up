@@ -1,9 +1,13 @@
 class Events::SearchController < ApplicationController
   def index
-    @events = Event.near(get_location, 30).map{ |event| EventPresenter.new(event)}
+    @events = Event.near(get_location, get_radius).map{ |event| EventPresenter.new(event)}
   end
 
   def get_location
     Geocoder.coordinates(params[:event_search])
+  end
+
+  def get_radius
+    params[:radius] ? params[:radius] : 30
   end
 end

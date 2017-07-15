@@ -39,7 +39,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'shoulda-matchers'
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'factory_girl_rails'
   gem 'pry-rails'
 end
 

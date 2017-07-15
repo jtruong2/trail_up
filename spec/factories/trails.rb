@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :trail do
-    name "Epic Trail"
-    description "This Trail is SOOO Epic"
+    name { generate(:trail_name) }
+    description { generate(:description) }
     difficulty 'Double Black Diamond'
     location "Boulder, Colorado"
     distance 30.0
@@ -9,4 +9,13 @@ FactoryGirl.define do
     longitude 30.000
     latitude -100.000
   end
+
+  sequence :trail_name do |n|
+    "Trail #{n}"
+  end
+
+  sequence :description do |n|
+    "Description #{n}"
+  end
+
 end
