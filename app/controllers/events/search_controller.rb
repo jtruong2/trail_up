@@ -1,7 +1,6 @@
 class Events::SearchController < ApplicationController
   def index
-    location = get_location
-    @events = Event.near(location, 30)
+    @events = Event.near(get_location, 30).map{ |event| EventPresenter.new(event)}
   end
 
   def get_location

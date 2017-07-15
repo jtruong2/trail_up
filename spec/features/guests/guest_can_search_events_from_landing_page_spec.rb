@@ -11,7 +11,7 @@ RSpec.describe "As a guest" do
     expect(current_path).to eq(events_search_index_path)
     expect(page).to have_content(event_one.name)
     expect(page).to have_content(event_one.description)
-    expect(page).to have_content(event_one.date)
+    expect(page).to have_content(event_one.date.strftime("%A %B %e %Y at %l:%M"))
     expect(page).to have_content(event_one.trail.name)
   end
 

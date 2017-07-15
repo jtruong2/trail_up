@@ -1,6 +1,7 @@
 <% @events.each do |event|%>
 <%=event.name %>
 <%=event.description %>
-<%=event.date %>
-<%=event.trail.name %>
+<%=event.format_date %>
+<%=event.trail_name %>
+<%=event.location %>
 <%end%>
