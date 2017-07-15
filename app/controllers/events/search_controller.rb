@@ -1,9 +1,7 @@
 class Events::SearchController < ApplicationController
   def index
     location = get_location
-    @events = Event.near(location, 20)
-    binding.pry
-    render 'events/index'
+    @events = Event.near(location, 30)
   end
 
   def get_location

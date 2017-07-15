@@ -6,7 +6,7 @@ FactoryGirl.define do
     location "Boulder, Colorado"
     distance 30.0
     rating 5.0
-    long 30.000
-    lat -100.000
+    longitude 30.000
+    latitude -100.000
   end
 end

@@ -12,7 +12,7 @@ RSpec.describe "As a guest" do
     expect(page).to have_content(event_one.name)
     expect(page).to have_content(event_one.description)
     expect(page).to have_content(event_one.date)
-    expect(page).to have_content(event_one.trail)
+    expect(page).to have_content(event_one.trail.name)
   end
 
 end
