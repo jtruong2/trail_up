@@ -1,10 +1,13 @@
 class User < ApplicationRecord
   has_secure_password
   before_save :generate_slug
+  
   mount_uploader :image, ImageUploader  
+
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true
   validates :slug, uniqueness: true
+  
   has_one :picture, as: :imageable
 
   has_many :event_guests, :foreign_key => 'guest_id' 
@@ -26,6 +29,6 @@ class User < ApplicationRecord
   end
 
   def generate_slug
-    self.slug = username.parameterize
+    self.slug = username.parameterize if username
   end
 end
