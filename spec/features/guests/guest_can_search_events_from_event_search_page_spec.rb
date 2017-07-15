@@ -6,7 +6,7 @@ RSpec.describe 'As a guest' do
     event_one = create(:event, trail_id: Trail.first.id)
     visit new_events_search_path
     fill_in :event_search, with: "80210"
-    click_on "Find Events"
+    click_on "Search Events"
     expect(current_path).to eq(events_search_index_path)
     expect(page).to have_content("Your search returned 1 results")
     expect(page).to have_content(event_one.name)

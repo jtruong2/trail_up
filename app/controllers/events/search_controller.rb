@@ -1,6 +1,8 @@
 class Events::SearchController < ApplicationController
   def index
-    @events = Event.near(get_location, get_radius).map{ |event| EventPresenter.new(event)}
+    binding.pry
+    @events = Event.send(params[:search_by].to_symb, get_location, get_radius )
+    # @events = Event.near(get_location, get_radius).map{ |event| EventPresenter.new(event)}
   end
   
   private

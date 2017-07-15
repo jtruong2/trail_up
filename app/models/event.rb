@@ -20,4 +20,16 @@ class Event < ApplicationRecord
   def coordinates
     [latitude, longitude]
   end
+
+  def self.by_name
+    
+  end
+
+  def self.by_trail
+    
+  end
+
+  def self.by_location(location, raidus)
+    near(get_location, get_radius).map{ |event| EventPresenter.new(event)}
+  end
 end
