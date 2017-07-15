@@ -1,4 +1,7 @@
 class Event < ApplicationRecord
+  geocoded_by :trail_location   
+  after_validation :geocode       
+
   belongs_to :trail
   validates :name, :description, :date, presence: true
 
@@ -7,4 +10,10 @@ class Event < ApplicationRecord
 
   has_many :event_hosts
   has_many :hosts, :through => :event_hosts, source: :host
+
+
+
+  def trail_location
+    self.trail.location
+  end
 end
