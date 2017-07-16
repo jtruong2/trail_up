@@ -1,6 +1,7 @@
 class TrailsController < ApplicationController
 
   def index
+    binding.pry
     current_page = params[:page]|| 1
     per_page = 10
     @trails = TrailsPresenter.new

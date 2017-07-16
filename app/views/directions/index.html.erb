@@ -14,7 +14,5 @@
       <option value="TRANSIT">Transit</option>
     </select>
 </div>
-<script>
-</script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwdTm2xiTCPxTGZr_O7HsvVaQb8nKrS3o&callback=initDirMap">
-</script>
+
+<%= render partial: 'shared/googlemapcall', :locals => { googleMap: 'initDirMap' } %>

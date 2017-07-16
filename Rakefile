@@ -4,3 +4,11 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+
+desc "One line task description"
+namespace :vcr do
+  task :scrub do
+    sh %{ rm -rf spec/cassettes }
+  end
+end
