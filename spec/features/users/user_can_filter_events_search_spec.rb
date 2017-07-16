@@ -36,4 +36,17 @@ describe "Filtering events" do
     expect(current_path).to eq('/dashboard')
   end
 
+  scenario "user sees upcoming events by default" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
+    visit dashboard_path
+
+    expect(page).to have_content(@user.username)
+    expect(page).to have_content("Upcoming")
+
+    expect(page).to have_content(@event_future_hosting_1.name)
+    expect(page).to have_content(@event_future_hosting_2.name)
+    expect(page).to have_content(@event_future_attending_1.name)
+    expect(page).to have_content(@event_future_attending_2.name)
+  end
 end
