@@ -1,0 +1,22 @@
+<div class='dashboard'>
+    <h3>Welcome
+        <%=current_user.username%>
+            <%=link_to '(settings)', user_path(id: current_user.slug)%>
+
+    </h3>
+    <!-- <h5>
+        <%= link_to "Settings", user_path(:id => current_user.slug)%>
+                </h5> -->
+    <div class='display'>
+
+        <section class='events-container'>
+            <div class='events'>
+            </div>
+        </section>
+        <aside class='event-filters'>
+            <h4 id='all-events'>All Events</h4>
+            <h4 id='attending'>Attending</h4>
+            <h4 id='hosting'>Hosting</h4>
+        </aside>
+    </div>
+</div>
