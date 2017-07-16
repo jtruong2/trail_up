@@ -1,30 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it "must have a password attribute" do
-    user = User.create(username: "User Name", email: "example@gmail.com")
-    expect(user).not_to be_valid
-  end
-
-  it "must have a username attribute" do
-    user = User.create(email: "example@gmail.com", password: "password")
-    expect(user).not_to be_valid
-  end
-
-  it "must have a email attribute" do
-    user = User.create(username: "User Name", password: "password")
-    expect(user).not_to be_valid
-  end
-
-  it "must have a unique username attribute" do
-    valid_user = User.create(username: "User Name", email: "example@gmail.com", password: "password")
-    invalid_user = User.create(username: "User Name", email: "example1@gmail.com", password: "password")
-    expect(invalid_user).not_to be_valid
-  end
-
-  it "must have a unique email attribute" do
-    valid_user = User.create(username: "User Name", email: "example@gmail.com", password: "password")
-    invalid_user = User.create(username: "User Name1", email: "example@gmail.com", password: "password")
-    expect(invalid_user).not_to be_valid
-  end
+  it {should have_secure_password}
+  it {should validate_presence_of(:username)}
+  it {should validate_uniqueness_of(:username)}
+  it {should validate_presence_of(:email)}
+  it {should validate_uniqueness_of(:email)}
+  it {should have_one(:picture)}
+  it {should accept_nested_attributes_for(:picture)}
+  it {should have_many(:event_guests)}
+  it {should have_many(:attending).through(:event_guests).source(:event)}
+  it {should have_many(:event_hosts)}
+  it {should have_many(:hosting).through(:event_hosts).source(:event)}
 end

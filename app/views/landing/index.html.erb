@@ -3,13 +3,15 @@
         <h1 class='main-title'>Trail<span class='up'>Up</span></h1>
         <h3>Find Trails. Find Friends. Get Outside. </h3>
         <div class='search-box'>
-            <input type="text" placeholder="location...">
+          <%= form_tag('/events/search', method: :get) do %>
+          <%= text_field_tag(:event_search, nil, :placeholder => "location..." )%>
+          <%= submit_tag('Find Events Near You', :id => "submit") %>
+          <%end%>
         </div>
-
-        <input type="submit" value='Find Events Near You'>
     </div>
     </div>
 </section>
+
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['GOOGLE_API_KEY']%>&callback=initMap" async defer></script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
 </script> -->

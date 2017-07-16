@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713174408) do
+ActiveRecord::Schema.define(version: 20170715141542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_guests", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "guest_id"
+    t.index ["event_id"], name: "index_event_guests_on_event_id"
+    t.index ["guest_id"], name: "index_event_guests_on_guest_id"
+  end
+
+  create_table "event_hosts", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "host_id"
+    t.index ["event_id"], name: "index_event_hosts_on_event_id"
+    t.index ["host_id"], name: "index_event_hosts_on_host_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.bigint "trail_id"
@@ -22,9 +36,9 @@ ActiveRecord::Schema.define(version: 20170713174408) do
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["trail_id"], name: "index_events_on_trail_id"
-    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "pictures", force: :cascade do |t|
@@ -43,8 +57,8 @@ ActiveRecord::Schema.define(version: 20170713174408) do
     t.string "location"
     t.float "distance"
     t.float "rating"
-    t.float "long"
-    t.float "lat"
+    t.float "longitude"
+    t.float "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -59,6 +73,7 @@ ActiveRecord::Schema.define(version: 20170713174408) do
     t.integer "role"
   end
 
+  add_foreign_key "event_guests", "events"
+  add_foreign_key "event_hosts", "events"
   add_foreign_key "events", "trails"
-  add_foreign_key "events", "users"
 end
