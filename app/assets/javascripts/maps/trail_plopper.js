@@ -6,6 +6,14 @@ var zoom = 9;
 
 var coordinateLocation = { lat: 39.742043, lng: -104.991531 }
 
+var check_image = function(trail) {
+    if (trail.hp_image.length === 0) {
+        return '/assets/logo_trail_up.png'
+    } else {
+        return trail.hp_image
+    }
+}
+
 // main function to initialize, listen, and refresh google map
 
 function plopMarkerMap() {
@@ -32,19 +40,20 @@ function plopMarkerMap() {
         // creates all markers based on trailhead query with customInfo for infoWindow
 
         markers = data.map(function(datum) {
+            var image = check_image(datum)
             return new google.maps.Marker({
                 position: datum.google_coordinates,
                 customInfo: `
                 <div class='map-info'>
                 <div class='map-info-header'>
-                <img src=${datum.hp_image} alt='Trail Image'>
+                <img src=${image} alt='Trail Image'>
                 <h3>${datum.name}</h3>
                 </div>
                 <h5><span class='bolden'>Length:</span> ${datum.length} <span class='bolden'>| Difficulty:</span> ${datum.difficulty} <span class='bolden'>| Rating:</span> ${datum.hp_rating}</h5>
                 <p>${datum.summary}</p>
                 <div class='links'>
                 <a href="/event/new?trail=${datum.hp_id}">Select For Event</a>
-                <a href="/directions?lat=${datum.lat}&lng=${datum.long}">Directions</a>
+                <a href="/directions?orig_lat=${coordinateLocation.lat}&orig_lng=${coordinateLocation.lng}&dest_lat=${datum.lat}&dest_lng=${datum.long}">Directions</a>
                 </div>
                 </div>
                 `,
@@ -82,7 +91,9 @@ function plopMarkerMap() {
 
         searchButton.addEventListener('click', function() {
             var searchQuery = locationSearch.value
-            $.getJSON(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchQuery}&key=AIzaSyDht8iugiUFeEDKrSPQUo5vIrBmwqlqB1o`, locationDump);
+            var googleApi = document.getElementById('googleMapApi').textContent;
+
+            $.getJSON(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchQuery}&key=${googleApi}`, locationDump);
 
             function locationDump(data) {
                 coordinateLocation = data.results[0].geometry.location

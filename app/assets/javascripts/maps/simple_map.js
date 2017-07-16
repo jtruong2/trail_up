@@ -66,8 +66,10 @@ function initMap() {
         var searchButton = document.getElementById('location-search-button')
 
         searchButton.addEventListener('click', function() {
-            var searchQuery = locationSearch.value
-            $.getJSON(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchQuery}&key=AIzaSyCwdTm2xiTCPxTGZr_O7HsvVaQb8nKrS3o`, locationDump);
+            var searchQuery = locationSearch.value;
+            var googleApi = document.getElementById('googleMapApi').textContent;
+
+            $.getJSON(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchQuery}&key=${googleApi}`, locationDump);
 
             function locationDump(data) {
                 coordinateLocation = data.results[0].geometry.location
@@ -78,4 +80,4 @@ function initMap() {
 
         })
     };
-}
+};
