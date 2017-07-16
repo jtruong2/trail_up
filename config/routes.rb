@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   namespace :events do
-    resources :search, only: [:index]
+    resources :search, only: [:index, :new]
   end
 
 

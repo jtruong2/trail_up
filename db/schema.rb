@@ -10,23 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170716151924) do
+ActiveRecord::Schema.define(version: 20170716170102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "event_guests", force: :cascade do |t|
+  create_table "event_roles", force: :cascade do |t|
+    t.bigint "user_id"
     t.bigint "event_id"
-    t.bigint "guest_id"
-    t.index ["event_id"], name: "index_event_guests_on_event_id"
-    t.index ["guest_id"], name: "index_event_guests_on_guest_id"
-  end
-
-  create_table "event_hosts", force: :cascade do |t|
-    t.bigint "event_id"
-    t.bigint "host_id"
-    t.index ["event_id"], name: "index_event_hosts_on_event_id"
-    t.index ["host_id"], name: "index_event_hosts_on_host_id"
+    t.integer "role", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_roles_on_event_id"
+    t.index ["user_id"], name: "index_event_roles_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -74,7 +70,7 @@ ActiveRecord::Schema.define(version: 20170716151924) do
     t.integer "role"
   end
 
-  add_foreign_key "event_guests", "events"
-  add_foreign_key "event_hosts", "events"
+  add_foreign_key "event_roles", "events"
+  add_foreign_key "event_roles", "users"
   add_foreign_key "events", "trails"
 end

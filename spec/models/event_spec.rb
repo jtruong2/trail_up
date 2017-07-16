@@ -5,10 +5,8 @@ RSpec.describe Event, type: :model do
   it {should validate_presence_of(:description)}
   it {should validate_presence_of(:date)}
   it {should belong_to(:trail)}
-  it {should have_many(:event_guests)}
-  it {should have_many(:guests).through(:event_guests).source(:guest)}
-  it {should have_many(:event_hosts)}
-  it {should have_many(:hosts).through(:event_hosts).source(:host)}
+  it {should have_many(:event_roles)}
+  it {should have_many(:users).through(:event_roles)}
 
   scenario "archived attribute should default to false" do
     user = create(:user)
