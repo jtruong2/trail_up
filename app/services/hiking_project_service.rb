@@ -1,22 +1,20 @@
 class HikingProjectService
-  
-  def initialize(coords, add_params)
-    @lat = coords[:lat]
-    @long = coords[:lng]
-    @add_params = add_params
+
+  def initialize(search_params)
+    @search_params = search_params
     @conn = Faraday.new(:url => 'https://www.hikingproject.com')
   end
 
-  def self.search(coords={ :lat=> 39.742043, :lng=> -104.991531 }, add_params={})
-    response = new(coords, add_params).search
+  def self.search(search_params = { lat: 39.742043, lon: -104.991531, maxResults: 50 })
+    response = new(search_params).search
     JSON.parse(response, :symbolize_names => true)
   end
 
   def search
-    response = conn.get '/data/get-trails', {:key => ENV['hiking_project_api_key'], :lat => lat, :lon => long, :maxResults=> 50}.merge(add_params)
+    response = conn.get '/data/get-trails', { 'key' => ENV['hiking_project_api_key'] }.merge(search_params)
     response.body
   end
 
   private
-    attr_reader :lat, :long, :add_params, :conn
+    attr_reader :search_params, :conn
 end
