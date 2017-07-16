@@ -27,6 +27,10 @@ class UsersController < ApplicationController
     @user = User.find_by(slug: params[:id])
   end
 
+  def fitbit
+    @user = User.find_or_create_from_auth(request.env['omniauth.auth'])
+  end
+
   private
     def user_params
       params.require(:user).permit(:username, :email, :password)
