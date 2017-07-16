@@ -38,7 +38,7 @@ describe HikingProjectService do
     end
     it 'returns a list of trails based on long and lat' do
       VCR.use_cassette('hiking_project_services/lat_long_trail_info') do
-        trails = HikingProjectService.search({lat: 39.653599, lon: -105.1911})
+        trails = HikingProjectService.search({lat: 39.653599, lon: -105.1911, maxResults: 50})
         trail = trails[:trails].last
 
         expect(trails[:trails].count).to eq(50)
@@ -60,7 +60,7 @@ describe HikingProjectService do
     end
     it 'returns a list of trails based on all params' do
       VCR.use_cassette('hiking_project_services/all_params_filter') do
-        trails = HikingProjectService.search({lat: 39.633321, lng: -105.317215}, {maxDistance: 150, maxResults: 20, sort: "distance", minLength: 6})
+        trails = HikingProjectService.search({lat: 39.633321, lon: -105.317215, maxDistance: 150, maxResults: 20, sort: "distance", minLength: 6})
         trail_first = trails[:trails].first
         trail_last = trails[:trails].last
 

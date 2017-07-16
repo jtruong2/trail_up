@@ -19,7 +19,7 @@ function plopMarkerMap() {
 
     // JSON get request to HikingProject
 
-    var trailheads = $.getJSON('/api/all_trails',
+    var trailheads = $.getJSON('/api/trails/search',
       { search:
         { lat: coordinateLocation.lat,
           lon: coordinateLocation.lng,

@@ -17,7 +17,7 @@ function initMap() {
         zoom: 9
     });
 
-    var trailheads = $.getJSON('/api/all_trails', {
+    var trailheads = $.getJSON('/api/trails/search', {
       search: {
         lat: coordinateLocation.lat,
         lon: coordinateLocation.lng }}, callback);
