@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "User creates an event" do
   scenario "user creates an event from a new trail" do
+    binding.pry
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
