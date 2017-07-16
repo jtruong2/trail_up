@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:create, :show, :edit]
-  resources :trails, only: [:new, :create, :show]
+  resources :trails, only: [:new, :create, :show, :edit, :update]
   resources :pictures
   resources :events, only: [:index, :new, :create, :show]
 

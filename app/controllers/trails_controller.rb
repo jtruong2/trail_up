@@ -1,7 +1,6 @@
 class TrailsController < ApplicationController
 
   def index
-    binding.pry
     current_page = params[:page]|| 1
     per_page = 10
     @trails = TrailsPresenter.new
@@ -17,11 +16,11 @@ class TrailsController < ApplicationController
 
   def create
     @trail = Trail.create(trail_params)
-    if @trail.save && session[:redirect_to_new_event_page]
+    if @trail.save && session[:making_event]
       flash[:success] = ["Trail Created"]
       redirect_to new_event_path(trail_id: @trail.id)
-      session[:redirect_to_new_event_page] = false
-    elsif @trail.save && !session[:redirect_to_new_event_page]
+      session[:making_event] = false
+    elsif @trail.save && !session[:making_event]
       flash[:success] = ["Trail Created"]
       redirect_to trail_path(@trail)
     else

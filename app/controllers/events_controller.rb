@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def select_or_create_trail
-    session[:redirect_to_new_event_page] = true
+    session[:making_event] = true
   end
 
   def new
