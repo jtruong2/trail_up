@@ -15,18 +15,17 @@ class TrailsController < ApplicationController
   end
 
   def create
-    @trail = Trail.create(trail_params)
+    @trail = Trail.new(trail_params)
     if @trail.save && session[:making_event]
       flash[:success] = ["Trail Created"]
       redirect_to new_event_path(trail_id: @trail.id)
-      session[:making_event] = false
     elsif @trail.save && !session[:making_event]
       flash[:success] = ["Trail Created"]
       redirect_to trail_path(@trail)
     else
       flash[:error] = @trail.errors.full_messages
       render :new
-      end
+    end
   end
 
   def show

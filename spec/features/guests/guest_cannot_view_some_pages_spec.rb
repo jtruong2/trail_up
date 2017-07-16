@@ -6,6 +6,12 @@ RSpec.describe 'Guest cannot view some pages' do
     expect{ visit "/trails/new" }.to raise_error(ActionController::RoutingError)
   end
 
+  it 'cannot view edit trail path' do
+    trail = create(:trail)
+
+    expect{ visit "/trails/#{trail.id}/edit" }.to raise_error(ActionController::RoutingError)
+  end
+
   it 'cannot view dashboard' do
     expect{ visit "/dashboard" }.to raise_error(ActionController::RoutingError)
   end
