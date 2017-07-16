@@ -9,7 +9,10 @@ function initMap() {
         zoom: 9
     });
 
-    var trailheads = $.getJSON('/api/all_trails', coordinateLocation, callback);
+    var trailheads = $.getJSON('/api/all_trails', {
+      search: {
+        lat: coordinateLocation.lat,
+        lon: coordinateLocation.lng }}, callback);
 
     function callback(data) {
 
