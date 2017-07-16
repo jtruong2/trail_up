@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      current_user.hosting << @event
+      EventRole.create!(event_id: @event.id, user_id: current_user.id, role: 1)
       flash[:success] = ["Event Created"]
       redirect_to event_path(@event)
     else
