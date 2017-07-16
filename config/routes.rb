@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/select_or_create_trail', to: 'events#select_or_create_trail'
   get '/directions', to: 'directions#index'
 
-  get '/auth/:provider/callback', to: 'user#fitbit'
+  get '/auth/fitbit/callback', to: 'fitbit#index'
 
   namespace :api do
     resources :all_trails, only: [:index]
