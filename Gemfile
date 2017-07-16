@@ -27,8 +27,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'kaminari'
 gem 'carrierwave', '~> 1.0'
 gem 'will_paginate', '~> 3.1.0'
-
-gem 'figaro'
+gem 'geocoder'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -40,9 +39,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'shoulda-matchers'
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'factory_girl_rails'
   gem 'pry-rails'
-  gem 'launchy'
 end
 
 group :test do

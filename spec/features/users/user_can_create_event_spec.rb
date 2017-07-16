@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "User creates an event" do
   scenario "user creates an event from a new trail" do
+    binding.pry
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -39,7 +40,7 @@ RSpec.describe "User creates an event" do
     click_on "Publish Event"
 
     expect(current_path).to eq(event_path(Event.first))
-    expect(page).to have_content("Hosted by #{user.username}")
+    expect(page).to have_content("Hosted by: #{user.username}")
     expect(page).to have_content("Halloween Epic Trail Hike")
     expect(page).to have_content("A spooky hike on an epic trail!")
     expect(page).to have_content("2017-10-31 23:59:00")

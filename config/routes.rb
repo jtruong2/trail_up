@@ -27,6 +27,11 @@ Rails.application.routes.draw do
     resources :events
   end
 
+  namespace :events do
+    resources :search, only: [:index, :new]
+  end
+
+
   resources :users, only: [:create, :show, :edit]
   resources :trails, only: [:new, :create, :show]
   resources :pictures

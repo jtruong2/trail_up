@@ -1,0 +1,12 @@
+<h5>Your search returned
+  <%=@events.count%>
+  results
+</h5>
+
+<% @events.each do |event|%>
+<%=event.name %>
+<%=event.description %>
+<%=event.format_date %>
+<%=event.trail_name %>
+<%=event.location %>
+<%end%>
