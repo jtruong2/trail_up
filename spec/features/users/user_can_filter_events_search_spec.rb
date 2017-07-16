@@ -6,23 +6,23 @@ describe "Filtering events" do
 
     @event_past_hosting_1 = create(:event, archived: true)
     @event_past_hosting_2 = create(:event, archived: true)
-    @event_host_1 = EventRole.create(event_id: @event_past_hosting_1.id, user_id: @user.id, role: 0)
-    @event_host_2 = EventRole.create(event_id: @event_past_hosting_2.id, user_id: @user.id, role: 0)
+    @event_host_1 = EventRole.create(event_id: @event_past_hosting_1.id, user_id: @user.id, role: 1)
+    @event_host_2 = EventRole.create(event_id: @event_past_hosting_2.id, user_id: @user.id, role: 1)
 
     @event_past_attending_1 = create(:event, archived: true)
     @event_past_attending_2 = create(:event, archived: true)
-    @event_host_1 = EventRole.create(event_id: @event_past_attending_1.id, user_id: @user.id, role: 1)
-    @event_host_2 = EventRole.create(event_id: @event_past_attending_2.id, user_id: @user.id, role: 1)
+    @event_host_1 = EventRole.create(event_id: @event_past_attending_1.id, user_id: @user.id, role: 0)
+    @event_host_2 = EventRole.create(event_id: @event_past_attending_2.id, user_id: @user.id, role: 0)
 
     @event_future_hosting_1 = create(:event, archived: false)
     @event_future_hosting_2 = create(:event, archived: false)
-    @event_host_1 = EventRole.create(event_id: @event_future_hosting_1.id, user_id: @user.id, role: 0)
-    @event_host_2 = EventRole.create(event_id: @event_future_hosting_2.id, user_id: @user.id, role: 0)
+    @event_host_1 = EventRole.create(event_id: @event_future_hosting_1.id, user_id: @user.id, role: 1)
+    @event_host_2 = EventRole.create(event_id: @event_future_hosting_2.id, user_id: @user.id, role: 1)
 
     @event_future_attending_1 = create(:event, archived: false)
     @event_future_attending_2 = create(:event, archived: false)
-    @event_host_1 = EventRole.create(event_id: @event_future_attending_1.id, user_id: @user.id, role: 1)
-    @event_host_2 = EventRole.create(event_id: @event_future_attending_2.id, user_id: @user.id, role: 1)
+    @event_host_1 = EventRole.create(event_id: @event_future_attending_1.id, user_id: @user.id, role: 0)
+    @event_host_2 = EventRole.create(event_id: @event_future_attending_2.id, user_id: @user.id, role: 0)
   end
 
   scenario "user can visit dashboard" do
