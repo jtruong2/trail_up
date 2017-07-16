@@ -1,8 +1,23 @@
 class Seed
+  attr_reader :user_counter
+  
+  def initialize
+    @user_counter = 0
+  end
+
   def self.start
     seed = Seed.new
     seed.generate_users
     seed.generate_trails
+    sleep 2
+    seed.generate_events
+    sleep 2
+    seed.generate_trails
+    sleep 2
+    seed.generate_events
+    sleep 2
+    seed.generate_trails
+    sleep 2
     seed.generate_events
   end
 
@@ -34,8 +49,8 @@ class Seed
   
   def generate_events
     10.times do |i|
-      trail = Trail.offset(i).first
-      user = User.offset(i).first
+      trail = Trail.order('Random()').first
+      user = User.order('Random()').first
       event = Event.create(
         trail_id: trail.id,
         name: Faker::Space.agency,
@@ -50,19 +65,18 @@ class Seed
 
   def assign_guests(event)
     5.times do |i|
-      users = User.offset(i+5).to_a
+      users = User.offset(i).to_a
       EventRole.create(event_id: event.id, user_id: users.pop.id)
       puts "Assigned #{i} users to #{event.name}"
     end
   end
 
-
   def latitude
-    (19.50..44.85).step(0.01).to_a.sample
+    (37.74..40.74).step(0.01).to_a.sample
   end
 
   def longitude
-    (-141.75..-88.01).step(0.01).to_a.sample
+    (-105.99...-102.99).step(0.01).to_a.sample
   end
 end
 
