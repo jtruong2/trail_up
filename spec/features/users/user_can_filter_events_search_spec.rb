@@ -3,6 +3,10 @@ require 'rails_helper'
 describe "Filtering events" do
   before(:each) do
     @user = create(:user)
+    @other_user = create(:user, username: "not current user", email: "notuser@gmail.com")
+
+    @edge_case_event = create(:event)
+    @edge_case_role_table= EventRole.create!(event_id: @edge_case_event.id, user_id: @other_user.id)
 
     @event_past_hosting_1 = create(:event, archived: true)
     @event_past_hosting_2 = create(:event, archived: true)
@@ -53,5 +57,7 @@ describe "Filtering events" do
     expect(page).to have_content(@event_future_hosting_2.name)
     expect(page).to have_content(@event_future_attending_1.name)
     expect(page).to have_content(@event_future_attending_2.name)
+
+    expect(page).to_not have_content(@edge_case_event.name)
   end
 end

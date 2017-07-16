@@ -1,5 +1,5 @@
 class EventPresenter
-  attr_reader :name, :description, :trail, :date, :event_id, :archived, :user_id
+  attr_reader :name, :description, :trail, :event_id, :archived, :user_id
   def initialize(event, user = nil)
     @trail = event.trail
     @name = event.name
