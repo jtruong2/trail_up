@@ -1,10 +1,18 @@
 <h1 class='main-title'>Trail<span class='up'>Up</span></h1>
 <h3>Find Trails. Find Friends. Get Outside. </h3>
 <div class='search-box'>
-  <%= form_tag('/events/search', method: :get) do %>
-  <%= label_tag 'search_by', 'Search By' %>
-  <%= select_tag 'search_by', options_for_select([['Location', 'by_location'], ['Event Name', 'by_name'], ['Trail Name', 'by_trail]']]) %>
-  <%= text_field_tag(:event_search, nil, :placeholder => "location..." )%>
-  <%= submit_tag('Search Events', :id => "submit") %>
-  <%end%>
+    <%= form_tag('/events/search', method: :get) do %>
+        <%= label_tag 'search_by', 'Search By' %>
+            <%= select_tag 'search_by', options_for_select([
+                                                ['Location', 'by_location'], 
+                                                ['Event Name', 'by_name'], 
+                                                ['Date', 'by_date']
+                                                ]) %>
+                <%= text_field_tag(:event_search, nil, :placeholder => "location..." )%>
+                    <%= submit_tag('Search Events', :id => "submit") %>
+                        <%end%>
 </div>
+
+<script type="text/javascript">
+    dateSelect();
+</script>

@@ -21,15 +21,16 @@ class Event < ApplicationRecord
     [latitude, longitude]
   end
 
-  def self.by_name
-    
+  def self.by_name(params)
+    where("name LIKE ?", "%#{params[:query]}%").map{ |event| EventPresenter.new(event)}
   end
 
-  def self.by_trail
-    
+  def self.by_date(params)
+    date = params[:query].to_date
+    where(:date => date.beginning_of_day..date.end_of_day).map{ |event| EventPresenter.new(event)}
   end
 
-  def self.by_location(location, raidus)
-    near(get_location, get_radius).map{ |event| EventPresenter.new(event)}
+  def self.by_location(params)
+    near(params[:location], params[:radius]).map{ |event| EventPresenter.new(event)}
   end
 end

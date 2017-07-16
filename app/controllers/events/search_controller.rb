@@ -1,11 +1,20 @@
 class Events::SearchController < ApplicationController
   def index
+    @events = Event.send(params[:search_by].to_sym, search_params)
     binding.pry
-    @events = Event.send(params[:search_by].to_symb, get_location, get_radius )
     # @events = Event.near(get_location, get_radius).map{ |event| EventPresenter.new(event)}
   end
   
   private
+
+    def search_params
+      {
+        location: get_location,
+        radius: get_radius,
+        query: params[:event_search],
+      }  
+    end
+
     def get_location
       Geocoder.coordinates(params[:event_search]) unless params[:event_search].empty?
     end
