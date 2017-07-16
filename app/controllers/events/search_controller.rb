@@ -10,6 +10,7 @@ class Events::SearchController < ApplicationController
         location: get_location,
         radius: get_radius,
         query: params[:event_search],
+        end_date: params[:end_date] ? params[:end_date] : nil,
       }  
     end
 
