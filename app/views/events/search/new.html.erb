@@ -1,13 +1,11 @@
-<h1 class='main-title'>Trail<span class='up'>Up</span></h1>
-<h3>Find Trails. Find Friends. Get Outside. </h3>
-<div class='search-box'>
+<div class='event-search search-box'>
     <%= form_tag('/events/search', method: :get) do %>
         <%= label_tag 'search_by', 'Search By' %>
             <%= select_tag 'search_by', options_for_select([
                                                 ['Location', 'by_location'], 
                                                 ['Event Name', 'by_name'], 
                                                 ['Date', 'by_date'],
-                                                ['Trail', 'by_trail_name']
+                                                ['Trail', 'by_trail']
                                                 ]) %>
                 <%= text_field_tag(:event_search, nil, :placeholder => "location...", list:'trails' )%>
                     <%= submit_tag('Search Events', :id => "submit") %>
@@ -16,8 +14,7 @@
 
 <datalist id="trails">
 </datalist>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script type="text/javascript">
     dateSelect();
     trailSelect();

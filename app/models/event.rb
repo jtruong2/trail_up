@@ -29,6 +29,10 @@ class Event < ApplicationRecord
     near(params[:location], params[:radius]).map{ |event| EventPresenter.new(event)}
   end
 
+  def self.by_trail(params)
+   Trail.find_by(name: params[:query]).events.map{ |event| EventPresenter.new(event)}
+  end
+
   def hosts
     users.joins(:event_roles).where(event_roles: {role: "host"})
   end
