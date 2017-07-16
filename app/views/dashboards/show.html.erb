@@ -10,7 +10,7 @@
     <div class='display'>
 
         <section class='events-container'>
-            <div class='events'>
+            <div id='events'>
               <% @event_presenter.each do |event| %>
                 <div class="<%= event.get_identifiers %>"><%= event.name %></div>
               <% end %>
@@ -18,12 +18,14 @@
         </section>
         <aside class='event-filters'>
             <h4 id="upcoming">Upcoming</h4>
+              <h3 id="attending">   Attending</h4>
+              <h3 id="hosting">   Hosting</h4>
+            <br>
             <h4 id="past">Past</h4>
-            <br>
-            <h4 id="attending">Attending</h4>
-            <h4 id="hosting">Hosting</h4>
-            <br>
-            <h4 id="all-events">All Events</h4>
         </aside>
     </div>
 </div>
+
+<script scr="text/javascript">
+  filter_events()
+</script>
