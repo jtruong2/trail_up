@@ -26,7 +26,6 @@ class Event < ApplicationRecord
   end
 
   def self.by_location(params)
-    binding.pry
     near(params[:location], params[:radius]).map{ |event| EventPresenter.new(event)}
   end
 
