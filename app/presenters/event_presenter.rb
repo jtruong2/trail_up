@@ -27,7 +27,7 @@ class EventPresenter
   end
 
   def get_identifiers
-    "#{self.past_or_upcoming} #{self.host_or_guest}"
+    "#{self.past_or_upcoming}-#{self.host_or_guest}"
   end
 
   def past_or_upcoming
