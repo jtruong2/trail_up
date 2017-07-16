@@ -11,6 +11,9 @@
 
         <section class='events-container'>
             <div class='events'>
+              <% @event_presenter.each do |event| %>
+                <div class="<%= event.get_identifiers %>"><%= event.name %></div>
+              <% end %>
             </div>
         </section>
         <aside class='event-filters'>

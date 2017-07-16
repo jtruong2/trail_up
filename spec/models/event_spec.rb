@@ -48,4 +48,9 @@ RSpec.describe Event, type: :model do
     expect(@user.attending.count).to eq(4)
     expect(@user.attending.first).to be_an Event
   end
+
+  scenario "current_user.events returns all events that the user is either hosting or attending" do
+    expect(@user.events.count).to eq(8)
+    expect(@user.events.first).to be_an Event
+  end
 end
