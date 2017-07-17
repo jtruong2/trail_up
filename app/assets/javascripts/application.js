@@ -18,3 +18,4 @@
 //= require maps/directions_map
 //= require search/date_search
 //= require search/trail_search
+//= require dashboard/dashboard_filter

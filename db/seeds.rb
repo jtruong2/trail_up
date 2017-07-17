@@ -1,6 +1,6 @@
 class Seed
   attr_reader :user_counter
-  
+
   def initialize
     @user_counter = 0
   end
@@ -19,12 +19,13 @@ class Seed
     seed.generate_trails
     sleep 2
     seed.generate_events
+    seed.most_active_user_events
   end
 
   def generate_users
     20.times do |i|
       user = User.create!(
-        username: Faker::Name.name, 
+        username: Faker::Name.name,
         email: Faker::Internet.email,
         password: 'password'
       )
@@ -46,7 +47,7 @@ class Seed
       puts "User #{i}: #{trail.name} created!"
     end
   end
-  
+
   def generate_events
     10.times do |i|
       trail = Trail.order('Random()').first
@@ -60,6 +61,43 @@ class Seed
       EventRole.create(event_id: event.id, user_id: user.id, role: 1)
       assign_guests(event)
       puts "Event #{i}: #{event.name} created!"
+    end
+  end
+
+  def most_active_user_events
+    user = User.create!(username: "Mr. Popular", email: "mrpopular@gmail.com", password: "password")
+    5.times do |i|
+      trail = Trail.order('Random()').first
+      upcoming_host_event = Event.create(
+        trail_id: trail.id,
+        name: Faker::Space.agency,
+        description: Faker::Hobbit.quote,
+        date: Faker::Date.between(Date.today, 1.year.from_now)
+      )
+      archived_host_event = Event.create(
+        trail_id: trail.id,
+        name: Faker::Space.agency,
+        description: Faker::Hobbit.quote,
+        date: Faker::Date.between(Date.today, 1.year.from_now),
+        archived: true
+      )
+      upcoming_guest_event = Event.create(
+        trail_id: trail.id,
+        name: Faker::Space.agency,
+        description: Faker::Hobbit.quote,
+        date: Faker::Date.between(Date.today, 1.year.from_now)
+      )
+      archived_guest_event = Event.create(
+        trail_id: trail.id,
+        name: Faker::Space.agency,
+        description: Faker::Hobbit.quote,
+        date: Faker::Date.between(Date.today, 1.year.from_now),
+        archived: true
+      )
+      EventRole.create(event_id: upcoming_host_event.id, user_id: user.id, role: 0)
+      EventRole.create(event_id: archived_host_event.id, user_id: user.id, role: 0)
+      EventRole.create(event_id: upcoming_guest_event.id, user_id: user.id, role: 1)
+      EventRole.create(event_id: archived_guest_event.id, user_id: user.id, role: 1)
     end
   end
 
