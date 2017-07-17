@@ -26,13 +26,12 @@ RSpec.describe "As a guest" do
   end
 
   it "only returns results within 30 miles by default" do
-    create(:trail, name: "Clear Creek Canyon", latitude: 39.7967637, longitude:-105.0426542)
-    create(:trail, name: "Mount Evans", latitude: -105.6438286, longitude: 39.5883005)
-    
+    create(:trail, name: "Clear Creek Canyon", latitude: 30.0, longitude:-100.0)
+    create(:trail, name: "Mount Evans", latitude: 31.0, longitude: -101.0)
     event_one = create(:event, trail_id: Trail.first.id)
     event_two = create(:event, trail_id: Trail.last.id)
     visit root_path
-    fill_in :event_search, with: "Denver, CO"
+    fill_in :event_search, with: "Rocksprings,TX"
     click_on "Find Events Near You"
     expect(current_path).to eq(events_search_index_path)
     expect(page).to have_content(event_one.name)

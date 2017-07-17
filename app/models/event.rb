@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   geocoded_by :trail_location
   after_validation :geocode
 
+
   belongs_to :trail
   validates :name, :description, :date, presence: true
 
@@ -17,16 +18,25 @@ class Event < ApplicationRecord
   end
 
   def self.by_name(params)
-    where("name LIKE ?", "%#{params[:query]}%").map{ |event| EventPresenter.new(event)}
+    results = where("name LIKE ?", "%#{params[:query]}%")
+    to_presenter(results)
   end
 
   def self.by_date(params)
-    date = params[:query].to_date
-    where(:date => date.beginning_of_day..date.end_of_day).map{ |event| EventPresenter.new(event)}
+    start_date = params[:query].to_date
+    end_date = params[:end_date] ? params[:end_date].to_date : start_date
+    results = where(:date => start_date.beginning_of_day..end_date.end_of_day)
+    to_presenter(results)
   end
 
   def self.by_location(params)
-    near(params[:location], params[:radius]).map{ |event| EventPresenter.new(event)}
+    results = near(params[:location], params[:radius])
+    to_presenter(results)
+  end
+
+  def self.by_trail(params)
+   results = Trail.find_by(name: params[:query]).events
+   to_presenter(results)
   end
 
   def hosts
@@ -35,5 +45,9 @@ class Event < ApplicationRecord
 
   def guests
     users.joins(:event_roles).where(event_roles: {role: "guest"})
+  end
+
+  def self.to_presenter(results)
+    results.map{ |event| EventPresenter.new(event)}
   end
 end
