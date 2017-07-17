@@ -16,9 +16,12 @@ class User < ApplicationRecord
 
   enum role: %w(admin)
 
+  def to_param
+    slug
+  end
 
   def avatar
-    if picture[:image].nil?
+    if picture.nil? || picture[:image].nil?
       'default_avatar.png'
     else
       picture.image

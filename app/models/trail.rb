@@ -18,10 +18,10 @@ class Trail < ApplicationRecord
   has_many :events
 
   def get_pictures
-    if self.pictures.empty?
-      ['logo_trail_up.png']
+    if pictures.empty?
+      [OpenStruct.new(image: 'logo_trail_up.png')]
     else
-      self.pictures
+      pictures
     end
   end
 

@@ -17,7 +17,7 @@ class TrailsController < ApplicationController
   def create
     @trail = Trail.new(trail_params)
     if @trail.save
-      Picture.creat_many(pic_params[:images].merge({imageable_id: @trail.id}))
+      Picture.creat_many(pic_params[:images].merge({imageable_id: @trail.id})) if pic_params[:images][:images]
       if session[:making_event]
         flash[:success] = ["Trail Created"]
         redirect_to new_event_path(trail_id: @trail.id)
