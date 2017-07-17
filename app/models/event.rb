@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   geocoded_by :trail_location
   after_validation :geocode
 
+
   belongs_to :trail
   validates :name, :description, :date, presence: true
 
