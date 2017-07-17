@@ -1,19 +1,28 @@
 class FitbitService
 
-  def initialize(codes, user)
-    @fitbit_user = codes[1].split('=')[1]
+  def initialize(codes = nil, user)
+    @codes = codes
+    @fitbit_user = ""
     @user = user
-    @token = codes[0]
+    @token = ""
     @conn = Faraday.new(:url => 'https://api.fitbit.com')
   end
 
   def start_collection
+    @fitbit_user = codes[1].split('=')[1]
+    @token = codes[0]
     verify_or_refresh_token
-    get_user_data
   end
 
   def verify_or_refresh_token
+    user.fitbit_token = token
+    user.fitbit_refresh = Time.new.hour
+    user.save
+  end
 
+  def date_time_checker
+    current_hour = Time.new.hour
+    return true if current_hour - user.fitbit_refresh <= 8
   end
 
   def get_user_data
@@ -25,5 +34,5 @@ class FitbitService
 
   private
 
-  attr_reader :user, :conn, :fitbit_user, :token
+  attr_reader :user, :conn, :fitbit_user, :token, :codes
 end
