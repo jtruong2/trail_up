@@ -1,0 +1,14 @@
+<%= link_to "Create a New Trail", new_trail_path %>
+    <section class='trail-search'>
+        <div class='search-box'>
+            <input id="location-search-box" type="text" placeholder="location...">
+            <input id='location-search-button' type="submit" value="Find Trails">
+        </div>
+        <div class='map_holder'>
+            <div id="map" class='map'></div>
+        </div>
+        <!-- <div class='trail-info'>
+    </div> -->
+    </section>
+
+    <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'initMap'} %>

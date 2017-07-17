@@ -1,30 +1,21 @@
 class TrailsController < ApplicationController
+  before_action :request_referrer, only: [:new]
 
   def index
-    current_page = params[:page]|| 1
-    per_page = 10
-    @trails = TrailsPresenter.new
-    @page_results = WillPaginate::Collection.create(current_page.to_i, per_page, @trails.collection.count) do |pager|
-      start = (current_page.to_i-1)*per_page
-      pager.replace(@trails.collection[start, per_page])
-    end
   end
 
   def new
+    session[:referrer] = @referrer
     @trail = Trail.new
   end
 
   def create
+    binding.pry
     @trail = Trail.new(trail_params)
     if @trail.save
       Picture.creat_many(pic_params[:images].merge({imageable_id: @trail.id})) if pic_params[:images][:images]
-      if session[:making_event]
         flash[:success] = ["Trail Created"]
-        redirect_to new_event_path(trail_id: @trail.id)
-      else
-        flash[:success] = ["Trail Created"]
-        redirect_to trail_path(@trail)
-      end
+        redirect_to create_redirect(session[:referrer], @trail)
     else
       flash[:error] = @trail.errors.full_messages
       render :new
@@ -43,5 +34,17 @@ class TrailsController < ApplicationController
 
     def pic_params
       params.require(:trail).permit(images: [ :imageable_id, :imageable_type, { images: [] } ] )
+    end
+
+    def request_referrer
+      @referrer = Rails.application.routes.recognize_path(request.referrer)[:controller]
+    end
+
+    def create_redirect(referrer, trail)
+      if referrer == "trails/select"
+        new_event_path(trail_id: trail.id)
+      else
+        trail_path(trail)
+      end
     end
 end
