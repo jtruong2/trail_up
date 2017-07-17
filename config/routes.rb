@@ -11,12 +11,14 @@ Rails.application.routes.draw do
   get '/directions', to: 'directions#index'
 
   get '/auth/fitbit/callback', to: 'fitbit#login'
+  
+  resources :fitbit, only: [:index]
 
   namespace :api do
     namespace :trails do
       resources :search, only: [:index]
     end
-    resources :fitbit, only: [:index]
+    resources :fitbit_json, only: [:index]
   end
 
 

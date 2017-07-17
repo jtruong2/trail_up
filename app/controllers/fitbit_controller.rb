@@ -1,7 +1,7 @@
 class FitbitController < ApplicationController
 
   def index
-    codes = params[:codes]
+    codes = params[:id]
     binding.pry
   end
 
