@@ -1,6 +1,5 @@
 // add listener to upcoming
 var filter_category = "upcoming";
-var background_selection = "#BF392e";
 
 var filter_events = function() {
 
