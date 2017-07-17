@@ -1,8 +1,21 @@
 FactoryGirl.define do
   factory :event do
-    trail nil
-    name "Event Name"
+    trail
+    name {generate(:event_name)}
     description "Event Description"
-    date "2017-07-12 18:57:17"
+    date "07-07-2017 18:57:17"
+    archived false
+
+    factory :event_with_host do
+
+      after(:create) do |event|
+        create(:event_role, event: event, role: 1)
+      end
+    end
   end
+
+  sequence :event_name do |n|
+    "Event #{n}"
+  end
+
 end

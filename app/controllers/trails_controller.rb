@@ -1,5 +1,5 @@
 class TrailsController < ApplicationController
-  
+
   def index
     current_page = params[:page]|| 1
     per_page = 10
@@ -15,18 +15,20 @@ class TrailsController < ApplicationController
   end
 
   def create
-    @trail = Trail.create(trail_params)
-    if @trail.save && session[:redirect_to_new_event_page]
-      flash[:success] = ["Trail Created"]
-      redirect_to new_event_path(trail_id: @trail.id)
-      session[:redirect_to_new_event_page] = false
-    elsif @trail.save && !session[:redirect_to_new_event_page]
-      flash[:success] = ["Trail Created"]
-      redirect_to trail_path(@trail)
+    @trail = Trail.new(trail_params)
+    if @trail.save
+      Picture.creat_many(pic_params[:images].merge({imageable_id: @trail.id})) if pic_params[:images][:images]
+      if session[:making_event]
+        flash[:success] = ["Trail Created"]
+        redirect_to new_event_path(trail_id: @trail.id)
+      else
+        flash[:success] = ["Trail Created"]
+        redirect_to trail_path(@trail)
+      end
     else
       flash[:error] = @trail.errors.full_messages
       render :new
-      end
+    end
   end
 
   def show
@@ -37,5 +39,9 @@ class TrailsController < ApplicationController
 
     def trail_params
       params.require(:trail).permit(:name, :description, :difficulty, :location, :distance, :rating)
+    end
+
+    def pic_params
+      params.require(:trail).permit(images: [ :imageable_id, :imageable_type, { images: [] } ] )
     end
 end

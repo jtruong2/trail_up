@@ -36,6 +36,15 @@ h3 {
 
 .search-box {
     width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.search-box form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
 }
 
 .map_holder {

@@ -11,12 +11,14 @@ Rails.application.routes.draw do
   get '/directions', to: 'directions#index'
 
   namespace :api do
-    resources :all_trails, only: [:index]
+    namespace :trails do
+      resources :search, only: [:index]
+    end
+    resources :trails, only: [:index]
   end
 
   namespace :trails do
    resources :search, only: [:index]
-   resources :get_location, only: [:index]
   end
 
   namespace :admin do
@@ -26,8 +28,13 @@ Rails.application.routes.draw do
     resources :events
   end
 
-  resources :users, only: [:create, :show, :edit]
-  resources :trails, only: [:index, :new, :create, :show]
+  namespace :events do
+    resources :search, only: [:index, :new]
+  end
+
+
+  resources :users, only: [:create, :show, :edit, :update]
+  resources :trails, only: [:new, :create, :show, :edit, :update]
   resources :pictures
   resources :events, only: [:index, :new, :create, :show]
 

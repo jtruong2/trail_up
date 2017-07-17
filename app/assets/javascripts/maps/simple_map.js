@@ -2,6 +2,14 @@ var map;
 var markers;
 var coordinateLocation = { lat: 39.742043, lng: -104.991531 }
 
+var check_image = function(trail) {
+    if (trail.hp_image.length === 0) {
+        return '/assets/logo_trail_up.png'
+    } else {
+        return trail.hp_image
+    }
+}
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: coordinateLocation,
@@ -9,17 +17,22 @@ function initMap() {
         zoom: 9
     });
 
-    var trailheads = $.getJSON('/api/all_trails', coordinateLocation, callback);
+    var trailheads = $.getJSON('/api/trails/search', {
+      search: {
+        lat: coordinateLocation.lat,
+        lon: coordinateLocation.lng }}, callback);
+
 
     function callback(data) {
 
         markers = data.map(function(datum) {
+            var image = check_image(datum)
             return new google.maps.Marker({
                 position: datum.google_coordinates,
                 customInfo: `
                 <div class='map-info'>
                 <div class='map-info-header'>
-                <img src=${datum.hp_image} alt='Trail Image'>
+                <img src=${image} alt='Trail Image'>
                 <h3>${datum.name}</h3>
                 </div>
                 <h5><span class='bolden'>Length:</span> ${datum.length} <span class='bolden'>| Difficulty:</span> ${datum.difficulty} <span class='bolden'>| Rating:</span> ${datum.hp_rating}</h5>
@@ -53,8 +66,10 @@ function initMap() {
         var searchButton = document.getElementById('location-search-button')
 
         searchButton.addEventListener('click', function() {
-            var searchQuery = locationSearch.value
-            $.getJSON(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchQuery}&key=AIzaSyCwdTm2xiTCPxTGZr_O7HsvVaQb8nKrS3o`, locationDump);
+            var searchQuery = locationSearch.value;
+            var googleApi = document.getElementById('googleMapApi').textContent;
+
+            $.getJSON(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchQuery}&key=${googleApi}`, locationDump);
 
             function locationDump(data) {
                 coordinateLocation = data.results[0].geometry.location
@@ -65,5 +80,4 @@ function initMap() {
 
         })
     };
-}
-
+};

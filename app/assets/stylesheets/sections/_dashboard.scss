@@ -1,0 +1,60 @@
+.dashboard {
+    h3 {
+        margin: 20px;
+        color: black;
+    }
+    h4 {
+        margin: 16px;
+        color: black;
+        font-family: inherit;
+        padding-bottom: 5px;
+        border-bottom: .05em solid black;
+    }
+    h4:hover {
+        cursor: pointer;
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
+        font-size: 20px;
+    }
+    .display {
+        display: flex;
+        justify-content: center;
+    }
+    .events-container {
+        width: 50%;
+        height: 400px;
+        background-color: #ffffff;
+        overflow: scroll;
+        border-radius: 10px;
+    }
+    .event-filters {
+        display: flex;
+        flex-direction: column;
+        width: 8%;
+        height: 220px;
+        background-color: #ffffff;
+        margin-left: 20px;
+        border-radius: 10px;
+    }
+    .event-filters-past {
+        display: flex;
+        flex-direction: column;
+        width: 8%;
+        height: 170px;
+        background-color: #ffffff
+    }
+    .event {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 20px;
+      padding-left: 10px;
+      height: 40px;
+      border-bottom: 1px solid black;
+    }
+    .date {
+      padding-right: 10px;
+    }
+
+}

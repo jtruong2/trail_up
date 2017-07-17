@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 13 Jul 2017 17:32:03 GMT
+      - Sun, 16 Jul 2017 19:54:19 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -29,16 +29,16 @@ http_interactions:
       Pragma:
       - no-cache
       X-Ap-Request-Id:
-      - 3eb0adfa-a1a0-4a26-84d7-28701ad8484c
+      - aaf617f5-fdd4-4253-aeb0-1104cc713a54
       Set-Cookie:
-      - XSRF-TOKEN=eyJpdiI6InA2aW1pOWRFV3c1MWNHSmRJZW5meHc9PSIsInZhbHVlIjoicVNiQ0V2QWRoTk5sTVNoY0RVd2ZQQTltTUZOUkxUV2tvaVZORmJWSWJCRmdlZWNmSmMrS01xZFl6NFVjbnhFbTN6XC9IYTRrN25wRnl1MGtNbGR4OWNBPT0iLCJtYWMiOiIyOGViNmE5NGQ5YTIzNWY0MWRkZDBjZGRlMTljM2NmYjM3ZjFiYjA2MTVjNmIxMDM3MzM2N2JjMWU2MGFjNDhlIn0%3D;
-        expires=Thu, 13-Jul-2017 19:32:03 GMT; Max-Age=7200; path=/; HttpOnly
-      - laravel_session=eyJpdiI6IlczTDVyT2ZFaHRncG14N1UrY1RhekE9PSIsInZhbHVlIjoiZm9yUkhJdEVaTVFEOGY4aVA2R2hNQVNadWd6eXJTQ1lVT0JnQTZPQVZLV3puT2ZQcThcL2wxSmNoVXlob2ZMbjdJWGlRXC91bjhDQ0d6S2hGSFp1YXRFUT09IiwibWFjIjoiMzg2ZDFlMjVjMDk5YzFhMzc0MzM3YjM1ZTUyNGRjZjY1NWJjZDExNDBkYTRhNGI0OWVlNDVhNmQxNzViZTQzMiJ9;
-        expires=Thu, 13-Jul-2017 19:32:03 GMT; Max-Age=7200; path=/; HttpOnly
+      - XSRF-TOKEN=eyJpdiI6ImYyWkwzNU5jY0NOaFN3SXJmRTVOQUE9PSIsInZhbHVlIjoiOW05YVZkU1hKNFdQN0VcL09Xa0lpM1lBT3pLbWpZc3JNVTNYRkJVZUdUS0pkajFKY1hHZlJLbFYrSUF1bWl1XC8yYjNlVlhMWEc5YmlKUDRUZ3JqTTdqQT09IiwibWFjIjoiNzdjZmQyZWE2ZTIxZmY4YTk0NjhjZTdkYTI2MTBlYzExZThlNmExNTUxOTE1N2ZkZmJlZGU2MjE3MjNlZTBjNCJ9;
+        expires=Sun, 16-Jul-2017 21:54:19 GMT; Max-Age=7200; path=/; HttpOnly
+      - laravel_session=eyJpdiI6IjdNT0ltN015N0V6MW5OMjJ1aFE3dkE9PSIsInZhbHVlIjoicTNqRWxpdVZINnlsVXhCQkwrY2FvVFB6aFpcLzlLVWtZMU1pYUpDOEhRVDIyTW5ySVwvM3BcL3VuOE9scEx6WHNWelhrcXBQdGVFYndmUis1N05IM2RCbXc9PSIsIm1hYyI6Ijc4Y2E3MjJiYWJlOTg0NjBlNDRlYzBmNTQ5MzQ1M2ZkYjdmNjY4MTM5NmQzNjYzNzllMDRiYWRlZGI5ZjI3YjgifQ%3D%3D;
+        expires=Sun, 16-Jul-2017 21:54:19 GMT; Max-Age=7200; path=/; HttpOnly
       Vary:
       - Accept-Encoding
       Content-Length:
-      - '7804'
+      - '7819'
       Content-Type:
       - application/json
     body:
@@ -119,13 +119,13 @@ http_interactions:
                     "summary": "A classic Boulder hike to a natural arch with great views.",
                     "difficulty": "blueBlack",
                     "stars": 4.4,
-                    "starVotes": 30,
+                    "starVotes": 32,
                     "location": "Boulder, Colorado",
                     "url": "https:\/\/www.hikingproject.com\/trail\/7004682\/royal-arch",
-                    "imgSqSmall": "https:\/\/cdn-files.apstatic.com\/hike\/7003310_sqsmall_1430066442.jpg",
-                    "imgSmall": "https:\/\/cdn-files.apstatic.com\/hike\/7003310_small_1430066442.jpg",
-                    "imgSmallMed": "https:\/\/cdn-files.apstatic.com\/hike\/7003310_smallMed_1430066442.jpg",
-                    "imgMedium": "https:\/\/cdn-files.apstatic.com\/hike\/7003310_medium_1430066442.jpg",
+                    "imgSqSmall": "https:\/\/cdn-files.apstatic.com\/hike\/7024878_sqsmall_1478585015.jpg",
+                    "imgSmall": "https:\/\/cdn-files.apstatic.com\/hike\/7024878_small_1478585015.jpg",
+                    "imgSmallMed": "https:\/\/cdn-files.apstatic.com\/hike\/7024878_smallMed_1478585015.jpg",
+                    "imgMedium": "https:\/\/cdn-files.apstatic.com\/hike\/7024878_medium_1478585015.jpg",
                     "length": 3.3,
                     "ascent": 1311,
                     "descent": -1312,
@@ -185,7 +185,7 @@ http_interactions:
                     "summary": "A rolling trail with lots of shade, following a creek with frequent crossings.",
                     "difficulty": "blueBlack",
                     "stars": 4.6,
-                    "starVotes": 17,
+                    "starVotes": 18,
                     "location": "Genesee, Colorado",
                     "url": "https:\/\/www.hikingproject.com\/trail\/7011049\/chavez-and-beaver-brook-trail-loop",
                     "imgSqSmall": "https:\/\/cdn-files.apstatic.com\/hike\/7013652_sqsmall_1458008058.jpg",
@@ -229,7 +229,7 @@ http_interactions:
                     "summary": "Very popular and scenic loop right from the edge of town.",
                     "difficulty": "blueBlack",
                     "stars": 4,
-                    "starVotes": 36,
+                    "starVotes": 37,
                     "location": "Boulder, Colorado",
                     "url": "https:\/\/www.hikingproject.com\/trail\/7000000\/mount-sanitas-loop",
                     "imgSqSmall": "https:\/\/cdn-files.apstatic.com\/hike\/7004292_sqsmall_1431704842.jpg",
@@ -1150,5 +1150,5 @@ http_interactions:
             "success": 1
         }
     http_version: 
-  recorded_at: Thu, 13 Jul 2017 17:32:03 GMT
+  recorded_at: Sun, 16 Jul 2017 19:54:19 GMT
 recorded_with: VCR 3.0.3

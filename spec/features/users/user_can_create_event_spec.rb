@@ -17,7 +17,6 @@ RSpec.describe "User creates an event" do
     select "Double Black Diamond", from: "trail[difficulty]"
     fill_in "Location", with: "Boulder, Colorado"
     fill_in "Distance", with: 30.0
-    fill_in "Rating", with: 5.0
     click_on "Create New Trail"
 
     expect(current_path).to eq(new_event_path)
@@ -27,7 +26,6 @@ RSpec.describe "User creates an event" do
     expect(page).to have_content("Double Black Diamond")
     expect(page).to have_content("Boulder, Colorado")
     expect(page).to have_content("30.0")
-    expect(page).to have_content("5.0")
 
     fill_in "Event Name", with: "Halloween Epic Trail Hike"
     fill_in "Event Description", with: "A spooky hike on an epic trail!"
@@ -39,7 +37,7 @@ RSpec.describe "User creates an event" do
     click_on "Publish Event"
 
     expect(current_path).to eq(event_path(Event.first))
-    expect(page).to have_content("Hosted by #{user.username}")
+    expect(page).to have_content("Hosted by: #{user.username}")
     expect(page).to have_content("Halloween Epic Trail Hike")
     expect(page).to have_content("A spooky hike on an epic trail!")
     expect(page).to have_content("2017-10-31 23:59:00")
@@ -49,6 +47,5 @@ RSpec.describe "User creates an event" do
     expect(page).to have_content("Double Black Diamond")
     expect(page).to have_content("Boulder, Colorado")
     expect(page).to have_content("30.0")
-    expect(page).to have_content("5.0")
   end
 end

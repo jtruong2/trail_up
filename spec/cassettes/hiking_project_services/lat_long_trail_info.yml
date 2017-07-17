@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 13 Jul 2017 17:32:03 GMT
+      - Sun, 16 Jul 2017 19:54:19 GMT
       Server:
       - Apache
       Access-Control-Allow-Origin:
@@ -29,16 +29,16 @@ http_interactions:
       Pragma:
       - no-cache
       X-Ap-Request-Id:
-      - 58f7548a-a971-4555-9763-a58725a76a0f
+      - 144558f4-d067-4d57-9de3-0513481f2d7b
       Set-Cookie:
-      - XSRF-TOKEN=eyJpdiI6IjNvT1ptR0pDK2orYm1uVklsRkhGWEE9PSIsInZhbHVlIjoiTk82K09ZY0Y2bGVWVUpHNnhKVFdROWJqQTZmcjI2Q2VuazB1d1Ayb2laaTVSUFlmbG1lZzJmZ2o3ZHlJN3NQSEREV1wvSXJ2SGVva3pXMzJWcjR5NEVRPT0iLCJtYWMiOiIwYmFkOTcwOGVjNDY3NmRlZmQ3ZjkwOTRiM2FkOWQ2ZWY2OTNlZDYzNzU1NDMwYmYxYWEyZjJhNjBkZjZkYzE1In0%3D;
-        expires=Thu, 13-Jul-2017 19:32:03 GMT; Max-Age=7200; path=/; HttpOnly
-      - laravel_session=eyJpdiI6IjZMSWlKaDBqSTNONmp6aVZ2R3JkVVE9PSIsInZhbHVlIjoic1dTQTI2SzZcL2g2ZG03THVEaU9qSXNZMmFFMWFKSFlNSjR2dWN6M3FNZFFwOXNUaFhtRGxoalwvem1zbjRkYWd5RENPeHV2R0Q1dm8rUmtaRUs4Zm1oZz09IiwibWFjIjoiZDZkZGNjM2JjZjM1YThlNmU0YTU5Y2MzZDk3NWE1ZDEzYmYyYTkxZWFlOTgyZTg5YTgyZjcxYmRiNjUyZWE3NSJ9;
-        expires=Thu, 13-Jul-2017 19:32:03 GMT; Max-Age=7200; path=/; HttpOnly
+      - XSRF-TOKEN=eyJpdiI6Ik45RUhrazNvUUlTOXBaM2RqRjk0Nmc9PSIsInZhbHVlIjoiQ3BER1BNTDZlNDFUTUFRWHNGcnVVNnN3ZUVWdzJPTkdGWVhpRUZcL1FEOXpMa1NFN0pWMlNWRXBCeEhpUEVLa2ZiWkwwRUtSQktaYWhWZDBheittY0xBPT0iLCJtYWMiOiJiNWJlNTBkZjMxMTVmYzg4YWEyYTc2MThlN2I5NTgyYmU5MWU1NzU0ZWI3N2NjOWVlN2M3OWIzYmY1Mjc3YmZiIn0%3D;
+        expires=Sun, 16-Jul-2017 21:54:19 GMT; Max-Age=7200; path=/; HttpOnly
+      - laravel_session=eyJpdiI6IjRDVDRITVMxelFVc0trUjViRFd5emc9PSIsInZhbHVlIjoiNU04a2JzYjI2SHMya3kzWElSRnd1NDVRdmgwRWhoV29iQzQyYU5JWURjQTNTa2hyNXZKXC9zbFdGYk1hdEhjcWFoNGdKcnZUUmR2WDlLV1NQalBJVHZBPT0iLCJtYWMiOiI0MGI2ODc4MDI5ZGVlOWUzM2I5MDFkODc4ZjJhZTAxYWI5ODNkOTIyNmM2YjU1ZWJlYjdiMjg2NjFmNzJhNGEwIn0%3D;
+        expires=Sun, 16-Jul-2017 21:54:19 GMT; Max-Age=7200; path=/; HttpOnly
       Vary:
       - Accept-Encoding
       Content-Length:
-      - '7949'
+      - '7953'
       Content-Type:
       - application/json
     body:
@@ -97,13 +97,13 @@ http_interactions:
                     "summary": "A classic Boulder hike to a natural arch with great views.",
                     "difficulty": "blueBlack",
                     "stars": 4.4,
-                    "starVotes": 30,
+                    "starVotes": 32,
                     "location": "Boulder, Colorado",
                     "url": "https:\/\/www.hikingproject.com\/trail\/7004682\/royal-arch",
-                    "imgSqSmall": "https:\/\/cdn-files.apstatic.com\/hike\/7003310_sqsmall_1430066442.jpg",
-                    "imgSmall": "https:\/\/cdn-files.apstatic.com\/hike\/7003310_small_1430066442.jpg",
-                    "imgSmallMed": "https:\/\/cdn-files.apstatic.com\/hike\/7003310_smallMed_1430066442.jpg",
-                    "imgMedium": "https:\/\/cdn-files.apstatic.com\/hike\/7003310_medium_1430066442.jpg",
+                    "imgSqSmall": "https:\/\/cdn-files.apstatic.com\/hike\/7024878_sqsmall_1478585015.jpg",
+                    "imgSmall": "https:\/\/cdn-files.apstatic.com\/hike\/7024878_small_1478585015.jpg",
+                    "imgSmallMed": "https:\/\/cdn-files.apstatic.com\/hike\/7024878_smallMed_1478585015.jpg",
+                    "imgMedium": "https:\/\/cdn-files.apstatic.com\/hike\/7024878_medium_1478585015.jpg",
                     "length": 3.3,
                     "ascent": 1311,
                     "descent": -1312,
@@ -163,7 +163,7 @@ http_interactions:
                     "summary": "A backcountry trail providing the best of high alpine hiking, with stunning views along the Divide.",
                     "difficulty": "blueBlack",
                     "stars": 4.8,
-                    "starVotes": 13,
+                    "starVotes": 14,
                     "location": "Nederland, Colorado",
                     "url": "https:\/\/www.hikingproject.com\/trail\/7006795\/high-lonesome-loop",
                     "imgSqSmall": "https:\/\/cdn-files.apstatic.com\/hike\/7006705_sqsmall_1440512026.jpg",
@@ -185,7 +185,7 @@ http_interactions:
                     "summary": "A rolling trail with lots of shade, following a creek with frequent crossings.",
                     "difficulty": "blueBlack",
                     "stars": 4.6,
-                    "starVotes": 17,
+                    "starVotes": 18,
                     "location": "Genesee, Colorado",
                     "url": "https:\/\/www.hikingproject.com\/trail\/7011049\/chavez-and-beaver-brook-trail-loop",
                     "imgSqSmall": "https:\/\/cdn-files.apstatic.com\/hike\/7013652_sqsmall_1458008058.jpg",
@@ -909,9 +909,9 @@ http_interactions:
                     "name": "Staunton State Park Clockwise Tour",
                     "type": "Featured Hike",
                     "summary": "A tour of the immaculate singletrack at Colorado's newest state park.",
-                    "difficulty": "greenBlue",
-                    "stars": 4.5,
-                    "starVotes": 6,
+                    "difficulty": "blue",
+                    "stars": 4.6,
+                    "starVotes": 7,
                     "location": "Pine, Colorado",
                     "url": "https:\/\/www.hikingproject.com\/trail\/7021586\/staunton-state-park-clockwise-tour",
                     "imgSqSmall": "https:\/\/cdn-files.apstatic.com\/hike\/7029404_sqsmall_1491683102.jpg",
@@ -1150,5 +1150,5 @@ http_interactions:
             "success": 1
         }
     http_version: 
-  recorded_at: Thu, 13 Jul 2017 17:32:03 GMT
+  recorded_at: Sun, 16 Jul 2017 19:54:19 GMT
 recorded_with: VCR 3.0.3
