@@ -41,6 +41,7 @@ class Permission
       return true if controller == "users" && action == "show" && user_page_check == true
       return true if controller == "trails" && action.in?(%w(index new create show))
       return true if controller == "trails/search"
+      return true if controller == "events/search"
       return true if controller == "directions"
     end
 
