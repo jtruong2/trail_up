@@ -7,16 +7,21 @@ class FitbitService
     @conn = Faraday.new(:url => 'https://api.fitbit.com')
   end
 
-  def get_user_data
-    get_activity_data
+  def start_collection
+    verify_or_refresh_token
+    get_user_data
   end
 
-  def get_activity_data
-    response = conn.get("/1/#{user}-id/-/profile") do |request|
+  def verify_or_refresh_token
+
+  end
+
+  def get_user_data
+    response = conn.get("/1/user/-/profile.json") do |request|
       request.headers['Authorization'] = "Bearer #{token}"
     end
+    JSON.parse(response.body, symbolize_names: true)
   end
-
 
   private
 
