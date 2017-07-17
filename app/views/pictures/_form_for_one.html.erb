@@ -1,0 +1,6 @@
+<%= f.fields_for :image do |image_f| %>
+  <%= image_f.hidden_field :imageable_id, :value => object.id %>
+  <%= image_f.hidden_field :imageable_type, :value => object.class %>
+  <%= image_f.label :image %>
+  <%= image_f.file_field :image %>
+<% end %>

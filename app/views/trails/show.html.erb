@@ -1,29 +1,12 @@
 <div class='trail-show'>
-    <h1>
-        <%= @trail.name%>
-    </h1>
-    <h2>
-        Location:
-        <%= @trail.location%>
-    </h2>
-    <h3>
-        Distance:
-        <%= @trail.distance%>
-    </h3>
-    <h3>
-        Difficulty:
-        <%= @trail.difficulty%>
-    </h3>
-    <h3>
-        Length:
-        <%= @trail.rating%>
-    </h3>
-    <h3>
-        Rating:
-        <%= @trail.rating%>
-    </h3>
-    <p>
-        Description:
-        <%= @trail.description%>
-    </p>
+  <h3><%= @trail.name%></h3>
+  Location: <%= @trail.location%>
+  Distance: <%= @trail.distance%>
+  Difficulty: <%= @trail.difficulty%>
+  Length: <%= @trail.rating%>
+  Rating: <%= @trail.rating%>
+  Description: <%= @trail.description%>
+  <% @trail.get_pictures.each do |picture| %>
+    <%= image_tag("#{picture.image}") %>
+  <% end %>
 </div>
