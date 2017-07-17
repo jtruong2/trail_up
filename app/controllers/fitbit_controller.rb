@@ -2,7 +2,7 @@ class FitbitController < ApplicationController
 
   def index
     codes = params[:id]
-    binding.pry
+    results = FitbitService.new(params[:id], current_user).get_user_data
   end
 
   def login
