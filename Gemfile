@@ -43,11 +43,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'pry-rails'
-<<<<<<< HEAD
   gem 'omniauth'
   gem 'omniauth-fitbit'
-=======
->>>>>>> fitbit
 end
 
 group :test do

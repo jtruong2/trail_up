@@ -29,12 +29,6 @@ class User < ApplicationRecord
     self.slug = username.parameterize if username
   end
 
-<<<<<<< HEAD
-  def self.find_or_create_by_auth(auth)
-    binding.pry
-  end
-
-=======
   def attending
     filter_by_role("guest")
   end
@@ -46,5 +40,4 @@ class User < ApplicationRecord
   def filter_by_role(role)
     events.joins(:event_roles).where(event_roles: {role: "#{role}"})
   end
->>>>>>> fitbit
 end
