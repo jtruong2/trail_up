@@ -1,8 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Event, type: :model do
+describe "Filtering events" do
   before(:each) do
-    @user = create(:user, username: "TomTom", email: "tomtom@gmail.com")
+    @user = create(:user)
+    @other_user = create(:user, username: "not current user", email: "notuser@gmail.com")
+
+    @edge_case_event = create(:event)
+    @edge_case_role_table= EventRole.create!(event_id: @edge_case_event.id, user_id: @other_user.id)
 
     @event_past_hosting_1 = create(:event, archived: true)
     @event_past_hosting_2 = create(:event, archived: true)
@@ -25,32 +29,33 @@ RSpec.describe Event, type: :model do
     @event_host_2 = EventRole.create(event_id: @event_future_attending_2.id, user_id: @user.id, role: 0)
   end
 
-  it {should validate_presence_of(:name)}
-  it {should validate_presence_of(:description)}
-  it {should validate_presence_of(:date)}
-  it {should belong_to(:trail)}
-  it {should have_many(:event_roles)}
-  it {should have_many(:users).through(:event_roles)}
+  scenario "user can visit dashboard" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
-  scenario "archived attribute should default to false" do
-    user = create(:user)
-    trail = create(:trail)
-    event = Event.create!(name: "Epic event", description: "This will be so epic", date: "07-07-2017 18:57:17", trail_id: trail.id )
-    expect(event.archived).to eq(false)
+    visit root_path
+
+    expect(page).to have_content("Dashboard")
+    click_on("Dashboard")
+
+    expect(current_path).to eq('/dashboard')
   end
 
-  scenario "User.hosts returns all events that the user has and is hosting" do
-    expect(@user.hosting.count).to eq(4)
-    expect(@user.hosting.first).to be_an Event
-  end
+  scenario "user sees upcoming events by default" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
-  scenario "User.attending returns all events that the user has and is attending" do
-    expect(@user.attending.count).to eq(4)
-    expect(@user.attending.first).to be_an Event
-  end
+    visit dashboard_path
 
-  scenario "current_user.events returns all events that the user is either hosting or attending" do
-    expect(@user.events.count).to eq(8)
-    expect(@user.events.first).to be_an Event
+    expect(page).to have_content(@user.username)
+    expect(page).to have_content("Upcoming")
+
+    expect(page).to have_content(@event_future_hosting_1.name)
+    expect(page).to have_content(@event_future_hosting_2.name)
+    expect(page).to have_content(@event_future_attending_1.name)
+    expect(page).to have_content(@event_future_attending_2.name)
+
+    expect(page).to_not have_content(@edge_case_event.name)
+
+    click_on @event_future_hosting_1.name
+    expect(current_path).to eq(event_path(@event_future_hosting_1))
   end
 end

@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170716170102) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.boolean "archived", default: false
     t.index ["trail_id"], name: "index_events_on_trail_id"
   end
 

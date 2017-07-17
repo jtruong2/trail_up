@@ -24,8 +24,9 @@
     }
     .events-container {
         width: 50%;
-        height: 500px;
-        background-color: #ffffff
+        height: 400px;
+        background-color: #ffffff;
+        overflow: scroll;
     }
     .event-filters {
         display: flex;
@@ -33,5 +34,23 @@
         width: 8%;
         height: 170px;
         background-color: #ffffff
+    }
+    .event-filters-past {
+        display: flex;
+        flex-direction: column;
+        width: 8%;
+        height: 170px;
+        background-color: #ffffff
+    }
+    .event {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 20px;
+      padding-left: 10px;
+      height: 40px;
+      border-bottom: 1px solid black;
+    }
+    .date {
+      padding-right: 10px;
     }
 }
