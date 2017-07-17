@@ -1,7 +1,6 @@
-<section class='form'>
+<section class='form sign-up'>
   <%= form_for @user do |f| %>
 
-    <%= render partial: 'pictures/form_for_one', :locals => { f: f, object: @user } %>
 
     <%= f.label :username %>
     <%= f.text_field :username %>
@@ -11,6 +10,8 @@
 
     <%= f.label :password %>
     <%= f.password_field :password %>
+    
+    <%= render partial: 'pictures/form_for_one', :locals => { f: f, object: @user } %>
 
     <%= f.submit 'Submit' %>
   <% end %>

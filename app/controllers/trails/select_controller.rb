@@ -4,9 +4,7 @@ class Trails::SelectController < ApplicationController
   end
 
   def new
-    binding.pry
     if current_user.nil? 
-      binding.pry
       flash[:error] = ["You must be signed in to create an event!"]
       redirect_to login_path
     else
