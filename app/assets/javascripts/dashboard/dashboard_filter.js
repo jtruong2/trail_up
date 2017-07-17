@@ -1,5 +1,6 @@
 // add listener to upcoming
 var filter_category = "upcoming";
+var background_selection = "#BF392e";
 
 var filter_events = function() {
 
@@ -25,6 +26,7 @@ var filter_events = function() {
   attending.addEventListener("click", function() {
     window.filter_category = "upcoming guest";
     dom_traversal(events);
+    attending.style.backgroundColor = window.background_selection;
   });
 
   var hosting = document.getElementById("hosting");
