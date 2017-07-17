@@ -12,14 +12,16 @@
         <section class='events-container'>
             <div id='events'>
               <% @event_presenter.each do |event| %>
-                <div class="event <%= event.get_identifiers %>"><%= event.name %></div>
+                <div class="event <%= event.get_identifiers %>"><%= link_to event.name, event_path(event.event_id) %>
+                  <div class="date"><%= event.date.strftime("%a %d %b %Y") %></div>
+                </div>
               <% end %>
             </div>
         </section>
         <aside class='event-filters'>
             <h4 id="upcoming">Upcoming</h4>
-              <h4 id="attending">   Attending</h4>
-              <h4 id="hosting">   Hosting</h4>
+              <h4 id="attending">Attending</h4>
+              <h4 id="hosting">Hosting</h4>
         </aside>
             <br></br>
         <aside class="event-filters-past">

@@ -1,5 +1,5 @@
 class EventPresenter
-  attr_reader :name, :description, :trail, :event_id, :archived, :user_id
+  attr_reader :name, :description, :trail, :event_id, :archived, :user_id, :date
   def initialize(event, user = nil)
     @trail = event.trail
     @name = event.name
@@ -42,7 +42,4 @@ class EventPresenter
                                    AND event_roles.user_id = #{self.user_id};")
     event[0].role
   end
-
-  private
-  attr_reader :date
 end
