@@ -13,12 +13,13 @@ Rails.application.routes.draw do
   get '/auth/fitbit/callback', to: 'fitbit#index'
 
   namespace :api do
-    resources :all_trails, only: [:index]
+    namespace :trails do
+      resources :search, only: [:index]
+    end
   end
 
   namespace :trails do
    resources :search, only: [:index]
-   resources :get_location, only: [:index]
   end
 
   namespace :admin do
@@ -28,8 +29,13 @@ Rails.application.routes.draw do
     resources :events
   end
 
+  namespace :events do
+    resources :search, only: [:index, :new]
+  end
+
+
   resources :users, only: [:create, :show, :edit]
-  resources :trails, only: [:index, :new, :create, :show]
+  resources :trails, only: [:new, :create, :show]
   resources :pictures
   resources :events, only: [:index, :new, :create, :show]
 

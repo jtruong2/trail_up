@@ -9,16 +9,13 @@ class User < ApplicationRecord
   validates :slug, uniqueness: true
 
   has_one :picture, as: :imageable
-
-  has_many :event_guests, :foreign_key => 'guest_id'
-  has_many :attending, :through => :event_guests, source: :event
-
-  has_many :event_hosts, :foreign_key => 'host_id'
-  has_many :hosting, :through => :event_hosts, source: :event
+  has_many :event_roles
+  has_many :events, through: :event_roles
 
   accepts_nested_attributes_for :picture
 
   enum role: %w(admin)
+
 
   def avatar
     if self.picture == nil
@@ -32,8 +29,22 @@ class User < ApplicationRecord
     self.slug = username.parameterize if username
   end
 
+<<<<<<< HEAD
   def self.find_or_create_by_auth(auth)
     binding.pry
   end
 
+=======
+  def attending
+    filter_by_role("guest")
+  end
+
+  def hosting
+    filter_by_role("host")
+  end
+
+  def filter_by_role(role)
+    events.joins(:event_roles).where(event_roles: {role: "#{role}"})
+  end
+>>>>>>> fitbit
 end

@@ -10,13 +10,24 @@
     <div class='display'>
 
         <section class='events-container'>
-            <div class='events'>
+            <div id='events'>
+              <% @event_presenter.each do |event| %>
+                <div class="event <%= event.get_identifiers %>"><%= link_to event.name, event_path(event.event_id) %>
+                  <div class="date"><%= event.date.strftime("%a %d %b %Y") %></div>
+                </div>
+              <% end %>
             </div>
         </section>
         <aside class='event-filters'>
-            <h4 id='all-events'>All Events</h4>
-            <h4 id='attending'>Attending</h4>
-            <h4 id='hosting'>Hosting</h4>
+            <h4 id="upcoming">Upcoming</h4>
+            <h4 id="attending">Attending</h4>
+            <h4 id="hosting">Hosting</h4>
+            <h4 id="past">Past</h4>
         </aside>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script scr="text/javascript">
+  filter_events()
+</script>
