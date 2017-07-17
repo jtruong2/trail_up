@@ -4,7 +4,7 @@ FactoryGirl.define do
     name {generate(:event_name)}
     description "Event Description"
     date "07-07-2017 18:57:17"
-
+    archived false
 
     factory :event_with_host do
 

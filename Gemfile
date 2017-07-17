@@ -28,6 +28,8 @@ gem 'kaminari'
 gem 'carrierwave', '~> 1.0'
 gem 'will_paginate', '~> 3.1.0'
 gem 'geocoder'
+gem 'faker'
+gem 'humanize'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
