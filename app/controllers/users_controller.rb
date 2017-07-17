@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
+      Picture.create!(pic_params[:image].merge({imageable_id: user.id}))
       session[:user_id] = user.id
       redirect_to dashboard_path
     else

@@ -6,7 +6,7 @@
   </div>
   <div class="upload">
     <%= form_for current_user do |f| %>
-      <%= render partial: 'pictures/form', :locals => { f: f, object: current_user } %>
+      <%= render partial: 'pictures/form_for_one', :locals => { f: f, object: current_user } %>
       <%= f.submit %>
     <% end %>
   </div>

@@ -18,10 +18,10 @@ class User < ApplicationRecord
 
 
   def avatar
-    if self.picture == nil
+    if picture[:image].nil?
       'default_avatar.png'
     else
-      self.picture.image
+      picture.image
     end
   end
 

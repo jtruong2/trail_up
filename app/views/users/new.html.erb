@@ -1,5 +1,8 @@
 <section class='form'>
   <%= form_for @user do |f| %>
+
+    <%= render partial: 'pictures/form_for_one', :locals => { f: f, object: @user } %>
+
     <%= f.label :username %>
     <%= f.text_field :username %>
 

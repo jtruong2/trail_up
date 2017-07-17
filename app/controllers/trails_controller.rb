@@ -16,12 +16,15 @@ class TrailsController < ApplicationController
 
   def create
     @trail = Trail.new(trail_params)
-    if @trail.save && session[:making_event]
-      flash[:success] = ["Trail Created"]
-      redirect_to new_event_path(trail_id: @trail.id)
-    elsif @trail.save && !session[:making_event]
-      flash[:success] = ["Trail Created"]
-      redirect_to trail_path(@trail)
+    if @trail.save
+      Picture.creat_many(pic_params[:images].merge({imageable_id: @trail.id}))
+      if session[:making_event]
+        flash[:success] = ["Trail Created"]
+        redirect_to new_event_path(trail_id: @trail.id)
+      else
+        flash[:success] = ["Trail Created"]
+        redirect_to trail_path(@trail)
+      end
     else
       flash[:error] = @trail.errors.full_messages
       render :new
@@ -36,5 +39,9 @@ class TrailsController < ApplicationController
 
     def trail_params
       params.require(:trail).permit(:name, :description, :difficulty, :location, :distance, :rating)
+    end
+
+    def pic_params
+      params.require(:trail).permit(images: [ :imageable_id, :imageable_type, { images: [] } ] )
     end
 end

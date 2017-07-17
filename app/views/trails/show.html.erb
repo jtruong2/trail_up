@@ -7,6 +7,6 @@
   Rating: <%= @trail.rating%>
   Description: <%= @trail.description%>
   <% @trail.get_pictures.each do |picture| %>
-    <%= image_tag("#{picture}") %>
+    <%= image_tag("#{picture.image}") %>
   <% end %>
 </div>
