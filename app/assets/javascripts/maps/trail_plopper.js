@@ -1,18 +1,25 @@
 var map; // main google map object
 var plopMarker; // holds the user plopped marker for location of trail
 var plopLocation; // holds the location of the plopMarker to send to DOM
+var new_coordinateLocation;
 var markers; // holds all markers from HikingProject API call
 var zoom = 9;
 
-var coordinateLocation = { lat: 39.742043, lng: -104.991531 }
-
+var coordinateLocation = { lat: 39.742043, lng: -104.991531 };
+var new_coordinateLocation = coordinateLocation
 var check_image = function(trail) {
     if (trail.hp_image.length === 0) {
         return '/assets/logo_trail_up.png'
     } else {
         return trail.hp_image
     }
-}
+};
+
+// clears all markers in the marker array
+
+const clearPlopMarker = function() {
+  if(plopMarker) { plopMarker.setMap(null) }
+};
 
 // main function to initialize, listen, and refresh google map
 
@@ -27,10 +34,10 @@ function plopMarkerMap() {
 
     // JSON get request to HikingProject
 
-    var trailheads = $.getJSON('/api/trails/search',
+    let trailheads = $.getJSON('/api/trails/search',
       { search:
-        { lat: coordinateLocation.lat,
-          lon: coordinateLocation.lng,
+        { lat: new_coordinateLocation.lat,
+          lon: new_coordinateLocation.lng,
           maxDistance: 1 }}, callback );
 
     // if JSON request is successfull this method builds markers and places them on the map
@@ -40,7 +47,7 @@ function plopMarkerMap() {
         // creates all markers based on trailhead query with customInfo for infoWindow
 
         markers = data.map(function(datum) {
-            var image = check_image(datum)
+            let image = check_image(datum)
             return new google.maps.Marker({
                 position: datum.google_coordinates,
                 customInfo: `
@@ -72,7 +79,7 @@ function plopMarkerMap() {
             });
         }, this);
 
-        var infoWindow = new google.maps.InfoWindow()
+        let infoWindow = new google.maps.InfoWindow()
 
         // places all markers from trailhead query
 
@@ -86,12 +93,12 @@ function plopMarkerMap() {
 
         // submits a query to google based on address and refreshes map at the result
 
-        var locationSearch = document.getElementById('location-search-box')
-        var searchButton = document.getElementById('location-search-button')
+        let locationSearch = document.getElementById('location-search-box')
+        let searchButton = document.getElementById('location-search-button')
 
         searchButton.addEventListener('click', function() {
-            var searchQuery = locationSearch.value
-            var googleApi = document.getElementById('googleMapApi').textContent;
+            let searchQuery = locationSearch.value
+            let googleApi = document.getElementById('googleMapApi').textContent;
 
             $.getJSON(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchQuery}&key=${googleApi}`, locationDump);
 
@@ -112,6 +119,7 @@ function plopMarkerMap() {
         plopMarker = new google.maps.Marker({
             position: event.latLng,
             map: map,
+            zIndex: 1000,
             icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
         });
 
@@ -120,23 +128,17 @@ function plopMarkerMap() {
           lng: plopMarker.getPosition().lng()
         };
 
-        coordinateLocation = plopLocation;
+        new_coordinateLocation = plopLocation
         zoom = map.zoom;
         plopMarkerMap();
     });
 
     // sends plopLocation of marker to DOM to so Rails can send in create trail form
 
-    var submitButton = document.getElementById('submit');
+    let submitButton = document.getElementById('submit');
 
     submitButton.addEventListener('click', function (){
-      var location = document.getElementById('plop_location');
+      let location = document.getElementById('plop_location');
       location.value = JSON.stringify(plopLocation);
     });
-}
-
-// clears all markers in the marker array
-
-function clearPlopMarker() {
-  if(plopMarker) { plopMarker.setMap(null) }
 };
