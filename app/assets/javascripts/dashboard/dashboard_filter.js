@@ -21,6 +21,7 @@ var filter_events = function() {
   var events = document.getElementsByClassName('event');
   dom_traversal(events);
 
+
   var attending = document.getElementById("attending");
   attending.addEventListener("click", function() {
     window.filter_category = "upcoming guest";
@@ -44,4 +45,6 @@ var filter_events = function() {
     window.filter_category = "past";
     dom_traversal(events);
   });
+
+
 }
