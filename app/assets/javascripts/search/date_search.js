@@ -18,8 +18,15 @@ var dateSelect = function() {
         if (select.value === 'by_date') {
             inputField.setAttribute('type', 'date');
             form.insertBefore(endDate, submit)
-        } else {
+        } else if (select.value === 'by_name') {
+            setAttributes(inputField, { "type": "text", "placeholder": "event name..." });
             inputField.setAttribute('type', 'text');
+            removeField(form, 'end-date')
+        } else if (select.value === 'by_trail') {
+            setAttributes(inputField, { "type": "text", "placeholder": "trail name..." });
+            removeField(form, 'end-date')
+        } else if (select.value === 'by_location') {
+            setAttributes(inputField, { "type": "text", "placeholder": "location..." });
             removeField(form, 'end-date')
         }
     }
