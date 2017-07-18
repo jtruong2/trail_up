@@ -26,3 +26,5 @@ var trailSelect = function() {
         });
     }
 }
+
+trailSelect();
