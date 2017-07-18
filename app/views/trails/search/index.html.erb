@@ -1,13 +1,15 @@
-<section class='trail-search'>
-    <div class='search-box'>
-        <input id="location-search-box" type="text" placeholder="location...">
-        <input id='location-search-button' type="submit" value="Find Trails">
+<section class='select-heading'>
+    <h1> Find A Trail </h1>
+</section>
+<section class='select-trail-search'>
+    <div class='query'>
+        <div class='search-box'>
+            <input id="location-search-box" type="text" placeholder="location...">
+            <input id='location-search-button' type="submit" value="Search">
+        </div>
     </div>
-    <div class='map_holder'>
+    <div class=' select_map_holder'>
         <div id="map" class='map'></div>
     </div>
-    <!-- <div class='trail-info'>
-    </div> -->
+    <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'initMap'} %>
 </section>
-
-<%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'initMap'} %>
