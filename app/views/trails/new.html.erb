@@ -1,20 +1,26 @@
 <section class='select-heading'>
-    <h1> Drop a pin to mark your trail
-    </h1>
+    <h1> Create A Trail </h1>
+    <p> Drop a pin to mark the trail head </p>
+    <p> Enter an address or zip code to dial in your search</p>
+    <p> Then fill out the form to create your event </p>
 </section>
-<section class='select-trail-search'>
-    <div class='query'>
-        <div class='search-box'>
-            <input id="location-search-box" type="text" placeholder="location...">
-            <input id='location-search-button' type="submit" value="Find Trails">
+<section class='trail-event-page'>
+
+    <section class='select-trail-search'>
+        <div class='query'>
+            <div class='search-box'>
+                <input id="location-search-box" type="text" placeholder="location...">
+                <input id='location-search-button' type="submit" value="Find Trails">
+            </div>
         </div>
+        <div class=' select_map_holder'>
+            <div id="map" class='map'></div>
+        </div>
+        <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'plopMarkerMap'} %>
+    </section>
+    <div class='event-trail-form'>
+        <%= render partial: 'trails/form' %>
     </div>
-    <div class=' select_map_holder'>
-        <div id="map" class='map'></div>
-    </div>
-    <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'initMap'} %>
 </section>
 
-<%= render partial: 'trails/form' %>
-
-    <!-- <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'plopMarkerMap'}%> -->
+<!-- <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'plopMarkerMap'}%> -->
