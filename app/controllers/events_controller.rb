@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      EventRole.create!(event_id: @event.id, user_id: current_user.id, role: 1)
+      current_user.event_roles.create!(event_id: @event.id, role: 1)
       flash[:success] = ["Event Created"]
       redirect_to event_path(@event)
     else
@@ -16,16 +16,17 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @status = @event.user_event_status(current_user)
+    @status = current_user ? current_user.event_status(@event.id) : "unauthorized"
   end
 
   def status
+    # binding.pry
     Event.change_user_event_role(current_user, params[:id][:status], params[:id][:event_id])
     redirect_to request.referrer
   end
 
   def destroy
-    event = Event.find(params[:id]).destroy
+    current_user.hosting.where(id: params[:id]).destroy_all
     redirect_to root_path
   end
 

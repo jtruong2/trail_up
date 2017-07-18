@@ -75,30 +75,30 @@ class Event < ApplicationRecord
     end
   end
 
-  def user_event_status(user)
-    return "unauthorized" if user == nil
-    return "authorized" if is_host?(user) == false && is_guest?(user) == false
-    return "guest" if is_guest?(user) == true
-    return "host" if is_host?(user) == true
-  end
+  # def user_event_status(user)
+  #   return "unauthorized" if user == nil
+  #   return "authorized" if is_host?(user) == false && is_guest?(user) == false
+  #   return "guest" if is_guest?(user) == true
+  #   return "host" if is_host?(user) == true
+  # end
 
-  def is_host?(user)
-    output = false
-    self.hosts.each do |host|
-      if host.id == user.id
-        output = true
-      end
-    end
-    output
-  end
+  # def is_host?(user)
+  #   output = false
+  #   self.hosts.each do |host|
+  #     if host.id == user.id
+  #       output = true
+  #     end
+  #   end
+  #   output
+  # end
 
-  def is_guest?(user)
-    output = false
-    self.guests.each do |guest|
-      if guest.id == user.id
-        output = true
-      end
-    end
-    output
-  end
+  # def is_guest?(user)
+  #   output = false
+  #   self.guests.each do |guest|
+  #     if guest.id == user.id
+  #       output = true
+  #     end
+  #   end
+  #   output
+  # end
 end
