@@ -95,6 +95,17 @@ describe "users can see events and decide to join or not" do
   end
 
   scenario "user can leave event" do
-    
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_guest)
+    visit "/events/#{@event_1.id}"
+
+    expect(current_path).to eq("/events/#{@event_1.id}")
+
+    expect(page).to have_content("Leave Event")
+
+    click_on "Leave Event"
+
+    expect(current_path).to eq("/events/#{@event_1.id}")
+    expect(page).to have_content("Join Event")
+
   end
 end

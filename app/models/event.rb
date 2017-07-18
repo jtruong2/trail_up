@@ -55,7 +55,7 @@ class Event < ApplicationRecord
     if status == "Join"
       EventRole.create!(user_id: user.id, event_id: event_id)
     elsif status == "Leave Event"
-      EventRole.where(:event_id => event_id, :user_id => user.id).destroy
+      EventRole.where(user_id: user.id, event_id: event_id).destroy_all
     end
   end
 
