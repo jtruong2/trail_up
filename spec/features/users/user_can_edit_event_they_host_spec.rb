@@ -63,6 +63,6 @@ describe "user that is a host can edit their event" do
     expect(current_path).to eq("/events/#{@event_2.id}")
     expect(page).to have_content("The Big One 3")
     expect(page).to have_content("It's actually not the hardest")
-
+    expect(page).to have_content("Event Updated")
   end
 end

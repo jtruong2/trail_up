@@ -23,6 +23,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.update(event_params)
     if @event.save
+      flash[:success] = ["Event Updated"]
       redirect_to event_path(@event)
     else
       render :new
