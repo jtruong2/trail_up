@@ -50,4 +50,10 @@ class Event < ApplicationRecord
   def self.to_presenter(results)
     results.map{ |event| EventPresenter.new(event)}
   end
+
+  def user_status(user)
+    binding.pry
+    return "unauthorized" if user == nil
+
+  end
 end

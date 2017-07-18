@@ -1,3 +1,4 @@
+
 <div>Created an event for this trail:</div>
 Trail Name: <%= @event.trail.name %>
 Trail Description: <%= @event.trail.description %>
@@ -7,7 +8,7 @@ Trail Distance: <%= @event.trail.distance %>
 Trail Rating: <%= @event.trail.rating %>
 <br>
 <div>Event details:</div>
-Hosted by:  
+Hosted by:
 <% @event.hosts.each do |host| %>
 <%= host.username%>
 <%end%>
