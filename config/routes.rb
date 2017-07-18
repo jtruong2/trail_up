@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   namespace :events do
     resources :search, only: [:index, :new]
-    resources :status, only: [:update]
+    resources :user_status, only: [:update]
   end
 
 

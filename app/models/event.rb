@@ -29,6 +29,14 @@ class Event < ApplicationRecord
     users.joins(:event_roles).where(event_roles: {role: "guest"})
   end
 
+  def user_status_change(params)
+    if params[:status] == "Join"
+      event_roles.create!(params.except(:status))
+    else
+      event_roles.where(user_id: params[:user_id]).destroy_all
+    end
+  end
+
   def self.to_presenter(results)
     results.map{ |event| EventPresenter.new(event)}
   end
@@ -55,23 +63,7 @@ class Event < ApplicationRecord
    to_presenter(results)
   end
 
-  def hosts
-    users.joins(:event_roles).where(event_roles: {role: "host"})
-  end
-
-  def guests
-    users.joins(:event_roles).where(event_roles: {role: "guest"})
-  end
-
   def self.to_presenter(results)
     results.map{ |event| EventPresenter.new(event)}
-  end
-
-  def self.change_user_event_role(params)
-    if params[:status] == "Join"
-      EventRole.create!(params.except(:status))
-    else
-      EventRole.where(params.except(:status)).destroy_all
-    end
   end
 end

@@ -84,3 +84,4 @@ function initMap() {
         })
     };
 };
+initMap();
