@@ -15,4 +15,11 @@ RSpec.describe 'Guest cannot view some pages' do
   it 'cannot view dashboard' do
     expect{ visit "/dashboard" }.to raise_error(ActionController::RoutingError)
   end
+
+  it 'cannot join an event' do
+    event = create(:event)
+    visit("events/#{event.id}")
+
+    expect(page).not_to have_content('Join Event')
+  end
 end
