@@ -9,7 +9,7 @@ describe "User has basic authorization" do
 
     visit user_path(:id => user_1.slug)
     expect(page).to have_content(user_1.username)
-
-    expect{ visit "/users/the-second-user" }.to raise_error(ActionController::RoutingError)
-  end
+    visit "/users/the-second-user"
+    expect(page).to have_content("404")
+    end
 end

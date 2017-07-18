@@ -2,7 +2,6 @@ class Events::SearchController < ApplicationController
   include Location
   
   def index
-    binding.pry
     @events = Event.send(params[:search_by].to_sym, search_params)
   end
   
