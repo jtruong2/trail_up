@@ -28,3 +28,62 @@
     padding: 10px;
     text-align: center;
 }
+
+.trail-show {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    h3 {
+      display: flex;
+      align-self: flex-start;
+      color: black;
+      font-size: 42px;
+    }
+
+    p {
+      width: auto;
+    }
+  }
+
+  * {
+    padding: 20px;
+  }
+
+  .trail-card {
+    display: flex;
+    justify-content: center;
+    height: 400px;
+
+    .trail-info {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+      border-radius: 7px;
+      width: 30%;
+      height: auto;
+    }
+
+    .show-trail-map {
+      display: flex;
+      width: 70%;
+      padding: 10px;
+      height: auto;
+
+      #map {
+        height: auto;
+      }
+    }
+  }
+
+  img {
+    height: 200px;
+    width: auto;
+  }
+}
+

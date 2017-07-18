@@ -12,4 +12,9 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
-Rails.application.config.assets.precompile += %w( search/date_search.js search/trail_search.js dashboard/dashboard_filter.js)
+Rails.application.config.assets.precompile += %w( search/date_search.js 
+                                                  search/trail_search.js 
+                                                  dashboard/dashboard_filter.js
+                                                  maps/directions_map.js
+                                                  maps/simple_map.js
+                                                  maps/trail_plopper.js)
