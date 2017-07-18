@@ -1,1 +1,1 @@
-<%= link_to "Leave Event", events_status_path(:id => {status: "Leave Event", event_id: params[:id]}) %>
+<%= link_to "Leave Event", events_status_path(status: "Leave Event", event_id: params[:id]), method: :put %>
