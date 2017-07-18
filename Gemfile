@@ -4,6 +4,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+
 gem 'rails', '~> 5.1.2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
@@ -14,7 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
-gem 'jbuilder', '~> 2.5'
+# gem 'jbuilder', '~> 2.5'
 gem 'figaro'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -30,6 +31,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'geocoder'
 gem 'faker'
 gem 'humanize'
+gem 'fog-aws'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -48,4 +50,5 @@ end
 group :test do
   gem 'vcr'
   gem 'webmock'
+  gem 'simplecov'
 end

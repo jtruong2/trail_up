@@ -8,21 +8,15 @@ class Permission
   end
 
   def authorized?
-    return true if user == nil && controller == "trails/get_location"
-    return true if controller == "trails/search" && action.in?(%w(index))
-    return true if user == nil && controller == "sessions"
-    return true if user == nil && action.in?(%w(new create))
-    return true if user == nil && controller == "trails" && action == "index"
-    return true if user == nil && controller == "trails" && action == "index"
-    return true if user == nil && controller == "trails/search"
-    return true if user == nil && controller == "events/search"
-    return true if user == nil && controller == "directions"
     return true if controller == "landing" && action == "index"
     return true if controller == "sessions" && action.in?(%w(new create destroy))
-    return true if controller == "dashboards" && user
-    if user.admin?
+    return true if controller == "trails/search" && action.in?(%w(index))
+
+    if user == nil
+      guest_permissions
+    elsif user.admin?
       admin_permissions
-    elsif user
+    else
       user_permissions
     end
   end
@@ -33,25 +27,40 @@ class Permission
 
     def user_permissions
       return true if controller == "fitbit" && action.in?(%w(index login))
+      return true if controller == "dashboards" && action.in?(%w(show))
       return true if controller == "directions" && action.in?(%w(index))
-      return true if controller == "events" && action.in?(%w(select_or_create_trail new create show))
+      return true if controller == "events" && action.in?(%w(select_or_create_trail new create show status destroy))
       return true if controller == "pictures" && action.in?(%w(create))
-      return true if controller == "users" && action.in?(%w(edit))
-      return true if controller == "trails" && action.in?(%w(index new create show))
+      return true if controller == "users" && action.in?(%w(edit update))
       return true if controller == "users" && action == "show" && user_page_check == true
+      return true if controller == "trails" && action.in?(%w(index new create show))
+      return true if controller == "trails/select" && action.in?(%w(index new))
       return true if controller == "trails/search"
+      return true if controller == "events/search"
       return true if controller == "directions"
-
     end
 
     def user_page_check
-      return true if user.slug == identifier || user.id == identifier
+      return true if user.slug == identifier || user.id == identifier.to_i
     end
 
     def admin_permissions
-      return true if controller == "admin/trails" && action.in?(%w(index new create show delete))
-      return true if controller == "admin/users" && action.in?(%w(index new create show delete))
-      return true if controller == "admin/events" && action.in?(%w(index new create show delete))
+      return true if controller == "admin/trails" && action.in?(%w(index new create show destroy))
+      return true if controller == "admin/users"
+      return true if controller == "admin/events" && action.in?(%w(index new create show destroy))
+
+    end
+
+    def guest_permissions
+      return true if user == nil && controller == "events" && action.in?(%w(show))
+      return true if user == nil && controller == "sessions"
+      return true if user == nil && controller == "users" && action.in?(%w(new create))
+      return true if user == nil && controller == "trails" && action == "index"
+      return true if user == nil && controller == "trails/search"
+      return true if user == nil && controller == "events/search"
+      return true if user == nil && controller == "directions"
+      return false if user.nil?
     end
 
 end
+# action.in?(%w(index new create update show destroy))

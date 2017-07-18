@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717200337) do
+ActiveRecord::Schema.define(version: 20170718162835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20170717200337) do
     t.float "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "hp_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,8 +69,15 @@ ActiveRecord::Schema.define(version: 20170717200337) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.integer "role"
+<<<<<<< HEAD
     t.string "fitbit_token"
+<<<<<<< HEAD
     t.integer "fitbit_refresh"
+=======
+=======
+    t.string "image"
+>>>>>>> developement
+>>>>>>> fitbit
   end
 
   add_foreign_key "event_roles", "events"

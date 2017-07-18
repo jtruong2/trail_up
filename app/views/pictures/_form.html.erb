@@ -1,7 +1,0 @@
-<%= form_for Picture.new do |f| %>
-  <%= f.hidden_field :imageable_id, :value => @user.id %>
-  <%= f.hidden_field :imageable_type, :value => @user.class %>
-  <%= f.label :image %>
-  <%= f.file_field :image %>
-  <%= f.submit %>
-<% end %>

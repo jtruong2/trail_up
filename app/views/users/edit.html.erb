@@ -1,10 +1,13 @@
 <div class="user-profile-edit">
-      <%= image_tag("#{@user.avatar}") %>
-      <div class="information">
-      <br>
-      Upload profile photo
-    </div>
-    <div class="upload">
-      <%= render "pictures/form", imageable: @user  %>
-    </div>
+  <%= image_tag("#{current_user.avatar}") %>
+  <div class="information">
+  <br>
+    Upload profile photo
+  </div>
+  <div class="upload">
+    <%= form_for current_user do |f| %>
+      <%= render partial: 'pictures/form_for_one', :locals => { f: f, object: current_user } %>
+      <%= f.submit %>
+    <% end %>
+  </div>
 </div>

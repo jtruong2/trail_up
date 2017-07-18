@@ -1,8 +1,8 @@
 <li>
-    <%= link_to "Create Event", select_or_create_trail_path %>
+    <%= link_to "Create Event", trails_select_index_path %>
 </li>
 <li>
-    <%= link_to current_user.username, user_path(:id => current_user.slug)%>
+    <%= link_to current_user.username, user_path(current_user)%>
 </li>
 <li>
     <%= link_to 'Dashboard', dashboard_path%>
