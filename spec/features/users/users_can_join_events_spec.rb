@@ -35,5 +35,6 @@ describe "users can see events and decide to join or not" do
 
     click_on @event_1.name
     expect(current_path).to eq("/events/#{@event_1.id}")
+    expect(page).to have_content("Join Event")
   end
 end
