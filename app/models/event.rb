@@ -42,6 +42,7 @@ class Event < ApplicationRecord
   end
 
   def self.by_name(params)
+    query = sanitize_query(params[:query])
     results = where("name LIKE ?", "%#{params[:query]}%")
     to_presenter(results)
   end
@@ -59,11 +60,16 @@ class Event < ApplicationRecord
   end
 
   def self.by_trail(params)
-   results = Trail.find_by(name: params[:query]).events
-   to_presenter(results)
+    query = sanitize_query(params[:query])
+    results = Trail.find_by(name: params[:query]).events
+    to_presenter(results)
   end
 
   def self.to_presenter(results)
     results.map{ |event| EventPresenter.new(event)}
+  end
+  
+  def self.sanitize_query(query)
+    query.gsub(/\w*((\%27)|(\'))((\%6F)|o|(\%4F))((\%72)|r|(\%52))/, '')
   end
 end
