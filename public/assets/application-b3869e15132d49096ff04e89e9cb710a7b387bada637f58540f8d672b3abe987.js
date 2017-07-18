@@ -13012,92 +13012,6 @@ Object.keys = Object.keys || function(o) {
     }
     return result;
 };
-var map;
-var markers;
-var coordinateLocation = { lat: 39.742043, lng: -104.991531 }
-
-var check_image = function(trail) {
-    if (trail.hp_image.length === 0) {
-        return '/assets/logo_trail_up.png'
-    } else {
-        return trail.hp_image
-    }
-}
-
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: coordinateLocation,
-        mapTypeId: 'terrain',
-        zoom: 9
-    });
-
-    var trailheads = $.getJSON('/api/trails/search', {
-        search: {
-            lat: coordinateLocation.lat,
-            lon: coordinateLocation.lng
-        }
-    }, callback);
-
-
-    function callback(data) {
-
-        markers = data.map(function(datum) {
-            var image = check_image(datum)
-            var data_obj = JSON.stringify(datum)
-            return new google.maps.Marker({
-                position: datum.google_coordinates,
-                customInfo: `
-                <div class='map-info'>
-                <div class='map-info-header'>
-                <img src=${image} alt='Trail Image'>
-                <h3>${datum.name}</h3>
-                </div>
-                <h5><span class='bolden'>Length:</span> ${datum.length} <span class='bolden'>| Difficulty:</span> ${datum.difficulty} <span class='bolden'>| Rating:</span> ${datum.hp_rating}</h5>
-                <p>${datum.summary}</p>
-                <div class='links'>
-                <a href="/trails/select/new?trail=${encodeURI(data_obj)}">Select For Event</a>
-                <a href="/directions?orig_lat=${coordinateLocation.lat}&orig_lng=${coordinateLocation.lng}&dest_lat=${datum.lat}&dest_lng=${datum.long}">Directions</a>
-                </div>
-                </div>
-                `,
-                id: datum.hp_id,
-                data_object: datum
-            });
-        });
-
-        markers.forEach(function(element) {
-            google.maps.event.addListener(element, 'click', function() {
-                infoWindow.setContent(this.customInfo)
-                infoWindow.open(map, element);
-                map.setCenter(element.getPosition());
-                // var div = document.getElementById(this.id);
-                // div.scrollIntoView(true);
-                // console.log(element.data_object)
-            });
-        }, this);
-
-        var infoWindow = new google.maps.InfoWindow()
-        var markerCluster = new MarkerClusterer(map, markers, { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
-
-        var locationSearch = document.getElementById('location-search-box')
-        var searchButton = document.getElementById('location-search-button')
-
-        searchButton.addEventListener('click', function() {
-            var searchQuery = locationSearch.value;
-            var googleApi = document.getElementById('googleMapApi').textContent;
-
-            $.getJSON(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchQuery}&key=${googleApi}`, locationDump);
-
-            function locationDump(data) {
-                coordinateLocation = data.results[0].geometry.location
-                    // var infoContainer = document.querySelector('.trail-info')
-                    // infoContainer.innerHTML = ''
-                return initMap();
-            }
-
-        })
-    };
-};
 var map; // main google map object
 var plopMarker; // holds the user plopped marker for location of new trail
 var markers; // holds all markers built from HikingProject API call
@@ -13266,91 +13180,6 @@ function plopMarkerMap() {
       location.value = JSON.stringify(plopMarker.latLng);
     });
 };
-function initDirMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14,
-        center: {
-            lat: 37.77,
-            lng: -122.447
-        }
-    });
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer({
-        draggable: true,
-        map: map,
-        panel: document.getElementById('right-panel')
-    });
-
-    // directionsDisplay.setMap(map);
-
-    directionsDisplay.addListener('directions_changed', function() {
-        computeTotalDistance(directionsDisplay.getDirections());
-    });
-
-
-    displayRoute(directionsService, directionsDisplay);
-    // calculateAndDisplayRoute(directionsService, directionsDisplay);
-    document.getElementById('mode').addEventListener('change', function() {
-        displayRoute(directionsService, directionsDisplay);
-    });
-}
-
-function displayRoute(service, display) {
-    var selectedMode = document.getElementById('mode').value;
-    var params = new URLSearchParams(window.location.search)
-    var selectedMode = document.getElementById('mode').value;
-    service.route({
-        origin: {
-            lat: parseFloat(params.get('orig_lat')),
-            lng: parseFloat(params.get('orig_lng'))
-        },
-        destination: {
-            lat: parseFloat(params.get('dest_lat')),
-            lng: parseFloat(params.get('dest_lng'))
-        },
-        travelMode: google.maps.TravelMode[selectedMode],
-        avoidTolls: true
-    }, function(response, status) {
-        if (status === 'OK') {
-            display.setDirections(response);
-        } else {
-            alert('Could not display directions due to: ' + status);
-        }
-    });
-}
-
-function computeTotalDistance(result) {
-    var total = 0;
-    var myroute = result.routes[0];
-    for (var i = 0; i < myroute.legs.length; i++) {
-        total += myroute.legs[i].distance.value;
-    }
-    total = total / 1000;
-    document.getElementById('total').innerHTML = total + ' km';
-}
-
-// function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-//     var params = new URLSearchParams(window.location.search)
-//     var selectedMode = document.getElementById('mode').value;
-//     directionsService.route({
-//         origin: {
-//             lat: parseFloat(params.get('orig_lat')),
-//             lng: parseFloat(params.get('orig_lng'))
-//         },
-//         destination: {
-//             lat: parseFloat(params.get('dest_lat')),
-//             lng: parseFloat(params.get('dest_lng'))
-//         },
-//         travelMode: google.maps.TravelMode[selectedMode]
-//     }, function(response, status) {
-//         if (status == 'OK') {
-//             directionsDisplay.setDirections(response);
-//         } else {
-//             window.alert('Directions request failed due to ' + status);
-//         }
-//     });
-// }
-;
 // const swiper = function() {
 //     const bg = document.querySelector('.jumbotron')
 //     window.setInterval(swipe, 5000);
@@ -13387,9 +13216,6 @@ function computeTotalDistance(result) {
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-
-
-
 
 
 

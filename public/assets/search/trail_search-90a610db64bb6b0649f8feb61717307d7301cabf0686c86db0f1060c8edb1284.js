@@ -13,7 +13,7 @@ var trailSelect = function() {
     function autocomplete() {
         document.getElementById('event_search').addEventListener("keyup", function() {
             let query = event.srcElement.value
-            $.getJSON(`/api/trails?query=${query}`, clearAndPopulateList)
+            $.getJSON(`/api/trails/names?query=${query}`, clearAndPopulateList)
         })
     }
 
