@@ -1,12 +1,17 @@
 var map; // main google map object
-var plopMarker; // holds the user plopped marker for location of trail
-var plopLocation; // holds the location of the plopMarker to send to DOM
-var new_coordinateLocation;
-var markers; // holds all markers from HikingProject API call
-var zoom = 9;
+var plopMarker; // holds the user plopped marker for location of new trail
+var markers; // holds all markers built from HikingProject API call
+var zoom = 10; // default map zoom
 
-var coordinateLocation = { lat: 39.742043, lng: -104.991531 };
-var new_coordinateLocation = coordinateLocation
+// object that can act like a marker event so it can be used to create a plopMarker
+
+class PlopLocation {
+  constructor(lat, lng) {
+    this.latLng = { lat: lat, lng: lng}
+  }
+};
+
+var searchLocation = new PlopLocation(39.742043, -104.991531);
 
 var check_image = function(trail) {
     if (trail.hp_image.length === 0) {
@@ -16,61 +21,100 @@ var check_image = function(trail) {
     }
 };
 
-// clears all markers in the marker array
+// clears plopped marker from map
 
 const clearPlopMarker = function() {
   if(plopMarker) { plopMarker.setMap(null) }
 };
 
+// builds a plop marker from a google map event
+
+const makePlopMarker = function(event) {
+  return new google.maps.Marker({
+      position: event.latLng,
+      map: map,
+      zIndex: 1000,
+      draggable: true,
+      icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+  })
+};
+
+const trailheadInfoWindow = function(datum) {
+  let image = check_image(datum);
+  return `
+      <div class='map-info'>
+      <div class='map-info-header'>
+      <img src=${image} alt='Trail Image'>
+      <h3>${datum.name}</h3>
+      </div>
+      <h5><span class='bolden'>Length:</span> ${datum.length} <span class='bolden'>| Difficulty:</span> ${datum.difficulty} <span class='bolden'>| Rating:</span> ${datum.hp_rating}</h5>
+      <p>${datum.summary}</p>
+      <div class='links'>
+      <a href="/event/new?trail=${datum.hp_id}">Select For Event</a>
+      <a href="/directions?orig_lat=${searchLocation.lat}&orig_lng=${searchLocation.lng}&dest_lat=${datum.lat}&dest_lng=${datum.long}">Directions</a>
+      </div>
+      </div>
+    `
+};
+
+// plops a marker down at the events latLng and reloads map
+
+var plopThatMarker = function(event) {
+  clearPlopMarker();
+
+  plopMarker = makePlopMarker(event);
+  zoom = map.zoom;
+
+  plopMarker.addListener('dragend', function(event) {
+    plopThatMarker(event)
+  });
+
+  plopMarkerMap();
+};
+
 // main function to initialize, listen, and refresh google map
 
 function plopMarkerMap() {
-    // initialize map
-
     map = new google.maps.Map(document.getElementById('map'), {
-        center: coordinateLocation,
+        center: searchLocation.latLng,
         mapTypeId: 'terrain',
         zoom: zoom
     });
 
-    // JSON get request to HikingProject
+    // Places plopMarker if it exists otherwise makes one from searchLocation
+
+    if (plopMarker) {
+      plopMarker.setMap(map)
+    } else {
+      plopThatMarker(searchLocation)
+    };
+
+    // Request to HikingProject for trailheads near plopMarker
 
     let trailheads = $.getJSON('/api/trails/search',
       { search:
-        { lat: new_coordinateLocation.lat,
-          lon: new_coordinateLocation.lng,
-          maxDistance: 1 }}, callback );
+        { lat: plopMarker.getPosition().lat(),
+          lon: plopMarker.getPosition().lng(),
+          maxDistance: 1 }}, buildMarkers );
 
-    // if JSON request is successfull this method builds markers and places them on the map
+    // If request is successfull build markers and place them on map
 
-    function callback(data) {
+    function buildMarkers(data) {
 
-        // creates all markers based on trailhead query with customInfo for infoWindow
+        // Fill markers array with markers built from data
 
         markers = data.map(function(datum) {
-            let image = check_image(datum);
             return new google.maps.Marker({
                 position: datum.google_coordinates,
-                customInfo: `
-                <div class='map-info'>
-                <div class='map-info-header'>
-                <img src=${image} alt='Trail Image'>
-                <h3>${datum.name}</h3>
-                </div>
-                <h5><span class='bolden'>Length:</span> ${datum.length} <span class='bolden'>| Difficulty:</span> ${datum.difficulty} <span class='bolden'>| Rating:</span> ${datum.hp_rating}</h5>
-                <p>${datum.summary}</p>
-                <div class='links'>
-                <a href="/event/new?trail=${datum.hp_id}">Select For Event</a>
-                <a href="/directions?orig_lat=${coordinateLocation.lat}&orig_lng=${coordinateLocation.lng}&dest_lat=${datum.lat}&dest_lng=${datum.long}">Directions</a>
-                </div>
-                </div>
-                `,
+                customInfo: trailheadInfoWindow(datum),
                 id: datum.hp_id,
                 data_object: datum
             });
         });
 
-        // sets info windows and listener to open window on each marker
+        // Add listener to each marker for infoWindow popup
+
+        let infoWindow = new google.maps.InfoWindow()
 
         markers.forEach(function(marker) {
             google.maps.event.addListener(marker, 'click', function() {
@@ -80,83 +124,45 @@ function plopMarkerMap() {
             });
         }, this);
 
-        let infoWindow = new google.maps.InfoWindow()
-
-        // places all markers from trailhead query
+        // Add each marker to the map
 
         markers.forEach(function(marker) {
           marker.setMap(map);
         });
 
-        // places plopMarker
+        // Listen for search submit to reload map based on user input address
 
-        if (plopMarker) { plopMarker.setMap(map) };
-
-        // submits a query to google based on address and refreshes map at the result
-
-        let locationSearch = document.getElementById('location-search-box')
-        let searchButton = document.getElementById('location-search-button')
+        let searchButton = document.getElementById('location-search-button');
 
         searchButton.addEventListener('click', function() {
-            let searchQuery = locationSearch.value
+            let searchQuery = document.getElementById('location-search-box').value;
             let googleApi = document.getElementById('googleMapApi').textContent;
 
             $.getJSON(`https://maps.googleapis.com/maps/api/geocode/json?address=${searchQuery}&key=${googleApi}`, locationDump);
 
             function locationDump(data) {
-                coordinateLocation = data.results[0].geometry.location
-                debugger
+                plopMarker = null;
+                searchLocation = new PlopLocation( data.results[0].geometry.location.lat,
+                                                   data.results[0].geometry.location.lng );
                 return plopMarkerMap();
-            }
+            };
 
-        })
+        });
     };
 
-    // places new marker and refreshes map with trails nearby
+    // Places new plopMarker when user clicks on map
 
     google.maps.event.addListener(map, 'click', function(event) {
-        clearPlopMarker();
-
-        plopMarker = new google.maps.Marker({
-            position: event.latLng,
-            map: map,
-            zIndex: 1000,
-            draggable: true,
-            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
-        });
-
-        plopLocation = {
-          lat: plopMarker.getPosition().lat(),
-          lng: plopMarker.getPosition().lng()
-        };
-
-        new_coordinateLocation = plopLocation
-        zoom = map.zoom;
-
-        plopMarker.addListener('dragend', function(event) {
-          clearPlopMarker();
-
-          plopMarker.position = event.latLng;
-
-          plopLocation = {
-            lat: plopMarker.getPosition().lat(),
-            lng: plopMarker.getPosition().lng()
-          };
-
-          new_coordinateLocation = plopLocation
-          zoom = map.zoom;
-          plopMarkerMap();
-        });
-
-        plopMarkerMap();
+      plopThatMarker(event);
     });
 
-    // sends plopLocation of marker to DOM to so Rails can send in create trail form
+    // Listen for form submit and add plopMarker location to form
 
     let submitButton = document.getElementById('submit');
 
     submitButton.addEventListener('click', function (){
+
       let location = document.getElementById('plop_location');
-      location.value = JSON.stringify(plopLocation);
+      location.value = JSON.stringify(plopMarker.latLng);
     });
 };
