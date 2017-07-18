@@ -1,50 +1,49 @@
 // add listener to upcoming
-var filter_category = "upcoming";
+var filterCategory = "upcoming";
 
-var filter_events = function() {
+var filterEvents = function() {
 
-  var hide_filtered_elements = function(element) {
-    if (!element.classList.value.includes(filter_category)) {
-      element.style.display = "none";
+    var hideFilteredElements = function(element) {
+        if (!element.classList.value.includes(filterCategory)) {
+            element.style.display = "none";
+        }
+        if (element.classList.value.includes(filterCategory) && element.style.display == "none") {
+            element.style.display = "";
+        }
     }
-    if (element.classList.value.includes(filter_category) && element.style.display == "none") {
-      element.style.display = "";
-    }
-  }
 
-  var dom_traversal = function(events) {
-    Array.prototype.forEach.call(events, function(element, index) {
-      hide_filtered_elements(element)
+    var domTraversal = function(events) {
+        Array.prototype.forEach.call(events, function(element, index) {
+            hideFilteredElements(element)
+        });
+    }
+
+    var events = document.getElementsByClassName('event');
+    domTraversal(events);
+
+
+    var attending = document.getElementById("attending");
+    attending.addEventListener("click", function() {
+        window.filterCategory = "upcoming guest";
+        domTraversal(events);
     });
-  }
 
-  var events = document.getElementsByClassName('event');
-  dom_traversal(events);
+    var hosting = document.getElementById("hosting");
+    hosting.addEventListener("click", function() {
+        window.filterCategory = "upcoming host";
+        domTraversal(events);
+    });
 
+    var upcoming = document.getElementById("upcoming");
+    upcoming.addEventListener("click", function() {
+        window.filterCategory = "upcoming";
+        domTraversal(events);
+    });
 
-  var attending = document.getElementById("attending");
-  attending.addEventListener("click", function() {
-    window.filter_category = "upcoming guest";
-    dom_traversal(events);
-  });
-
-  var hosting = document.getElementById("hosting");
-  hosting.addEventListener("click", function() {
-    window.filter_category = "upcoming host";
-    dom_traversal(events);
-  });
-
-  var upcoming = document.getElementById("upcoming");
-  upcoming.addEventListener("click", function() {
-    window.filter_category = "upcoming";
-    dom_traversal(events);
-  });
-
-  var past = document.getElementById("past");
-  past.addEventListener("click", function() {
-    window.filter_category = "past";
-    dom_traversal(events);
-  });
-
-
+    var past = document.getElementById("past");
+    past.addEventListener("click", function() {
+        window.filterCategory = "past";
+        domTraversal(events);
+    });
 }
+filterEvents();
