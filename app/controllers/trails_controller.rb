@@ -1,7 +1,11 @@
 class TrailsController < ApplicationController
   include Referrer
-  
+
   def index
+  end
+
+  def show
+    @trail = Trail.find(params[:id])
   end
 
   def new
@@ -21,8 +25,13 @@ class TrailsController < ApplicationController
     end
   end
 
-  def show
+  def edit
     @trail = Trail.find(params[:id])
+  end
+
+  def update
+    @trail = Trail.find(params[:id])
+    
   end
 
   private

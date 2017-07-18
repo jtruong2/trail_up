@@ -32,7 +32,7 @@ class Permission
       return true if controller == "pictures" && action.in?(%w(create))
       return true if controller == "users" && action.in?(%w(edit update))
       return true if controller == "users" && action == "show" && user_page_check == true
-      return true if controller == "trails" && action.in?(%w(index new create show))
+      return true if controller == "trails" && action.in?(%w(index new create show edit create))
       return true if controller == "trails/select"
       return true if controller == "trails/search"
       return true if controller == "events/search"
@@ -48,7 +48,7 @@ class Permission
       return true if controller == "admin/trails" && action.in?(%w(index new create show destroy))
       return true if controller == "admin/users"
       return true if controller == "admin/events" && action.in?(%w(index new create show destroy))
-      
+
     end
 
     def guest_permissions

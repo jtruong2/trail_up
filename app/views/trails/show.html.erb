@@ -11,13 +11,13 @@
       <span>Difficulty: <%= @trail.difficulty%></span>
       <span>Distance: <%= @trail.distance%></span>
       <span>Rating: <%= @trail.rating%></span>
+      <%= link_to 'Edit Trail', edit_trail_path(@trail) %>
     </div>
+
     <div class='show-trail-map'>
         <div id="map" class='map'></div>
     </div>
   </section>
-  <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'showTrailMap'} %>
-  <%= javascript_include_tag "maps/show_trail.js" %>
 
   <div class='image'>
     <% @trail.get_pictures.each do |picture| %>
@@ -26,3 +26,5 @@
   </div>
 </section>
 
+<%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'showTrailMap'} %>
+<%= javascript_include_tag "maps/show_trail.js" %>

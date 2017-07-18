@@ -38,7 +38,7 @@ class Seed
       trail = Trail.create!(
         name: "#{Faker::Hobbit.location}, #{Faker::Address.community}",
         description: Faker::Hobbit.quote,
-        difficulty: %w(white, blue, green, black diamond, double black diamond).sample,
+        difficulty: %w(White, Blue, Green, Black Diamond, Double Black Diamond).sample,
         distance: %w(5,10,15,20,25,50,100).sample,
         rating: %w(1,2,3,4).sample,
         longitude: longitude,
