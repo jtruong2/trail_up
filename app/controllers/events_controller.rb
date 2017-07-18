@@ -20,7 +20,17 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @status = @event.user_status(current_user)
+    @status = @event.user_event_status(current_user)
+  end
+
+  def status
+    Event.change_user_event_role(current_user, params[:id][:status], params[:id][:event_id])
+    redirect_to request.referrer
+  end
+
+  def destroy
+    event = Event.find(params[:id]).destroy
+    redirect_to root_path
   end
 
   private

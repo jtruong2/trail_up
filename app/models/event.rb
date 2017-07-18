@@ -6,7 +6,7 @@ class Event < ApplicationRecord
   belongs_to :trail
   validates :name, :description, :date, presence: true
 
-  has_many :event_roles
+  has_many :event_roles, dependent: :destroy
   has_many :users, through: :event_roles
 
   def trail_location
@@ -51,7 +51,15 @@ class Event < ApplicationRecord
     results.map{ |event| EventPresenter.new(event)}
   end
 
-  def user_status(user)
+  def self.change_user_event_role(user, status, event_id)
+    if status == "Join"
+      EventRole.create!(user_id: user.id, event_id: event_id)
+    elsif status == "Leave Event"
+      EventRole.where(:event_id => event_id, :user_id => user.id).destroy
+    end
+  end
+
+  def user_event_status(user)
     return "unauthorized" if user == nil
     return "authorized" if is_host?(user) == false && is_guest?(user) == false
     return "guest" if is_guest?(user) == true
