@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe "users can see events and decide to join or not" do
   before(:each) do
-    @user = create(:user)
+    @user_guest = create(:user, username: "guest")
+    @user = create(:user, email: "asdfad")
 
     @trail_1 = Trail.create!(name: "The Hardest One of All",
                               description: "It is really hard",
@@ -19,6 +20,7 @@ describe "users can see events and decide to join or not" do
                               longitude: @trail_1.longitude,
                               latitude: @trail_1.latitude
                               )
+    @event_roles = EventRole.create!(user_id: @user_guest.id, event_id: @event_1.id, role: 0)
   end
 
   scenario "user can find events from the homepage and navigate to show page" do
@@ -36,5 +38,12 @@ describe "users can see events and decide to join or not" do
     click_on @event_1.name
     expect(current_path).to eq("/events/#{@event_1.id}")
     expect(page).to have_content("Join Event")
+    expect(page).to_not have_content("Delete Event")
+  end
+
+  scenario "authenticated user tries to join event" do
+    visit "/events/#{@event_1.id}"
+
+    expect(page).to have_content("Signup to join")
   end
 end
