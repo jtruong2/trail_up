@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: trail_up_production
-  username: trail_up
+  username: wolverine
   password: <%= ENV['TRAIL_UP_DATABASE_PASSWORD'] %>

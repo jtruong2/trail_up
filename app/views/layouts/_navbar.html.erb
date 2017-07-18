@@ -12,7 +12,7 @@
                 <li>
                     <%=link_to 'Find Events', new_events_search_path%>
                 </li>
-                <%= render current_partial %>
+                <%= render "layouts/#{current_guest}"%>
 
             </ul>
 </nav>
