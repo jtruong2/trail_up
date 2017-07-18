@@ -28,7 +28,8 @@ class Permission
     def user_permissions
       return true if controller == "dashboards" && action.in?(%w(show))
       return true if controller == "directions" && action.in?(%w(index))
-      return true if controller == "events" && action.in?(%w(select_or_create_trail new create show status destroy edit update))
+      return true if controller == "events" && action.in?(%w(select_or_create_trail new create show status destroy))
+      return true if controller == "events" && action.in?(%w(edit update)) && user.event_status(identifier) == "host"
       return true if controller == "pictures" && action.in?(%w(create))
       return true if controller == "users" && action.in?(%w(edit update))
       return true if controller == "users" && action == "show" && user_page_check == true
@@ -64,4 +65,3 @@ class Permission
     end
 
 end
-# action.in?(%w(index new create update show destroy))

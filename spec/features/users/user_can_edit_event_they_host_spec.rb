@@ -65,4 +65,17 @@ describe "user that is a host can edit their event" do
     expect(page).to have_content("It's actually not the hardest")
     expect(page).to have_content("Event Updated")
   end
+
+  scenario "an event guest cannot edit an event" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_guest)
+
+    visit "/events/#{@event_1.id}"
+
+    expect(page).to_not have_content("Edit Event")
+
+    visit "/events/#{@event_1.id}/edit"
+
+    expect(page).to have_content("404")
+  end
+
 end
