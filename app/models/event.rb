@@ -29,18 +29,27 @@ class Event < ApplicationRecord
     users.joins(:event_roles).where(event_roles: {role: "guest"})
   end
 
+  def user_status_change(params)
+    if params[:status] == "Join"
+      event_roles.create!(params.except(:status))
+    else
+      event_roles.where(user_id: params[:user_id]).destroy_all
+    end
+  end
+
   def self.to_presenter(results)
     results.map{ |event| EventPresenter.new(event)}
   end
 
   def self.by_name(params)
+    query = sanitize_query(params[:query])
     results = where("name LIKE ?", "%#{params[:query]}%")
     to_presenter(results)
   end
 
   def self.by_date(params)
     start_date = params[:query].to_date
-    end_date = params[:end_date] ? params[:end_date].to_date : start_date
+    end_date = params[:end_date].to_date
     results = where(:date => start_date.beginning_of_day..end_date.end_of_day)
     to_presenter(results)
   end
@@ -51,54 +60,16 @@ class Event < ApplicationRecord
   end
 
   def self.by_trail(params)
-   results = Trail.find_by(name: params[:query]).events
-   to_presenter(results)
-  end
-
-  def hosts
-    users.joins(:event_roles).where(event_roles: {role: "host"})
-  end
-
-  def guests
-    users.joins(:event_roles).where(event_roles: {role: "guest"})
+    query = sanitize_query(params[:query])
+    results = Trail.find_by(name: params[:query]).events
+    to_presenter(results)
   end
 
   def self.to_presenter(results)
     results.map{ |event| EventPresenter.new(event)}
   end
-
-  def self.change_user_event_role(user, status, event_id)
-    if status == "Join"
-      EventRole.create!(user_id: user.id, event_id: event_id)
-    elsif status == "Leave Event"
-      EventRole.where(user_id: user.id, event_id: event_id).destroy_all
-    end
-  end
-
-  def user_event_status(user)
-    return "unauthorized" if user == nil
-    return "authorized" if is_host?(user) == false && is_guest?(user) == false
-    return "guest" if is_guest?(user) == true
-    return "host" if is_host?(user) == true
-  end
-
-  def is_host?(user)
-    output = false
-    self.hosts.each do |host|
-      if host.id == user.id
-        output = true
-      end
-    end
-    output
-  end
-
-  def is_guest?(user)
-    output = false
-    self.guests.each do |guest|
-      if guest.id == user.id
-        output = true
-      end
-    end
-    output
+  
+  def self.sanitize_query(query)
+    query.gsub(/\w*((\%27)|(\'))((\%6F)|o|(\%4F))((\%72)|r|(\%52))/, '')
   end
 end

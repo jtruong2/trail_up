@@ -51,4 +51,5 @@ group :test do
   gem 'vcr'
   gem 'webmock'
   gem 'simplecov'
+  gem 'rubocop', require: false
 end

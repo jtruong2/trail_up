@@ -19,4 +19,5 @@
         <div id="map" class='map'></div>
     </div>
     <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'initMap'} %>
+    <%= javascript_include_tag "maps/simple_map.js" %>
 </section>
