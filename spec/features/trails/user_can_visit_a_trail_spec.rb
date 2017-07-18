@@ -6,7 +6,7 @@ RSpec.describe 'User can visit a trail show page' do
 
     trail = create(:trail)
 
-    visit("trail/#{trail.id}")
+    visit("trails/#{trail.id}")
 
     expect(page).to have_content(trail.name)
     expect(page).to have_content(trail.description)
