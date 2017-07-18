@@ -1,3 +1,22 @@
+<%= render "events/buttons/#{@status}" %>
+
+<div>Created an event for this trail:</div>
+Trail Name: <%= @event.trail.name %>
+Trail Description: <%= @event.trail.description %>
+Trail Difficulty: <%= @event.trail.difficulty %>
+Trail Location: <%= @event.trail.location %>
+Trail Distance: <%= @event.trail.distance %>
+Trail Rating: <%= @event.trail.rating %>
+<br>
+<div>Event details:</div>
+Hosted by:
+<% @event.hosts.each do |host| %>
+<%= host.username%>
+<%end%>
+Event Name: <%= @event.name %>
+Event Description: <%= @event.description %>
+Event Date: <%= @event.date %>
+=======
 <div class='event-show-container'>
 
     <section class='event-show-info'>
