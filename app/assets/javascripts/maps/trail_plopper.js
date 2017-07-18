@@ -7,6 +7,7 @@ var zoom = 9;
 
 var coordinateLocation = { lat: 39.742043, lng: -104.991531 };
 var new_coordinateLocation = coordinateLocation
+
 var check_image = function(trail) {
     if (trail.hp_image.length === 0) {
         return '/assets/logo_trail_up.png'
@@ -47,7 +48,7 @@ function plopMarkerMap() {
         // creates all markers based on trailhead query with customInfo for infoWindow
 
         markers = data.map(function(datum) {
-            let image = check_image(datum)
+            let image = check_image(datum);
             return new google.maps.Marker({
                 position: datum.google_coordinates,
                 customInfo: `
@@ -71,10 +72,10 @@ function plopMarkerMap() {
 
         // sets info windows and listener to open window on each marker
 
-        markers.forEach(function(element) {
-            google.maps.event.addListener(element, 'click', function() {
+        markers.forEach(function(marker) {
+            google.maps.event.addListener(marker, 'click', function() {
                 infoWindow.setContent(this.customInfo)
-                infoWindow.open(map, element);
+                infoWindow.open(map, marker);
                 map.setCenter(element.getPosition());
             });
         }, this);
@@ -120,6 +121,7 @@ function plopMarkerMap() {
             position: event.latLng,
             map: map,
             zIndex: 1000,
+            draggable: true,
             icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
         });
 
@@ -130,6 +132,22 @@ function plopMarkerMap() {
 
         new_coordinateLocation = plopLocation
         zoom = map.zoom;
+
+        plopMarker.addListener('dragend', function(event) {
+          clearPlopMarker();
+
+          plopMarker.position = event.latLng;
+
+          plopLocation = {
+            lat: plopMarker.getPosition().lat(),
+            lng: plopMarker.getPosition().lng()
+          };
+
+          new_coordinateLocation = plopLocation
+          zoom = map.zoom;
+          plopMarkerMap();
+        });
+
         plopMarkerMap();
     });
 
