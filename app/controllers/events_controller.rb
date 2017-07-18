@@ -4,7 +4,6 @@ class EventsController < ApplicationController
   end
 
   def new
-    binding.pry
     @event = Event.new(trail_id: params[:trail_id])
   end
 
