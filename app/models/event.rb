@@ -49,7 +49,7 @@ class Event < ApplicationRecord
 
   def self.by_date(params)
     start_date = params[:query].to_date
-    end_date = params[:end_date] ? params[:end_date].to_date : start_date
+    end_date = params[:end_date].to_date
     results = where(:date => start_date.beginning_of_day..end_date.end_of_day)
     to_presenter(results)
   end
