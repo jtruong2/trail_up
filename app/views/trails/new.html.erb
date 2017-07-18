@@ -1,11 +1,20 @@
-<div class='search-box'>
-    <input id="location-search-box" type="text" placeholder="location...">
-    <input id='location-search-button' type="submit" value="Find Trails">
-</div>
-<div class='map_holder'>
-    <div id="map" class='map'></div>
-</div> 
+<section class='select-heading'>
+    <h1> Drop a pin to mark your trail
+    </h1>
+</section>
+<section class='select-trail-search'>
+    <div class='query'>
+        <div class='search-box'>
+            <input id="location-search-box" type="text" placeholder="location...">
+            <input id='location-search-button' type="submit" value="Find Trails">
+        </div>
+    </div>
+    <div class=' select_map_holder'>
+        <div id="map" class='map'></div>
+    </div>
+    <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'initMap'} %>
+</section>
 
 <%= render partial: 'trails/form' %>
 
-<%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'plopMarkerMap'}%>
+    <!-- <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'plopMarkerMap'}%> -->
