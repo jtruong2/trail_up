@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to: 'landing#index'
     resources :trails
-    resources :users
+    resources :users, only: [:index, :update, :destroy]
     resources :events
   end
 
