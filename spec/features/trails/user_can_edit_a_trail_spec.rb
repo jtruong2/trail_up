@@ -2,7 +2,12 @@ require 'rails_helper'
 
 RSpec.describe 'User can edit a trail' do
 
-  scenario 'Edits a trail happy path'
+  before do
+    user = create(:user)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+  end
+
+  scenario 'Edits a trail happy path' do
     it 'visits edit trail page' do
       trail = create(:trail)
 
@@ -43,6 +48,7 @@ RSpec.describe 'User can edit a trail' do
       expect(page).to have_content('Denver')
       expect(page).to have_content('45')
     end
+  end
 
   scenario 'Edits a trail sad path' do
 

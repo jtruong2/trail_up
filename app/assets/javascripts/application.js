@@ -13,5 +13,4 @@
 //= require rails-ujs
 //= require jquery
 //= require vendor/marker_cluster/markerclusterer
-//= require maps/trail_plopper
 //= require landing/jumbotron

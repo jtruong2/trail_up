@@ -16,6 +16,8 @@
         <div id="map" class='map'></div>
     </div>
   </section>
+  <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'showTrailMap'} %>
+  <%= javascript_include_tag "maps/show_trail.js" %>
 
   <div class='image'>
     <% @trail.get_pictures.each do |picture| %>
@@ -24,4 +26,3 @@
   </div>
 </section>
 
-<%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'showTrailMap'} %>
