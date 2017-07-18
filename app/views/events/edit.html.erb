@@ -1,0 +1,16 @@
+Edit <%= @event.name %>
+<div class="">
+  <%= form_for @event do |f|  %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+
+  Description <%= f.label :description %>
+  <%= f.text_field :description %><br>
+
+  Date <%= f.label :date %>
+  <%= f.date_field :date %><br>
+
+  <%= f.submit %><br>
+  <% end %>
+</div>
