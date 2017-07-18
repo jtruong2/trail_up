@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
     def authorize!
       permission = Permission.new(current_user, params[:controller], params[:action], params[:id])
-      raise ActionController::RoutingError.new('404 Error. The page you are looking for does not exist.') unless permission.authorized?
+      render :file => 'public/404.html' unless permission.authorized?
     end
 
 end
