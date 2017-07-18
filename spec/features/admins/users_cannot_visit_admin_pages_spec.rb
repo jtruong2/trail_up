@@ -6,10 +6,11 @@ describe "admin pages are protected" do
     admin = create(:user, username: "full admin", role: 0, email: "admin@gmail.com")
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user_1)
-
-    expect{ visit "/admin/trails" }.to raise_error(ActionController::RoutingError)
-    expect{ visit "/admin/users" }.to raise_error(ActionController::RoutingError)
-    expect{ visit "/admin/users/full-admin" }.to raise_error(ActionController::RoutingError)
-    expect{ visit "/admin/events" }.to raise_error(ActionController::RoutingError)
+    visit "/admin/trails"
+    expect(page).to have_content('404')
+    visit "/admin/users"
+    expect(page).to have_content('404')
+    visit "/admin/events" 
+    expect(page).to have_content('404')
   end
 end

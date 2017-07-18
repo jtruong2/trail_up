@@ -33,7 +33,7 @@ class Permission
       return true if controller == "users" && action.in?(%w(edit update))
       return true if controller == "users" && action == "show" && user_page_check == true
       return true if controller == "trails" && action.in?(%w(index new create show))
-      return true if controller == "trails/select" && action.in?(%w(index new))
+      return true if controller == "trails/select"
       return true if controller == "trails/search"
       return true if controller == "events/search"
       return true if controller == "events/user_status"
@@ -55,8 +55,9 @@ class Permission
       return true if user == nil && controller == "events" && action.in?(%w(show))
       return true if user == nil && controller == "sessions"
       return true if user == nil && controller == "users" && action.in?(%w(new create))
-      return true if user == nil && controller == "trails" && action == "index"
+      return true if user == nil && controller == "trails" && action.in?(%w(index show))
       return true if user == nil && controller == "trails/search"
+      return true if user == nil && controller == "trails/select"
       return true if user == nil && controller == "events/search"
       return true if user == nil && controller == "directions"
       return false if user.nil?
