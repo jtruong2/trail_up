@@ -18,15 +18,18 @@ function initMap() {
     });
 
     var trailheads = $.getJSON('/api/trails/search', {
-      search: {
-        lat: coordinateLocation.lat,
-        lon: coordinateLocation.lng }}, callback);
+        search: {
+            lat: coordinateLocation.lat,
+            lon: coordinateLocation.lng
+        }
+    }, callback);
 
 
     function callback(data) {
 
         markers = data.map(function(datum) {
             var image = check_image(datum)
+            var data_obj = JSON.stringify(datum)
             return new google.maps.Marker({
                 position: datum.google_coordinates,
                 customInfo: `
@@ -38,7 +41,7 @@ function initMap() {
                 <h5><span class='bolden'>Length:</span> ${datum.length} <span class='bolden'>| Difficulty:</span> ${datum.difficulty} <span class='bolden'>| Rating:</span> ${datum.hp_rating}</h5>
                 <p>${datum.summary}</p>
                 <div class='links'>
-                <a href="/event/new?trail=${datum.hp_id}">Select For Event</a>
+                <a href="/trails/select/new?trail=${encodeURI(data_obj)}">Select For Event</a>
                 <a href="/directions?orig_lat=${coordinateLocation.lat}&orig_lng=${coordinateLocation.lng}&dest_lat=${datum.lat}&dest_lng=${datum.long}">Directions</a>
                 </div>
                 </div>

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   get '/dashboard', to: 'dashboards#show'
-  get '/select_or_create_trail', to: 'events#select_or_create_trail'
+  # get '/trail_select', to: 'trail_select#index'
   get '/directions', to: 'directions#index'
 
   get '/events/status', to: 'events#status'
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   namespace :trails do
    resources :search, only: [:index]
+   resources :select, only: [:index, :new]
   end
 
   namespace :admin do

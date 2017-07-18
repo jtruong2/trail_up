@@ -16,6 +16,22 @@ class Event < ApplicationRecord
   def coordinates
     [latitude, longitude]
   end
+  
+  def format_date
+    date.strftime("%A %B %e %Y at %l:%M %P")
+  end
+
+  def hosts
+    users.joins(:event_roles).where(event_roles: {role: "host"})
+  end
+
+  def guests
+    users.joins(:event_roles).where(event_roles: {role: "guest"})
+  end
+
+  def self.to_presenter(results)
+    results.map{ |event| EventPresenter.new(event)}
+  end
 
   def self.by_name(params)
     results = where("name LIKE ?", "%#{params[:query]}%")
