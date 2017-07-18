@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # get '/trail_select', to: 'trail_select#index'
   get '/directions', to: 'directions#index'
 
+  get '/events/status', to: 'events#status'
+
   namespace :api do
     namespace :trails do
       resources :search, only: [:index]
@@ -37,7 +39,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :show, :edit, :update]
   resources :trails, only: [:new, :create, :show, :edit, :update]
   resources :pictures
-  resources :events, only: [:index, :new, :create, :show]
+  resources :events, only: [:index, :new, :create, :show, :destroy]
 
 
 end
