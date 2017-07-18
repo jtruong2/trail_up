@@ -44,9 +44,10 @@ class Permission
     end
 
     def admin_permissions
-      return true if controller == "admin/trails" && action.in?(%w(index new create show delete))
-      return true if controller == "admin/users" && action.in?(%w(index new create show delete))
-      return true if controller == "admin/events" && action.in?(%w(index new create show delete))
+      return true if controller == "admin/trails" && action.in?(%w(index new create show destroy))
+      return true if controller == "admin/users"
+      return true if controller == "admin/events" && action.in?(%w(index new create show destroy))
+      
     end
 
     def guest_permissions
@@ -61,3 +62,4 @@ class Permission
     end
 
 end
+# action.in?(%w(index new create update show destroy))

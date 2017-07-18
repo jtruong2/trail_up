@@ -1,0 +1,21 @@
+<table>
+<thead>
+  <tr>
+
+  <td>Username</td>
+  <td>Email</td>
+  <td>Admin</td>
+  <td>Action</td>
+  </tr>
+</thead>
+<tbody>
+<% @users.each do |user| %>
+<tr class ="user">
+      <td><%=user.username%></td>
+      <td><%=user.email%></td>
+      <td><%= link_to "Make Admin", admin_user_path(user), method: :put, class: 'admin_button' if !user.role%></td>
+      <td><%= link_to "Delete", admin_user_path(user), method: :delete %></td>
+</tr>
+<%end%>
+<tbody>
+</table>

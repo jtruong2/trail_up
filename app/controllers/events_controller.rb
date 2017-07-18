@@ -1,8 +1,4 @@
 class EventsController < ApplicationController
-  def select_or_create_trail
-    session[:making_event] = true
-  end
-
   def new
     @event = Event.new(trail_id: params[:trail_id])
   end

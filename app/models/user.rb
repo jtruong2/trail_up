@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :slug, uniqueness: true
 
-  has_one :picture, as: :imageable
+  has_one :picture, as: :imageable, dependent: :destroy
   has_many :event_roles
   has_many :events, through: :event_roles
 
