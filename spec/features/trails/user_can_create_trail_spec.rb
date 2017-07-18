@@ -15,6 +15,7 @@ RSpec.describe "User can create trail" do
 
     click_on "Create New Trail"
 
+    expect(page).to have_content('Creation Successfull')
     expect(current_path).to eq(trail_path(Trail.first))
     expect(page).to have_content(trail.name)
     expect(page).to have_content(trail.description)
