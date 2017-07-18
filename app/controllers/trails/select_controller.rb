@@ -1,7 +1,7 @@
 class Trails::SelectController < ApplicationController
   include TrailSanitizer
-  def index
-    
+
+  def index 
   end
 
   def new

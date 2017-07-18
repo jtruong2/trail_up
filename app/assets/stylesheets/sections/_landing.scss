@@ -29,28 +29,28 @@ h3 {
     margin-top: 75px;
     min-width: 100%;
     min-height: 600px;
-    transition: 5s ease forwards;
+    -webkit-transition: background-image 0.5s linear;
+    -moz-transition: background-image 0.5s linear;
+    -ms-transition: background-image 0.5s linear;
+    transition: background-image 0.5s linear;
 }
 
 .bga {
-    background: linear-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .3)), url('photo-nic-co-uk-nic-150150.jpg');
+    background-image: linear-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .3)), url('photo-nic-co-uk-nic-150150.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
-    transition: 5s ease forwards;
 }
 
 .bgb {
-    background: linear-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .3)), url('danka-peter-178.jpg');
+    background-image: linear-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .3)), url('danka-peter-178.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
-    transition: 5s ease forwards;
 }
 
 .bgc {
-    background: linear-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .3)), url('danka-peter-49495.jpg');
+    background-image: linear-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .3)), url('danka-peter-49495.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
-    transition: 5s ease forwards;
 }
 
 .search-box {

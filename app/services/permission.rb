@@ -36,6 +36,7 @@ class Permission
       return true if controller == "trails/select" && action.in?(%w(index new))
       return true if controller == "trails/search"
       return true if controller == "events/search"
+      return true if controller == "events/user_status"
       return true if controller == "directions"
     end
 
