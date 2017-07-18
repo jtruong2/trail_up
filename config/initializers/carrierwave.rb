@@ -11,7 +11,7 @@ CarrierWave.configure do |config|
   if Rails.env.test? || Rails.env.development?|| Rails.env.rspec?
     config.storage = :file
     config.enable_processing = false
-    config.root = "#{Rails.root}/public/uploads/tmp"
+    config.root = "#{Rails.root}"
   else
     config.storage = :fog
   end
