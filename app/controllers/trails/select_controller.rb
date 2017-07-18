@@ -1,9 +1,11 @@
 class Trails::SelectController < ApplicationController
   include TrailSanitizer
+
   def index 
   end
 
   def new
+    binding.pry
     if current_user.nil? 
       flash[:error] = ["You must be signed in to create an event!"]
       redirect_to login_path
