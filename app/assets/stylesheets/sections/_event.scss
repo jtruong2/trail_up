@@ -1,0 +1,36 @@
+.event-show-container {
+    border: 1px solid black;
+    border-radius: 5px;
+    max-width: 1100px;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    section {
+        width: 400px;
+        margin: 10px;
+        padding: 20px;
+    }
+    h1 {
+        font-size: 40px;
+    }
+    h3 {
+        text-decoration: underline;
+        font-size: 30px;
+    }
+    h5 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    h1,
+    h3,
+    h5 {
+        font-family: "Amatic SC";
+        color: black;
+    }
+    p {
+        margin-bottom: 15px;
+    }
+}

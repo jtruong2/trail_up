@@ -25,5 +25,7 @@
 # Uploaded file from carrierwave
 /public/uploads
 
+# Simplecov
+/coverage
 
 
