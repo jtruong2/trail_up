@@ -1,13 +1,18 @@
 <section class='select-heading'>
-    <h1> Find A Trail </h1>
-    <p>Click on a trail marker to find out more info</p>
+    <h1> Select A Trail
+    </h1>
+    <p>Choose a trail for your event by clicking on a marker</p>
     <p>Put in an address or zipcode to dial in your search</p>
+    <p>Don't find what you're looking for?</p>
+    <h3>
+        <%= link_to "Create a New Trail", new_trail_path %>
+    </h3>
 </section>
 <section class='select-trail-search'>
     <div class='query'>
         <div class='search-box'>
             <input id="location-search-box" type="text" placeholder="location...">
-            <input id='location-search-button' type="submit" value="Search">
+            <input id='location-search-button' type="submit" value="Find Trails">
         </div>
     </div>
     <div class=' select_map_holder'>

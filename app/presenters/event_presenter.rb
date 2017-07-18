@@ -11,7 +11,7 @@ class EventPresenter
   end
 
   def format_date
-    date.strftime("%A %B %e %Y at %l:%M")
+    date.strftime("%A %B %e %Y at %l:%M %P")
   end
 
   def trail_name

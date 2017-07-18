@@ -12,7 +12,7 @@ var trailSelect = function() {
 
     function autocomplete() {
         document.getElementById('event_search').addEventListener("keyup", function() {
-            var query = event.srcElement.value
+            let query = event.srcElement.value
             $.getJSON(`/api/trails?query=${query}`, clearAndPopulateList)
         })
     }
@@ -26,3 +26,5 @@ var trailSelect = function() {
         });
     }
 }
+
+trailSelect();
