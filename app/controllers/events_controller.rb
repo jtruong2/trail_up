@@ -19,12 +19,6 @@ class EventsController < ApplicationController
     @status = current_user ? current_user.event_status(@event.id) : "unauthorized"
   end
 
-  # def status
-    # binding.pry
-    # Event.change_user_event_role(current_user, params[:id][:status], params[:id][:event_id])
-    # redirect_to request.referrer
-  # end
-
   def destroy
     current_user.hosting.where(id: params[:id]).destroy_all
     redirect_to root_path
