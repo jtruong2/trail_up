@@ -7,29 +7,36 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   get '/dashboard', to: 'dashboards#show'
-  get '/select_or_create_trail', to: 'events#select_or_create_trail'
   get '/directions', to: 'directions#index'
 
+
   get '/auth/fitbit/callback', to: 'fitbit#login'
-  
   resources :fitbit, only: [:index]
+
+  get '/events/status', to: 'events#status'
+
 
   namespace :api do
     namespace :trails do
       resources :search, only: [:index]
     end
+<<<<<<< HEAD
     resources :fitbit_json, only: [:index]
+=======
+    resources :trails, only: [:index]
+>>>>>>> developement
   end
 
 
   namespace :trails do
    resources :search, only: [:index]
+   resources :select, only: [:index, :new]
   end
 
   namespace :admin do
     get '/', to: 'landing#index'
     resources :trails
-    resources :users
+    resources :users, only: [:index, :update, :destroy]
     resources :events
   end
 
@@ -38,10 +45,10 @@ Rails.application.routes.draw do
   end
 
 
-  resources :users, only: [:create, :show, :edit]
-  resources :trails, only: [:new, :create, :show]
+  resources :users, only: [:create, :show, :edit, :update]
+  resources :trails, only: [:new, :create, :show, :edit, :update]
   resources :pictures
-  resources :events, only: [:index, :new, :create, :show]
+  resources :events, only: [:index, :new, :create, :show, :destroy]
 
 
 end

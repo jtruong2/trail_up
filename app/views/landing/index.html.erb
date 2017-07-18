@@ -1,14 +1,17 @@
 <section class="landing-container">
-    <div class='jumbotron'>
+    <div class='jumbotron bga'>
         <h1 class='main-title'>Trail<span class='up'>Up</span></h1>
         <h3>Find Trails. Find Friends. Get Outside. </h3>
         <div class='search-box'>
-          <%= form_tag('/events/search', method: :get) do %>
-          <%= hidden_field_tag(:search_by, "by_location") %>
-          <%= text_field_tag(:event_search, nil, :placeholder => "location..." )%>
-          <%= submit_tag('Find Events Near You', :id => "submit") %>
-          <%end%>
+            <%= form_tag('/events/search', method: :get) do %>
+                <%= hidden_field_tag(:search_by, "by_location") %>
+                    <%= text_field_tag(:event_search, nil, :placeholder => "location..." )%>
+                        <%= submit_tag('Find Events Near You', :id => "submit") %>
+                            <%end%>
         </div>
     </div>
     </div>
 </section>
+<script>
+    swiper();
+</script>

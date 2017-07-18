@@ -19,6 +19,13 @@
 
 .byebug_history
 
-/aaron
 # Ignore application configuration
 /config/application.yml
+
+# Uploaded file from carrierwave
+/public/uploads
+
+# Simplecov
+/coverage
+
+
