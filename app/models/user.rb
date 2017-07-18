@@ -21,6 +21,7 @@ class User < ApplicationRecord
   end
 
   def avatar
+    binding.pry
     if picture.nil? || picture[:image].nil?
       'default_avatar.png'
     else
