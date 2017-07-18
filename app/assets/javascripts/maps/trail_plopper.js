@@ -51,7 +51,7 @@ const trailheadInfoWindow = function(datum) {
       <p>${datum.summary}</p>
       <div class='links'>
       <a href="/event/new?trail=${datum.hp_id}">Select For Event</a>
-      <a href="/directions?orig_lat=${searchLocation.lat}&orig_lng=${searchLocation.lng}&dest_lat=${datum.lat}&dest_lng=${datum.long}">Directions</a>
+      <a href="/directions?orig_lat=${searchLocation.latLng.lat}&orig_lng=${searchLocation.latLng.lng}&dest_lat=${datum.lat}&dest_lng=${datum.long}">Directions</a>
       </div>
       </div>
     `
