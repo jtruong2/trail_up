@@ -17,6 +17,17 @@ class Permission
     end
   end
 
+  def self.status(current_user)
+    case
+    when current_user.nil?
+    'guest'
+    when current_user.admin?
+    'admin'
+    else
+    'user'
+    end
+  end
+
   private
 
   attr_reader :user, :controller, :action, :identifier

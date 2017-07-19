@@ -1,11 +1,12 @@
 class TrailsController < ApplicationController
   include Referrer
 
+  before_action :find_trail, only: [:show, :edit, :update]
+
   def index
   end
 
   def show
-    @trail = Trail.find(params[:id])
   end
 
   def new
@@ -26,16 +27,12 @@ class TrailsController < ApplicationController
   end
 
   def edit
-    @trail = Trail.find(params[:id])
   end
 
   def update
-    @trail = Trail.find(params[:id])
-    location = Geocoder.coordinates(params[:trail][:location])
-
-    if @trail.update(trail_params.merge({latitude: location[0], longitude: location[1]}))
+    if @trail.update(trail_params)
       flash[:success] = ["Trail Updated"]
-      redirect_to select_redirect(session[:referrer], @trail)
+      redirect_to trail_path(@trail)
     else
       flash[:error] = @trail.errors.full_messages
       render :edit
@@ -43,6 +40,10 @@ class TrailsController < ApplicationController
   end
 
   private
+
+    def find_trail
+      @trail = Trail.find(params[:id])
+    end
 
     def trail_params
       params.require(:trail).permit(:name, :description, :difficulty_id, :location, :distance, :rating)

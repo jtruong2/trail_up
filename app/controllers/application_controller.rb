@@ -8,25 +8,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_guest
-    case 
-    when current_user.nil? 
-    'guest'
-    when current_user.admin?
-    'admin'
-    else
-    'user'
-    end
+    Permission.status(current_user)
   end
 
   def current_admin?
     current_user && current_user.admin?
   end
-
-  def check_database_archives
-    date_bot = DateChecker.new
-    date_bot.check?
-  end
-
 
   private
 

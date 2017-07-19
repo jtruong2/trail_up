@@ -1,2 +1,0 @@
-class ArchiveLog < ApplicationRecord
-end

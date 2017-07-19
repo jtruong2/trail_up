@@ -24,17 +24,13 @@ class Seed
     seed.generate_events
     sleep 2
     seed.most_active_user_events
-    seed.log
-  end
-
-  def log
-    ArchiveLog.create!
   end
 
   def drop_tables
     Event.destroy_all
     Trail.destroy_all
     User.destroy_all
+    Difficulty.destroy_all
   end
 
   def generate_users
