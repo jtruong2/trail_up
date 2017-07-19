@@ -1,12 +1,30 @@
-<div class='trail-show'>
-  <h3><%= @trail.name%></h3>
-  Location: <%= @trail.location%>
-  Distance: <%= @trail.distance%>
-  Difficulty: <%= @trail.difficulty%>
-  Length: <%= @trail.rating%>
-  Rating: <%= @trail.rating%>
-  Description: <%= @trail.description%>
-  <% @trail.get_pictures.each do |picture| %>
-    <%= image_tag("#{picture.image}") %>
-  <% end %>
-</div>
+<div hidden id='location'>{"lng": <%=@trail.longitude%>, "lat": <%=@trail.latitude%>}</div>
+<section class='trail-show'>
+  <header>
+    <h3><%= @trail.name%></h3>
+    <p><%= @trail.description%></p>
+  </header>
+  <section class='trail-card'>
+    <div class='trail-info'>
+      <span>Location: <%= @trail.location%></span>
+      <span>Distance: <%= @trail.distance%></span>
+      <span>Difficulty: <%= @trail.difficulty.rating%></span>
+      <span>Distance: <%= @trail.distance%></span>
+      <span>Rating: <%= @trail.rating%></span>
+      <%= link_to 'Edit Trail', edit_trail_path(@trail) %>
+    </div>
+
+    <div class='show-trail-map'>
+        <div id="map" class='map'></div>
+    </div>
+  </section>
+
+  <div class='image'>
+    <% @trail.get_pictures.each do |picture| %>
+      <%= image_tag("#{picture.image}") %>
+    <% end %>
+  </div>
+</section>
+
+<%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'showTrailMap'} %>
+<%= javascript_include_tag "maps/show_trail.js" %>

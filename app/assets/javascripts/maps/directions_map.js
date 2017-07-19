@@ -13,15 +13,12 @@ function initDirMap() {
         panel: document.getElementById('right-panel')
     });
 
-    // directionsDisplay.setMap(map);
-
     directionsDisplay.addListener('directions_changed', function() {
         computeTotalDistance(directionsDisplay.getDirections());
     });
 
 
     displayRoute(directionsService, directionsDisplay);
-    // calculateAndDisplayRoute(directionsService, directionsDisplay);
     document.getElementById('mode').addEventListener('change', function() {
         displayRoute(directionsService, directionsDisplay);
     });
@@ -61,24 +58,4 @@ function computeTotalDistance(result) {
     document.getElementById('total').innerHTML = total + ' km';
 }
 
-// function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-//     var params = new URLSearchParams(window.location.search)
-//     var selectedMode = document.getElementById('mode').value;
-//     directionsService.route({
-//         origin: {
-//             lat: parseFloat(params.get('orig_lat')),
-//             lng: parseFloat(params.get('orig_lng'))
-//         },
-//         destination: {
-//             lat: parseFloat(params.get('dest_lat')),
-//             lng: parseFloat(params.get('dest_lng'))
-//         },
-//         travelMode: google.maps.TravelMode[selectedMode]
-//     }, function(response, status) {
-//         if (status == 'OK') {
-//             directionsDisplay.setDirections(response);
-//         } else {
-//             window.alert('Directions request failed due to ' + status);
-//         }
-//     });
-// }
+initDirMap();

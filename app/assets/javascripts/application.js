@@ -13,10 +13,4 @@
 //= require rails-ujs
 //= require jquery
 //= require vendor/marker_cluster/markerclusterer
-//= require maps/simple_map
-//= require maps/trail_plopper
-//= require maps/directions_map
-//= require search/date_search
-//= require dashboard/dashboard_filter
-//= require fitbit/fitbit
 //= require landing/jumbotron

@@ -8,7 +8,7 @@
         padding: 3px;
         background-color: #EEE6eD
     }
-    
+
     .jumbotron input[type=submit] {
         margin-top: 5px;
         border-style: none;
@@ -20,31 +20,31 @@
         font-size: 20px;
         font-weight: 200;
     }
-    
+
      ::-webkit-input-placeholder {
         /* Chrome/Opera/Safari */
         color: lightgray;
         font-weight: 200;
     }
-    
+
      ::-moz-placeholder {
         /* Firefox 19+ */
         color: lightgray;
         font-weight: 200;
     }
-    
+
      :-ms-input-placeholder {
         /* IE 10+ */
         color: lightgray;
         font-weight: 200;
     }
-    
+
      :-moz-placeholder {
         /* Firefox 18- */
         color: lightgray;
         font-weight: 200;
     }
-    
+
     .form form {
         border: 1px solid black;
         border-radius: 10px;
@@ -57,7 +57,7 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .form input[type=text],
     input[type=email],
     input[type=password] {
@@ -70,14 +70,14 @@
         margin-bottom: 30px;
         margin-top: 10px;
     }
-    
+
     .form label {
         width: 100px;
         height: 30px;
         font-weight: 800;
         text-transform: uppercase
     }
-    
+
     .form input[type=submit] {
         border-style: none;
         border-radius: 5px;
@@ -87,8 +87,9 @@
         font-family: 'Lato';
         width: 305px;
         height: 30px;
+        margin-top: 10px;
     }
-    
+
     .trail-form {
         text-align: center;
         form {
@@ -110,4 +111,22 @@
             border-radius: 5px;
             border-style: none;
         }
+    }
+
+    .event-form {
+      label {
+        width: 100%;
+      }
+      button {
+        margin-top: 10px;
+      }
+    }
+
+    .role-based-event-link {
+      display: flex;
+      justify-content: center;
+      font-family: 'Amatic SC';
+      font-weight: 600;
+      font-size: 40px;
+      padding: 20px;
     }

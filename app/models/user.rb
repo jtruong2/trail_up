@@ -43,4 +43,10 @@ class User < ApplicationRecord
   def filter_by_role(role)
     events.joins(:event_roles).where(event_roles: {role: "#{role}"})
   end
+
+  def event_status(event_id)
+    return "host" unless hosting.where(id: event_id).empty?
+    return "guest" unless attending.where(id: event_id).empty?
+    return "authorized"
+  end
 end

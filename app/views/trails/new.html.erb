@@ -13,14 +13,13 @@
                 <input id='location-search-button' type="submit" value="Find Trails">
             </div>
         </div>
-        <div class=' select_map_holder'>
+        <div class='select_map_holder'>
             <div id="map" class='map'></div>
         </div>
-        <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'plopMarkerMap'} %>
     </section>
     <div class='event-trail-form'>
         <%= render partial: 'trails/form' %>
     </div>
 </section>
-
-<!-- <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'plopMarkerMap'}%> -->
+<%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'plopMarkerMap'} %>
+<%= javascript_include_tag "maps/trail_plopper.js" %>

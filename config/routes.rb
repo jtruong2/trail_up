@@ -16,15 +16,14 @@ Rails.application.routes.draw do
   get '/events/status', to: 'events#status'
 
 
+
   namespace :api do
     namespace :trails do
       resources :search, only: [:index]
+      resources :names, only: [:index]
     end
-<<<<<<< HEAD
     resources :fitbit_json, only: [:index]
-=======
     resources :trails, only: [:index]
->>>>>>> developement
   end
 
 
@@ -42,13 +41,13 @@ Rails.application.routes.draw do
 
   namespace :events do
     resources :search, only: [:index, :new]
+    resources :user_status, only: [:update]
+    get '/update-status', to: 'event_status#index'
   end
 
 
   resources :users, only: [:create, :show, :edit, :update]
-  resources :trails, only: [:new, :create, :show, :edit, :update]
+  resources :trails
   resources :pictures
-  resources :events, only: [:index, :new, :create, :show, :destroy]
-
-
+  resources :events, only: [:index, :new, :create, :show, :destroy, :edit, :update]
 end
