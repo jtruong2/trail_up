@@ -7,3 +7,12 @@ html {
 .hidden {
     display: none;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: darkgray;
+}
