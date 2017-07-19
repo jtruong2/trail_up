@@ -15,6 +15,11 @@ class Fitbit
     collect_activity_data
   end
 
+  def collect_date(date)
+    @dates.push(date)
+    collect_activity_data
+  end
+
 
   private
 

@@ -79,6 +79,7 @@ class Seed
         archived: true
       )
       EventRole.create!(user_id: user.id, event_id: event_4.id, role: 1)
+    end
 
 
   def drop_tables
