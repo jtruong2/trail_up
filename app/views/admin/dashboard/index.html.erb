@@ -23,7 +23,7 @@
                 <% @admin_dash.trails.each do |trail| %>
                     <tr class='trail-cell'>
                         <td>
-                            <%=trail.name%>
+                            <%=link_to trail.name, trail_path(trail)%>
                         </td>
                         <td>
                             <%=trail.location%>
@@ -59,7 +59,7 @@
                 <% @admin_dash.events.each do |event| %>
                     <tr class='event-cell'>
                         <td>
-                            <%=event.name%>
+                            <%= link_to event.name, event_path(event)%>
                         </td>
                         <td>
                             <%=event.format_date%>
@@ -71,7 +71,7 @@
                             <%=event.hosts.first.username%>
                         </td>
                         <td>
-                            <%=event.trail.name%>
+                            <%= link_to event.trail.name, trail_path(event.trail)%>
                         </td>
                         <td>
                             <%=event.guests.count%>

@@ -2,26 +2,33 @@ var displayToggles = function() {
 
     $('#admin-trails-btn').on('click', function() {
         $(this).toggleClass('active-button');
-        $('.admin-trails').toggle('hidden');
-        // $('.admin-trails').toggle('top-div');
-        // $('.admin-users').toggle('top-div');
-        // $('.admin-events').toggle('top-div');
+        $(this).siblings().removeClass('active-button')
+        $('.admin-trails').removeClass('hidden');
+        hideOthers($('.admin-trails').siblings());
     })
     $('#admin-users-btn').on('click', function() {
         $(this).toggleClass('active-button');
-        $('.admin-users').toggle('hidden');
-        // $('.admin-users').toggle('top-div');
-        // $('.admin-trails').toggle('top-div');
-        // $('.admin-events').toggle('top-div');
+        $(this).siblings().removeClass('active-button')
+        $('.admin-users').removeClass('hidden');
+        hideOthers($('.admin-users').siblings());
     })
     $('#admin-events-btn').on('click', function() {
         $(this).toggleClass('active-button');
-        $('.admin-events').toggle('hidden');
-        // $('.admin-events').toggle('top-div');
-        // $('.admin-trails').toggle('top-div');
-        // $('.admin-users').toggle('top-div');
+        $(this).siblings().removeClass('active-button')
+        $('.admin-events').removeClass('hidden');
+        hideOthers($('.admin-events').siblings());
     })
 
+}
+
+const hideOthers = function(node) {
+    node.each(function() {
+        if (this.classList.contains('hidden')) {
+
+        } else {
+            this.classList.add('hidden')
+        }
+    })
 }
 
 displayToggles();
