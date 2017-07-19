@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    session[:return_path] = request.referrer
     @user = User.new
     @user.build_picture
   end
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
     if user.save
       Picture.create!(pic_params[:image].merge({imageable_id: user.id}))
       session[:user_id] = user.id
-      redirect_to dashboard_path
+      redirect_to session[:return_path]
     else
       flash[:error] = user.errors.full_messages
       redirect_to signup_path

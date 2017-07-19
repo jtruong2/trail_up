@@ -1,13 +1,14 @@
 class SessionsController < ApplicationController
 
   def new
+    session[:return_path] = request.referrer
   end
 
   def create
     user = User.find_by(username: user_params[:email]) || User.find_by(email: user_params[:email])
     if user && user.authenticate(user_params[:password])
       session[:user_id] = user.id
-      redirect_to dashboard_path
+      redirect_to session[:return_path]
     else
       flash[:error] = ["Invalid credentials. Please check your email and password."]
       redirect_to "/login"
