@@ -7,6 +7,7 @@ class Seed
 
   def self.start
     seed = Seed.new
+    seed.drop_tables
     seed.generate_users
     seed.generate_difficulties
     sleep 2
@@ -21,12 +22,19 @@ class Seed
     seed.generate_trails
     sleep 2
     seed.generate_events
+    sleep 2
     seed.most_active_user_events
     seed.log
   end
 
   def log
     ArchiveLog.create!
+  end
+
+  def drop_tables
+    Event.destroy_all
+    Trail.destroy_all
+    User.destroy_all
   end
 
   def generate_users
@@ -38,6 +46,12 @@ class Seed
       )
       puts "User #{i}: #{user.username} created!"
     end
+    admin = User.create!(
+      username: 'admin',
+      email: 'admin@admin.com',
+      password: 'password',
+      role: 'admin'
+    )
   end
 
   def generate_difficulties
@@ -76,7 +90,7 @@ class Seed
         description: Faker::Hobbit.quote,
         date: Faker::Date.between(Date.today, 1.year.from_now)
       )
-      EventRole.create(event_id: event.id, user_id: user.id, role: 1)
+      user.event_roles.create(event_id: event.id, role: 1)
       assign_guests(event)
       puts "Event #{i}: #{event.name} created!"
     end
@@ -84,6 +98,7 @@ class Seed
 
   def most_active_user_events
     user = User.create!(username: "Mr. Popular", email: "mrpopular@gmail.com", password: "password")
+    user_b = User.create!(username: "Mr. UnPopular", email: "mrunpopular@gmail.com", password: "password")
     5.times do |i|
       trail = Trail.order('Random()').first
       upcoming_host_event = Event.create(
@@ -114,6 +129,8 @@ class Seed
       )
       EventRole.create(event_id: upcoming_host_event.id, user_id: user.id, role: 0)
       EventRole.create(event_id: archived_host_event.id, user_id: user.id, role: 0)
+      EventRole.create(event_id: upcoming_host_event.id, user_id: user_b.id, role: 1)
+      EventRole.create(event_id: archived_host_event.id, user_id: user_b.id, role: 1)
       EventRole.create(event_id: upcoming_guest_event.id, user_id: user.id, role: 1)
       EventRole.create(event_id: archived_guest_event.id, user_id: user.id, role: 1)
     end

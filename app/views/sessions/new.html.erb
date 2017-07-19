@@ -1,16 +1,16 @@
 <section class='form login'>
 
     <%= form_for(:session, url: login_path) do |f| %>
-        <%= f.label :email, ' Username or Email ' %>
-            <%= f.email_field :email %>
+      <%= f.label :email, ' Username or Email ' %>
+      <%= f.text_field :email %>
 
-                <%= f.label :password %>
-                    <%= f.password_field :password %>
-                        <br>
-                        <%= f.submit 'Submit ' %>
-                            <br>
-                            <% end %>
-                                <p> Not a member?
-                                    <%= link_to "Sign Up", signup_path %>
-                                </p>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      <br>
+      <%= f.submit 'Submit ' %>
+      <br>
+      <% end %>
+      <p> Not a member?
+      <%= link_to "Sign Up", signup_path %>
+      </p>
 </section>
