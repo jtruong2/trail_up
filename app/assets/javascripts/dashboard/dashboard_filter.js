@@ -41,7 +41,7 @@ var filterEvents = function() {
     var hosting = document.getElementById("hosting");
     hosting.addEventListener("click", function() {
       if (this.classList.value.includes('selected')) {
-        index = window.filterCategories.indexOf("guest");
+        index = window.filterCategories.indexOf("host");
         window.filterCategories.splice(index, 1);
       } else {
         window.filterCategories.push("host");
@@ -50,6 +50,36 @@ var filterEvents = function() {
         $("#attending").toggleClass("selected")
       }
       $("#hosting").toggleClass('selected');
+      domTraversal(events);
+    });
+
+    var upcoming = document.getElementById("upcoming");
+    upcoming.addEventListener("click", function() {
+      if (this.classList.value.includes('selected')) {
+        index = window.filterCategories.indexOf("upcoming");
+        window.filterCategories.splice(index, 1);
+      } else {
+        window.filterCategories.push("upcoming");
+      }
+      if ($("#past").hasClass("selected")) {
+        $("#past").toggleClass("selected")
+      }
+      $("#upcoming").toggleClass('selected');
+      domTraversal(events);
+    });
+
+    var past = document.getElementById("past");
+    past.addEventListener("click", function() {
+      if (this.classList.value.includes('selected')) {
+        index = window.filterCategories.indexOf("past");
+        window.filterCategories.splice(index, 1);
+      } else {
+        window.filterCategories.push("past");
+      }
+      if ($("#upcoming").hasClass("selected")) {
+        $("#upcoming").toggleClass("selected")
+      }
+      $("#past").toggleClass('selected');
       domTraversal(events);
     });
 }
