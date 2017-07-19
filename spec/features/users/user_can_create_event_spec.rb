@@ -20,12 +20,7 @@ RSpec.describe "User creates an event" do
     click_on "Create New Trail"
 
     expect(current_path).to eq(new_event_path)
-    # I should be able to see my trail selection on a map (not yet implemented)
     expect(page).to have_content("Epic Trail")
-    expect(page).to have_content("This Trail is SOOO Epic")
-    expect(page).to have_content("Double Black Diamond")
-    expect(page).to have_content("Boulder, Colorado")
-    expect(page).to have_content("30.0")
 
     fill_in "Event Name", with: "Halloween Epic Trail Hike"
     fill_in "Event Description", with: "A spooky hike on an epic trail!"

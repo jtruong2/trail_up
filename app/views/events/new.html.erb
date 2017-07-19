@@ -1,17 +1,10 @@
 <section class='trail-show'>
   <header class="create-trail-message">
-    <h3>Creating an Event for this trail:</h3>
+    <h3>Creating an Event for Trail:</h3>
   </header>
-  <section class='trail-card'>
-    <div class='trail-info'>
-      <span>Name: <%= @event.trail.name%></span>
-      <span>Description: <%= @event.trail.description%></span>
-      <span>Location: <%= @event.trail.location%></span>
-      <span>Distance: <%= @event.trail.distance%></span>
-      <span>Difficulty: <%= @event.trail.difficulty%></span>
-      <span>Rating: <%= @event.trail.rating%></span>
-    </div>
-</section>
+  <header class="create-trail-message">
+    <h3><%= @event.trail.name%></h3>
+  </header>
 
 <div class="form event-form">
 <%= form_for @event do |f| %>
