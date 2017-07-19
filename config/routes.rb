@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
 
   get '/auth/fitbit/callback', to: 'fitbit#login'
-  resources :fitbit, only: [:index]
+  resources :fitbit, only: [:index, :show]
 
   get '/events/status', to: 'events#status'
 

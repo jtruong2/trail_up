@@ -42,7 +42,7 @@ class Permission
     end
 
     def user_permissions
-      return true if controller == "fitbit" && action.in?(%w(index login))
+      return true if controller == "fitbit" && action.in?(%w(index login show))
       return true if controller == "events/event_status" && action.in?(%w(index))
       return true if controller == "landing" && action == "index"
       return true if controller == "sessions" && action.in?(%w(new create destroy))

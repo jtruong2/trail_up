@@ -16,13 +16,7 @@ class FitbitService
 
   def verify_or_refresh_token
     user.fitbit_token = token
-    user.fitbit_refresh = Time.new.hour
     user.save
-  end
-
-  def date_time_checker
-    current_hour = Time.new.hour
-    return true if current_hour - user.fitbit_refresh <= 8
   end
 
   def get_user_data

@@ -4,4 +4,4 @@ var url_fragments = function() {
   $.getJSON('/api/fitbit_json', {codes: stripped_url});
 }
 
-<%= javascript_include_tag "fitbit/fitbit.js" %>
+url_fragments();
