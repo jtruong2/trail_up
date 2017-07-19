@@ -1,3 +1,3 @@
 class Difficulty < ApplicationRecord
-  belongs_to :trail
+  has_one :trail
 end

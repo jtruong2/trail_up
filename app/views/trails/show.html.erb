@@ -8,7 +8,7 @@
     <div class='trail-info'>
       <span>Location: <%= @trail.location%></span>
       <span>Distance: <%= @trail.distance%></span>
-      <span>Difficulty: <%= @trail.difficulty%></span>
+      <span>Difficulty: <%= @trail.difficulty.rating%></span>
       <span>Distance: <%= @trail.distance%></span>
       <span>Rating: <%= @trail.rating%></span>
       <%= link_to 'Edit Trail', edit_trail_path(@trail) %>

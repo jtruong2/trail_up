@@ -14,8 +14,9 @@ class Trail < ApplicationRecord
   after_validation :reverse_geocode
 
   validates :name, presence: true, uniqueness: true
-  validates :description, :difficulty, :distance, presence: true
+  validates :description, :distance, presence: true
   has_many :events
+  belongs_to :difficulty
 
   def get_pictures
     if pictures.empty?

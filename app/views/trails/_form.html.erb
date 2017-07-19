@@ -6,12 +6,12 @@
     <%=f.label :description %>
     <%=f.text_field :description %>
     <%=f.label :difficulty %>
-    <%=f.collection_select(:trail, :difficulty_id, Difficulty.all, :id, :rating %>
+    <%=f.collection_select(:difficulty_id, Difficulty.all, :id, :rating) %>
     <%=f.label :location %>
     <%=f.text_field :location %>
     <%=f.label :distance %>
     <%=f.number_field(:distance, step: 0.1) %>
     <%=render partial: 'pictures/form_for_many', :locals => { f: f, object: @trail } %>
-    <%=f.submit "Create New Trail", id: 'submit'%>
+    <%=f.submit%>
   <%end%>
 </div>
