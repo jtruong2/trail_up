@@ -24,11 +24,7 @@ class Seed
     seed.most_active_user_events
     seed.log
   end
-
-  def log
-    # ArchiveLog.create!
-  end
-
+  
   def generate_users
     20.times do |i|
       user = User.create!(
