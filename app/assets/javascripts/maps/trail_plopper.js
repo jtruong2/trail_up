@@ -1,12 +1,3 @@
-var map; // main google map object
-var plopMarker; // holds the user plopped marker for location of new trail
-var markers; // holds all markers built from HikingProject API call
-var zoom = 10; // default map zoom
-var geocoder; // holds instance of GoogleGeocoder
-var temp_location; // holds the autoCompleted location from geocoder
-var city
-var state
-
 // object that can act like a marker event so it can be used to create a plopMarker
 
 class PlopLocation {
@@ -15,9 +6,29 @@ class PlopLocation {
   }
 };
 
-var searchLocation = new PlopLocation(39.742043, -104.991531);
+class Trail {
+  constructor() {
+    this.name = ""
+    this.length = ""
+    this.difficulty = ""
+    this.rating = ""
+    this.summary = ""
+  };
+}
 
-var check_image = function(trail) {
+var map; // main google map object
+var plopMarker; // holds the user plopped marker for location of new trail
+var markers; // holds all markers built from HikingProject API call
+var zoom = 10; // default map zoom
+var geocoder; // holds instance of GoogleGeocoder
+var temp_location; // holds the autoCompleted location from geocoder
+var city;
+var state;
+var trail = new Trail;
+var searchLocation = new PlopLocation(39.742043, -104.991531);
+var preivew; // holds element preview is placed into
+
+const check_image = function(trail) {
     if (trail.hp_image.length === 0) {
         return '/assets/logo_trail_up.png'
     } else {
@@ -43,7 +54,7 @@ const makePlopMarker = function(event) {
   })
 };
 
-const trailheadInfoWindow = function(datum) {
+const trailPreview = function(datum) {
   let image = check_image(datum);
   return `
       <div class='map-info'>
@@ -61,6 +72,18 @@ const trailheadInfoWindow = function(datum) {
     `
 };
 
+const trailPreview = function(trail) {
+  `<div class='map-info'>
+    <div class='map-info-header'>
+      <img src=${trail.image} alt='Trail Image'>
+      <h3>${trail.name}</h3>
+    </div>
+    <h5><span class='bolden'>Length:</span> ${trail.length} <span class='bolden'>| Difficulty:</span> ${trail.difficulty} <span class='bolden'>| Rating:</span> ${trail.rating}</h5>
+    <p>${trail.summary}</p>
+      <a href="/directions?orig_lat=${searchLocation.latLng.lat}&orig_lng=${searchLocation.latLng.lng}&dest_lat=${plopMarker.getPosition().lat()}&dest_lng=${plopMarker.getPosition().lng()}">Directions</a>
+    </div>
+  </div>`
+}
 // plops a marker down at the events latLng and reloads map
 
 var plopThatMarker = function(event) {
@@ -78,6 +101,9 @@ var plopThatMarker = function(event) {
   let lng = document.getElementById('trail_longitude');
   lat.value = JSON.stringify(plopMarker.position.lat());
   lng.value = JSON.stringify(plopMarker.position.lng());
+
+  // makes a call to googleAPI geocoder based on plopMarker location and
+  // fills in location field with the city and state
 
   geocoder.geocode({'location': plopMarker.position}, function(results, status) {
     results.forEach(function(result) {
@@ -179,9 +205,13 @@ function plopMarkerMap() {
         });
     };
 
+    // updates the trail preview box
 
+    preview = trailPreview(trail);
+    preview_box = document.getElementById('trail-preview');
+    preview_box.append();
 
-    // Places new plopMarker when user clicks on map
+    // Call plopMarker when user clicks on map
 
     google.maps.event.addListener(map, 'click', function(event) {
       plopThatMarker(event);

@@ -1,4 +1,7 @@
 
+<div class='trail-preview', id='trail-preview'>
+</div>
+
 <div class='form trail-form'>
   <%= form_for(@trail) do |f| %>
     <%=f.hidden_field :latitude %>
@@ -10,7 +13,7 @@
     <%=f.label :difficulty %>
     <%=f.collection_select(:difficulty_id, Difficulty.all, :id, :rating) %>
     <%=f.label :location %>
-    <%=f.text_field :location %>
+    <%=f.text_field :location, :readonly => true %>
     <%=f.label :distance %>
     <%=f.number_field(:distance, step: 0.1) %>
     <%=render partial: 'pictures/form_for_many', :locals => { f: f, object: @trail } %>
