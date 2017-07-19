@@ -7,10 +7,12 @@ RSpec.describe "As a user" do
   end
 
   it "can sign in with meetup" do
-    visit login_path
+    visit root_path
+    click_link "Login"
     within('.meetup-login') do
       click_link
     end
+    click_link 'Dashboard'
     expect(page).to have_content("Welcome Elvis Costello")
     expect(User.count).to eq(1)
     expect(User.first.uid).to eq(1)

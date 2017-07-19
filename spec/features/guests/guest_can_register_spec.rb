@@ -14,7 +14,7 @@ RSpec.describe "Guest registers a new account" do
     fill_in("Password", with: "password")
     expect(page).to have_button("Submit")
     click_on("Submit")
-    expect(page).to have_current_path("/dashboard")
+    expect(page).to have_current_path("/")
   end
 
   scenario "guest tries to create an account without a password" do

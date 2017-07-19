@@ -13,7 +13,7 @@ describe "user can logout" do
     fill_in("Password", with: user.password)
     expect(page).to have_button("Submit")
     click_on("Submit")
-    expect(page).to have_current_path("/dashboard")
+    expect(page).to have_current_path(root_path)
 
     click_on("Logout")
     expect(page).to have_current_path(root_path)
