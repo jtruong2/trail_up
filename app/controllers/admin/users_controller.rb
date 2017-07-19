@@ -11,8 +11,14 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def destroy
-    User.destroy(@user.id) if current_user.admin?
-    redirect_to admin_users_path
+    @user.hosting.destroy_all
+    User.destroy(@user.id) if current_user.admin? && @user.id != current_user.id
+    if @user.id == current_user.id
+      flash[:error] = ["You Cannot Delete Yourself!" ]
+    else
+      flash[:success] = ["User Successfully Deleted"]
+    end
+    redirect_to admin_dashboard_index_path
   end
 
   private
