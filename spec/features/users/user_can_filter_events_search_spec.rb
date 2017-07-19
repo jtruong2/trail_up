@@ -38,6 +38,9 @@ describe "Filtering events" do
     click_on("Dashboard")
 
     expect(current_path).to eq('/dashboard')
+
+    click_on @event_future_hosting_1.name
+    expect(current_path).to eq(event_path(@event_future_hosting_1))
   end
 
   scenario "user sees upcoming events by default" do
@@ -47,6 +50,7 @@ describe "Filtering events" do
 
     expect(page).to have_content(@user.username)
     expect(page).to have_content("Upcoming")
+    expect(page).to have_selector(".upcoming.selected")
 
     expect(page).to have_content(@event_future_hosting_1.name)
     expect(page).to have_content(@event_future_hosting_2.name)
@@ -54,8 +58,5 @@ describe "Filtering events" do
     expect(page).to have_content(@event_future_attending_2.name)
 
     expect(page).to_not have_content(@edge_case_event.name)
-
-    click_on @event_future_hosting_1.name
-    expect(current_path).to eq(event_path(@event_future_hosting_1))
   end
 end
