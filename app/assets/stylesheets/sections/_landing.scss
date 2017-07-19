@@ -25,30 +25,41 @@ h3 {
     text-align: center;
 }
 
+.screen {
+    width: 100%;
+    min-height: 600px;
+    background: -webkit-linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .3));
+    background: -moz-linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .3));
+    background: -o-linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .3));
+    background: linear-gradient(rgba(0, 0, 0, .2), rgba(0, 0, 0, .3));
+}
+
 .jumbotron {
     margin-top: 75px;
     min-width: 100%;
     min-height: 600px;
-    -webkit-transition: background-image 0.5s linear;
-    -moz-transition: background-image 0.5s linear;
-    -ms-transition: background-image 0.5s linear;
-    transition: background-image 0.5s linear;
+    -webkit-transition: background-image 1s linear;
+    -moz-transition: background-image 1s linear;
+    -ms-transition: background-image 1s linear;
+    transition: background-image 1s linear;
+    left: 0;
 }
 
+// linear-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .3)), url('photo-nic-co-uk-nic-150150.jpg');
 .bga {
-    background-image: linear-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .3)), url('photo-nic-co-uk-nic-150150.jpg');
+    background-image: url('photo-nic-co-uk-nic-150150.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
 }
 
 .bgb {
-    background-image: linear-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .3)), url('danka-peter-178.jpg');
+    background-image: url('aaron-burden-160095.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
 }
 
 .bgc {
-    background-image: linear-gradient( rgba(0, 0, 0, .2), rgba(0, 0, 0, .3)), url('danka-peter-49495.jpg');
+    background-image: url('tim-tiedemann-149766.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
 }

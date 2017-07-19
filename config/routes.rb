@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get '/', to: 'landing#index'
+    resources :dashboard, only: [:index]
     resources :trails
     resources :users, only: [:index, :update, :destroy]
     resources :events
