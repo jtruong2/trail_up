@@ -42,6 +42,7 @@ class Permission
     end
 
     def user_permissions
+      return true if controller == "events/event_status" && action.in?(%w(index))
       return true if controller == "landing" && action == "index"
       return true if controller == "sessions" && action.in?(%w(new create destroy))
       return true if controller == "dashboards" && action.in?(%w(show))
