@@ -4,11 +4,10 @@ class Events::UserStatusController < ApplicationController
     event.user_status_change(status_params)
     flash[:success] = ["Event Status Updated"]
     redirect_to request.referrer
-    
   end
 
   def status_params
     params.permit(:status).merge(user_id: current_user.id)
   end
-  
+
 end
