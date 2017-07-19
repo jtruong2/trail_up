@@ -32,6 +32,7 @@ gem 'geocoder'
 gem 'faker'
 gem 'humanize'
 gem 'fog-aws'
+gem 'whenever', :require => false
 
 group :development do
   gem 'web-console', '>= 3.3.0'

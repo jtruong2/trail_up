@@ -15,12 +15,6 @@ class ApplicationController < ActionController::Base
     current_user && current_user.admin?
   end
 
-  # def check_database_archives
-  #   date_bot = DateChecker.new
-  #   date_bot.check?
-  # end
-
-
   private
 
     def authorize!
