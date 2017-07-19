@@ -23,7 +23,7 @@ describe "events auto archive two days after date of event" do
     expect(Event.first.archived).to eq(false)
     
     EventArchiveWorker.new.perform
-    Timecop.travel(Date.tomorrow.to_time.noon)
+  Timecop.travel(Date.tomorrow.to_time.noon)
     expect(Event.first.archived).to eq(false)
     
     Timecop.travel(Date.tomorrow.to_time.noon)

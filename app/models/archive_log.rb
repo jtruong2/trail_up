@@ -1,0 +1,2 @@
+class ArchiveLog < ApplicationRecord
+end
