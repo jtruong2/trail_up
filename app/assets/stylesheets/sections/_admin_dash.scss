@@ -1,0 +1,38 @@
+.admin-trails,
+.admin-events,
+.admin-users {
+    margin-top: 20px;
+    margin-bottom: 200px;
+    h3 {
+        color: black;
+        font-size: 50px;
+    }
+    table {
+        width: 90%;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 100;
+    }
+    th,
+    td {
+        padding: 10px;
+    }
+}
+
+.admin-controls {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    button {
+        border-style: none;
+        height: 30px;
+        width: 300px;
+        color: white;
+        font-size: 18px;
+        letter-spacing: .1em;
+        background-color: #BF392e;
+    }
+    .active-button {
+        background-color: #521914;
+    }
+}
