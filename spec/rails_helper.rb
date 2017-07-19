@@ -13,7 +13,6 @@ require 'capybara/rails'
 require 'shoulda-matchers'
 require 'webmock/rspec'
 require 'vcr'
-require 'log_creator'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -42,6 +41,22 @@ end
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:meetup] = OmniAuth::AuthHash.new(
+  {"provider"=>"meetup",
+            "uid"=>1,
+            "info"=>
+              {"id"=>0,
+              "name"=>"Elvis Costello",
+              "photo_url"=>"http://photos3.meetupstatic.com/photos/member_pic_0.jpeg"},
+            "credentials"=>
+              {"token"=>"abc123...",       
+              "refresh_token"=>"bcd234...",
+              "expires_at"=>1324720198,    
+              "expires"=>true}
+            })
+
+
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
@@ -75,4 +90,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  
 end
