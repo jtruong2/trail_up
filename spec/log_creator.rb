@@ -1,0 +1,1 @@
+ArchiveLog.create!

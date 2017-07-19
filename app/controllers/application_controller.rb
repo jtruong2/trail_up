@@ -16,9 +16,8 @@ class ApplicationController < ActionController::Base
   end
 
   def check_database_archives
-    if ArchiveLog.check? == true
-      ArchiveLog.create!
-    end
+    date_bot = DateChecker.new
+    date_bot.check?
   end
 
 
