@@ -50,7 +50,7 @@ describe "Filtering events" do
 
     expect(page).to have_content(@user.username)
     expect(page).to have_content("Upcoming")
-    expect(page).to have_selector(".upcoming.selected")
+    expect(page).to have_selector("#upcoming.selected")
 
     expect(page).to have_content(@event_future_hosting_1.name)
     expect(page).to have_content(@event_future_hosting_2.name)
