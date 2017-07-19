@@ -27,10 +27,6 @@ class Seed
     seed.log
   end
 
-  def log
-    ArchiveLog.create!
-  end
-
   def drop_tables
     Event.destroy_all
     Trail.destroy_all
