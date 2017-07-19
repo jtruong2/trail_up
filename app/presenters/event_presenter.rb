@@ -23,7 +23,8 @@ class EventPresenter
   end
 
   def self.collect_events(user)
-    user.events.map { |event| EventPresenter.new(event, user) }
+    events = user.events.map { |event| EventPresenter.new(event, user) }
+    events.sort_by {|event| event.date }
   end
 
   def get_identifiers
