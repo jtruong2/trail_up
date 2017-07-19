@@ -4,18 +4,18 @@ class Trail < ApplicationRecord
   accepts_nested_attributes_for :pictures
 
   reverse_geocoded_by :latitude, :longitude
-  after_validation :reverse_geocode
+  after_validation :reverse_geocode, on: [ :create ]
 
   reverse_geocoded_by :latitude, :longitude do |obj,results|
     if geo = results.first
       obj.location = "#{geo.city}, #{geo.state}"
     end
   end
-  after_validation :reverse_geocode
 
   validates :name, presence: true, uniqueness: true
-  validates :description, :difficulty, :distance, presence: true
+  validates :description, :distance, presence: true
   has_many :events
+  belongs_to :difficulty
 
   def get_pictures
     if pictures.empty?

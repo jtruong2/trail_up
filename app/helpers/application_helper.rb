@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def trail_ratings
+  def trail_difficulty
     [
     ['White','White'],
     ['White-Green',"White-Green"],
