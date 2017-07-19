@@ -14,8 +14,8 @@ class DateChecker
   end
 
   def substractor(now, past)
-    return true if (now - past) > 2
-    return true if (now - past) < -2
+    return true if (now - past) > 1
+    return true if (now - past) < -1
   end
 
   def archive_bot
