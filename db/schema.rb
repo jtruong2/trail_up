@@ -79,15 +79,8 @@ ActiveRecord::Schema.define(version: 20170719032023) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.integer "role"
-<<<<<<< HEAD
     t.string "fitbit_token"
-<<<<<<< HEAD
-    t.integer "fitbit_refresh"
-=======
-=======
     t.string "image"
->>>>>>> developement
->>>>>>> fitbit
   end
 
   add_foreign_key "event_roles", "events"
