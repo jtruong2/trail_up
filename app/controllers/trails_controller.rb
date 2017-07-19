@@ -31,8 +31,9 @@ class TrailsController < ApplicationController
 
   def update
     @trail = Trail.find(params[:id])
+    location = Geocoder.coordinates(params[:trail][:location])
 
-    if @trail.update(trail_params)
+    if @trail.update(trail_params.merge({latitude: location[0], longitude: location[1]}))
       flash[:success] = ["Trail Updated"]
       redirect_to select_redirect(session[:referrer], @trail)
     else
