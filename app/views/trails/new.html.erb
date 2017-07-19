@@ -16,10 +16,10 @@
         <div class='select_map_holder'>
             <div id="map" class='map'></div>
         </div>
-        <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'plopMarkerMap'} %>
-        <%= javascript_include_tag "maps/trail_plopper.js" %>
     </section>
     <div class='event-trail-form'>
         <%= render partial: 'trails/form' %>
     </div>
 </section>
+<%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'plopMarkerMap'} %>
+<%= javascript_include_tag "maps/trail_plopper.js" %>

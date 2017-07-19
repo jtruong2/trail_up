@@ -10,10 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718162835) do
+ActiveRecord::Schema.define(version: 20170719001517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "difficulties", force: :cascade do |t|
+    t.string "rating"
+  end
 
   create_table "event_roles", force: :cascade do |t|
     t.bigint "user_id"
@@ -50,7 +54,6 @@ ActiveRecord::Schema.define(version: 20170718162835) do
   create_table "trails", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "difficulty"
     t.string "location"
     t.float "distance"
     t.float "rating"
@@ -59,6 +62,8 @@ ActiveRecord::Schema.define(version: 20170718162835) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "hp_id"
+    t.bigint "difficulty_id"
+    t.index ["difficulty_id"], name: "index_trails_on_difficulty_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,4 +80,5 @@ ActiveRecord::Schema.define(version: 20170718162835) do
   add_foreign_key "event_roles", "events"
   add_foreign_key "event_roles", "users"
   add_foreign_key "events", "trails"
+  add_foreign_key "trails", "difficulties"
 end

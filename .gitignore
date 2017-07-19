@@ -28,4 +28,7 @@
 # Simplecov
 /coverage
 
+# Locally built assets
+/public/assets
+
 
