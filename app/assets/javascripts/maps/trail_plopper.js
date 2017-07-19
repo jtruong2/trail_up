@@ -3,6 +3,9 @@ var plopMarker; // holds the user plopped marker for location of new trail
 var markers; // holds all markers built from HikingProject API call
 var zoom = 10; // default map zoom
 var geocoder; // holds instance of GoogleGeocoder
+var temp_location; // holds the autoCompleted location from geocoder
+var city
+var state
 
 // object that can act like a marker event so it can be used to create a plopMarker
 
@@ -70,11 +73,28 @@ var plopThatMarker = function(event) {
     plopThatMarker(event)
   });
 
-  let location = document.getElementById('trail_location');
+  let location_field = document.getElementById('trail_location');
   let lat = document.getElementById('trail_latitude');
   let lng = document.getElementById('trail_longitude');
   lat.value = JSON.stringify(plopMarker.position.lat());
   lng.value = JSON.stringify(plopMarker.position.lng());
+
+  geocoder.geocode({'location': plopMarker.position}, function(results, status) {
+    results.forEach(function(result) {
+      if ( $.inArray( 'street_address', result.types ) >= 0 ) {
+        result.address_components.forEach(function(comp) {
+          if ( $.inArray( 'locality', comp.types ) >= 0 ) {
+            city = comp.long_name
+          };
+          if ( $.inArray( 'administrative_area_level_1', comp.types ) >= 0 ) {
+            state = comp.short_name
+          };
+        });
+      };
+    });
+
+    location_field.value = city + ', ' + state
+  });
 
   plopMarkerMap();
 };
@@ -97,10 +117,6 @@ function plopMarkerMap() {
     } else {
       plopThatMarker(searchLocation)
     };
-
-    geocoder.geocode({'location': plopMarker.position}, function(results, status) {
-      debugger
-    });
 
     // Request to HikingProject for trailheads near plopMarker
 
