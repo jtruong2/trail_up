@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboards#show'
   get '/directions', to: 'directions#index'
 
+
   namespace :api do
     namespace :trails do
       resources :search, only: [:index]
@@ -31,7 +32,9 @@ Rails.application.routes.draw do
   namespace :events do
     resources :search, only: [:index, :new]
     resources :user_status, only: [:update]
+    get '/update-status', to: 'event_status#index'
   end
+
 
   resources :users, only: [:create, :show, :edit, :update]
   resources :trails

@@ -22,6 +22,11 @@ class Seed
     sleep 2
     seed.generate_events
     seed.most_active_user_events
+    seed.log
+  end
+
+  def log
+    ArchiveLog.create!
   end
 
   def generate_users
