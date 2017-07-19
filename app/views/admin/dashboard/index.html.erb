@@ -1,3 +1,114 @@
-<%= link_to  "All Trails", admin_trails_path %>
-    <%= link_to  "All Events", admin_events_path %>
-        <%= link_to  "All Users", admin_users_path %>
+<div class='admin-controls'>
+    <!-- <%= link_to  "All Trails", admin_trails_path %>
+        <%= link_to  "All Events", admin_events_path %>
+            <%= link_to  "All Users", admin_users_path %> -->
+    <button id='admin-trails-btn'>All Trails</button>
+    <button id='admin-events-btn' class='active-button'>All Events</button>
+    <button id='admin-users-btn'>All Users</button>
+</div>
+<div class='admin-trails hidden'>
+    <h3>All Trails</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Distance</th>
+                <th>Rating</th>
+                <th>Current Event Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @trails.each do |trail| %>
+                <tr class='trail-cell'>
+                    <td>
+                        <%=trail.name%>
+                    </td>
+                    <td>
+                        <%=trail.location%>
+                    </td>
+                    <td>
+                        <%=trail.distance%>
+                    </td>
+                    <td>
+                        <%=trail.rating%>
+                    </td>
+                    <td>
+                        <%=trail.events.count%>
+                    </td>
+                </tr>
+                <%end%>
+        </tbody>
+    </table>
+</div>
+<div class='admin-events'>
+    <h3>All Events</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Main Host</th>
+                <th>Trail</th>
+                <th>Guest Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @events.each do |event| %>
+                <tr class='event-cell'>
+                    <td>
+                        <%=event.name%>
+                    </td>
+                    <td>
+                        <%=event.format_date%>
+                    </td>
+                    <td>
+                        <%=event.trail.location%>
+                    </td>
+                    <td>
+                        <%=event.hosts.first.username%>
+                    </td>
+                    <td>
+                        <%=event.trail.name%>
+                    </td>
+                    <td>
+                        <%=event.guests.count%>
+                    </td>
+                </tr>
+                <%end%>
+        </tbody>
+    </table>
+</div>
+<div class='admin-users hidden'>
+    <h3>All Users</h3>
+    <table>
+        <thead>
+            <tr>
+                <td>Username</td>
+                <td>Email</td>
+                <td>Admin</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% @users.each do |user| %>
+                <tr class="user">
+                    <td>
+                        <%=user.username%>
+                    </td>
+                    <td>
+                        <%=user.email%>
+                    </td>
+                    <td>
+                        <%= link_to "Make Admin", admin_user_path(user), method: :put, class: 'admin_button' if !user.role%>
+                    </td>
+                    <td>
+                        <%= link_to "Delete", admin_user_path(user), method: :delete %>
+                    </td>
+                </tr>
+                <%end%>
+                    <tbody>
+    </table>
+</div>
+<%= javascript_include_tag "dash/admin_dash.js" %>

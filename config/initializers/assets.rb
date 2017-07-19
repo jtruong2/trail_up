@@ -17,4 +17,5 @@ Rails.application.config.assets.precompile += %w( search/date_search.js
                                                   dashboard/dashboard_filter.js
                                                   maps/directions_map.js
                                                   maps/simple_map.js
-                                                  maps/trail_plopper.js)
+                                                  maps/trail_plopper.js
+                                                  dash/admin_dash.js)
