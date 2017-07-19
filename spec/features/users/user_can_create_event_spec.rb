@@ -45,20 +45,21 @@ RSpec.describe "User creates an event" do
   end
   scenario "user creates an event from an existing trail" do
     user = create(:user)
+    create(:difficulty, rating: "Double Black Diamond")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit "/"
     click_on "Create Event"
     expect(page).to have_content("Create a New Trail")
-    click_on "Create a New Trail"
+    click_link "Create a New Trail"
     expect(current_path).to eq(new_trail_path)
 
     fill_in "Name", with: "Totally Epic Trail"
     fill_in "Description", with: "This Trail is SOOO Epic"
-    select "Double Black Diamond", from: "trail[difficulty]"
+    select "Double Black Diamond", from: "trail[difficulty_id]"
     fill_in "Location", with: "Boulder, Colorado"
     fill_in "Distance", with: 30.0
-    click_on "Create New Trail"
+    click_on "Create Trail"
 
     expect(current_path).to eq(new_event_path)
     expect(page).to have_content("Epic Trail")
