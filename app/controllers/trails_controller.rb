@@ -31,13 +31,20 @@ class TrailsController < ApplicationController
 
   def update
     @trail = Trail.find(params[:id])
-    
+
+    if @trail.update(trail_params)
+      flash[:success] = ["Trail Updated"]
+      redirect_to select_redirect(session[:referrer], @trail)
+    else
+      flash[:error] = @trail.errors.full_messages
+      render :edit
+    end
   end
 
   private
 
     def trail_params
-      params.require(:trail).permit(:name, :description, :difficulty, :location, :distance, :rating)
+      params.require(:trail).permit(:name, :description, :difficulty_id, :location, :distance, :rating)
     end
 
     def pic_params
