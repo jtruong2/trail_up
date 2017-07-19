@@ -1,11 +1,13 @@
-<div>Creating an event for this trail:</div>
-Trail Name: <%= @event.trail.name %>
-Trail Description: <%= @event.trail.description %>
-Trail Difficulty: <%= @event.trail.difficulty.rating %>
-Trail Location: <%= @event.trail.location %>
-Trail Distance: <%= @event.trail.distance %>
-Trail Rating: <%= @event.trail.rating %>
+<section class='trail-show'>
+  <header class="create-trail-message">
+    <h3>Creating an Event for Trail:</h3>
+  </header>
+  <header class="create-trail-message">
+    <h3><%= @event.trail.name%></h3>
+  </header>
+</section>
 
+<div class="form event-form">
 <%= form_for @event do |f| %>
   <%= f.label :name, "Event Name" %>
   <%= f.text_field :name %>
@@ -15,5 +17,6 @@ Trail Rating: <%= @event.trail.rating %>
   <%= f.datetime_select :date %>
   <%= hidden_field_tag(:trail_id, @event.trail.id) %>
 
-  <%= f.submit "Publish Event" %>
+  <%= f.submit "Publish Event", class: "publish-button" %>
 <% end %>
+</div>
