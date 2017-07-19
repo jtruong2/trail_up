@@ -63,6 +63,8 @@ RSpec.describe 'User can edit a trail' do
         fill_in "Distance", with: ''
       end
 
+      click_on 'Update Trail'
+
       expect(page).to have_content("Name can't be blank")
       expect(page).to have_content("Description can't be blank")
       expect(page).to have_content("Distance can't be blank")
