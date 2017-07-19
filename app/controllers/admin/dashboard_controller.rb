@@ -1,7 +1,6 @@
 class Admin::DashboardController < Admin::BaseController
   def index
-    @events = Event.order(:date)
-    @trails = Trail.order(:name)
-    @users = User.order(:role)
+    @admin_dash = AdminDashboardPresenter.new
   end
+  
 end

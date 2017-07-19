@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            <% @trails.each do |trail| %>
+            <% @admin_dash.trails.each do |trail| %>
                 <tr class='trail-cell'>
                     <td>
                         <%=trail.name%>
@@ -55,7 +55,7 @@
             </tr>
         </thead>
         <tbody>
-            <% @events.each do |event| %>
+            <% @admin_dash.events.each do |event| %>
                 <tr class='event-cell'>
                     <td>
                         <%=event.name%>
@@ -92,7 +92,7 @@
             </tr>
         </thead>
         <tbody>
-            <% @users.each do |user| %>
+            <% @admin_dash.users.each do |user| %>
                 <tr class="user">
                     <td>
                         <%=user.username%>
