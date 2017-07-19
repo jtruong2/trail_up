@@ -1,3 +1,3 @@
-class ArchiveLog <ApplicationRecord
+# class ArchiveLog <ApplicationRecord
 
-end
+# end

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :current_guest
-  before_action :authorize!, :check_database_archives
+  before_action :authorize!
 
   def current_user
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -15,10 +15,10 @@ class ApplicationController < ActionController::Base
     current_user && current_user.admin?
   end
 
-  def check_database_archives
-    date_bot = DateChecker.new
-    date_bot.check?
-  end
+  # def check_database_archives
+  #   date_bot = DateChecker.new
+  #   date_bot.check?
+  # end
 
 
   private

@@ -26,7 +26,7 @@ class Seed
   end
 
   def log
-    ArchiveLog.create!
+    # ArchiveLog.create!
   end
 
   def generate_users

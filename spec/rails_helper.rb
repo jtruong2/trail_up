@@ -13,7 +13,6 @@ require 'capybara/rails'
 require 'shoulda-matchers'
 require 'webmock/rspec'
 require 'vcr'
-require 'log_creator'
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
