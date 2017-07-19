@@ -1,12 +1,11 @@
 require 'rails_helper'
 
-describe "users can see events and decide to join or not" do
+describe "user that is a host can edit their event" do
   before(:each) do
     @user_guest = create(:user, username: "guest")
-    @user = create(:user, email: "email@gmail.com")
+    @user = create(:user, email: "user@gmail.com")
     @user_host = create(:user, username: "host", email: "host@gmail.com")
     @difficulty = create(:difficulty, rating: "Hard as Diamonds" )
-
     @trail_1 = Trail.create!(name: "The Hardest One of All",
                               description: "It is really hard",
                               difficulty: @difficulty,
@@ -42,71 +41,41 @@ describe "users can see events and decide to join or not" do
     @event_roles_2 = EventRole.create!(user_id: @user_host.id, event_id: @event_2.id, role: 1)
   end
 
-  scenario "user can find events from the homepage and navigate to show page and join event" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-
-    visit root_path
-
-    fill_in "event_search", with: "Denver"
-    click_on "Find Events Near You"
-
-    expect(current_path).to eq('/events/search')
-    expect(page).to have_content(@event_1.name)
-    expect(page).to have_content(@event_1.description)
-
-    click_on @event_1.name
-    expect(current_path).to eq("/events/#{@event_1.id}")
-    expect(page).to have_content("Join Event")
-    expect(page).to_not have_content("Delete Event")
-
-    click_on "Join Event"
-
-    expect(current_path).to eq("/events/#{@event_1.id}")
-    expect(page).to have_content("Leave Event")
-  end
-
-  scenario "authenticated user tries to join event" do
-    visit "/events/#{@event_1.id}"
-
-    expect(page).to have_content("Login to join")
-
-    click_on "Login to join"
-
-    expect(current_path).to eq("/login")
-  end
-
-  scenario "host sees delete event on event show page and can click it" do
+  scenario "host can edit an event" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_host)
-    visit root_path
+    visit "/events/#{@event_2.id}"
 
-    fill_in "event_search", with: "Boulder"
-    click_on "Find Events Near You"
+    expect(page).to have_content("Edit Event")
 
-    expect(current_path).to eq('/events/search')
-    expect(page).to have_content(@event_2.name)
-    expect(page).to have_content(@event_2.description)
+    click_on "Edit Event"
 
-    click_on @event_2.name
+    expect(current_path).to eq("/events/#{@event_2.id}/edit")
+    expect(page).to have_content("Edit #{@event_2.name}")
+    expect(page).to have_content("Name")
+    expect(page).to have_content("Description")
+    expect(page).to have_content("Date")
 
-    expect(page).to have_content("Delete Event")
+    fill_in "event_name", with: "The Big One 3"
+    fill_in "event_description", with: "It's actually not the hardest"
 
-    click_on "Delete Event"
+    click_on "Update Event"
 
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq("/events/#{@event_2.id}")
+    expect(page).to have_content("The Big One 3")
+    expect(page).to have_content("It's actually not the hardest")
+    expect(page).to have_content("Event Updated")
   end
 
-  scenario "user can leave event" do
+  scenario "an event guest cannot edit an event" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_guest)
+
     visit "/events/#{@event_1.id}"
 
-    expect(current_path).to eq("/events/#{@event_1.id}")
+    expect(page).to_not have_content("Edit Event")
 
-    expect(page).to have_content("Leave Event")
+    visit "/events/#{@event_1.id}/edit"
 
-    click_on "Leave Event"
-
-    expect(current_path).to eq("/events/#{@event_1.id}")
-    expect(page).to have_content("Join Event")
-
+    expect(page).to have_content("404")
   end
+
 end

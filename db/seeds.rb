@@ -9,6 +9,8 @@ class Seed
     seed = Seed.new
     seed.drop_tables
     seed.generate_users
+    seed.generate_difficulties
+    sleep 2
     seed.generate_trails
     sleep 2
     seed.generate_events
@@ -22,6 +24,11 @@ class Seed
     seed.generate_events
     sleep 2
     seed.most_active_user_events
+    seed.log
+  end
+
+  def log
+    ArchiveLog.create!
   end
 
   def drop_tables
@@ -47,17 +54,28 @@ class Seed
     )
   end
 
+  def generate_difficulties
+    [ 'White', 'White-Green', 'Green', 'Green-Blue',
+      'Blue', 'Blue-Black', 'Black Diamond', 'Double Black Diamond' ].each do |diff|
+        difficulty = Difficulty.create(rating: diff)
+        puts "Difficulty #{Difficulty.last.rating} created!"
+      end
+  end
+
   def generate_trails
     10.times do |i|
-      trail = Trail.create!(
+      trail = Trail.new(
         name: "#{Faker::Hobbit.location}, #{Faker::Address.community}",
         description: Faker::Hobbit.quote,
-        difficulty: %w(white, blue, green, black diamond, double black diamond).sample,
         distance: %w(5,10,15,20,25,50,100).sample,
         rating: %w(1,2,3,4).sample,
         longitude: longitude,
         latitude: latitude
       )
+
+      trail.difficulty = Difficulty.all.sample
+      trail.save
+
       puts "User #{i}: #{trail.name} created!"
     end
   end
