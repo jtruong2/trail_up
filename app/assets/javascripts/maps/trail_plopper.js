@@ -8,11 +8,12 @@ class PlopLocation {
 
 class Trail {
   constructor() {
-    this.name = ""
-    this.length = ""
-    this.difficulty = ""
-    this.rating = ""
-    this.summary = ""
+    this.name = 'Trail Name'
+    this.length = 8
+    this.difficulty = 'Blue'
+    this.rating = 4.5
+    this.summary = 'A very nice walk in the park'
+    this.image = '/assets/logo_trail_up.png'
   };
 }
 
@@ -54,7 +55,7 @@ const makePlopMarker = function(event) {
   })
 };
 
-const trailPreview = function(datum) {
+const trailheadInfoWindow = function(datum) {
   let image = check_image(datum);
   return `
       <div class='map-info'>
@@ -73,16 +74,20 @@ const trailPreview = function(datum) {
 };
 
 const trailPreview = function(trail) {
-  `<div class='map-info'>
-    <div class='map-info-header'>
-      <img src=${trail.image} alt='Trail Image'>
-      <h3>${trail.name}</h3>
+  return `
+    <div class='map-info'>
+      <div class='map-info-header'>
+        <img src=${trail.image} alt='Trail Image'>
+        <h3>${trail.name}</h3>
+      </div>
+      <h5><span class='bolden'>Length:</span> ${trail.length} <span class='bolden'>| Difficulty:</span> ${trail.difficulty} <span class='bolden'>| Rating:</span> ${trail.rating}</h5>
+      <p>${trail.summary}</p>
+        <div class='links'>
+          <a href="/directions?orig_lat=${searchLocation.latLng.lat}&orig_lng=${searchLocation.latLng.lng}&dest_lat=${plopMarker.getPosition().lat()}&dest_lng=${plopMarker.getPosition().lng()}">Directions</a>
+        </div>
+      </div>
     </div>
-    <h5><span class='bolden'>Length:</span> ${trail.length} <span class='bolden'>| Difficulty:</span> ${trail.difficulty} <span class='bolden'>| Rating:</span> ${trail.rating}</h5>
-    <p>${trail.summary}</p>
-      <a href="/directions?orig_lat=${searchLocation.latLng.lat}&orig_lng=${searchLocation.latLng.lng}&dest_lat=${plopMarker.getPosition().lat()}&dest_lng=${plopMarker.getPosition().lng()}">Directions</a>
-    </div>
-  </div>`
+  `
 }
 // plops a marker down at the events latLng and reloads map
 
@@ -201,15 +206,15 @@ function plopMarkerMap() {
                                                    data.results[0].geometry.location.lng );
                 return plopMarkerMap();
             };
-
         });
     };
 
+    $("#new_trail").addListener('change')
     // updates the trail preview box
 
+    $("#trail-preview").empty();
     preview = trailPreview(trail);
-    preview_box = document.getElementById('trail-preview');
-    preview_box.append();
+    $("#trail-preview").append(preview);
 
     // Call plopMarker when user clicks on map
 
