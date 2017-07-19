@@ -26,9 +26,6 @@ class Seed
     seed.most_active_user_events
     seed.log
   end
-<<<<<<< HEAD
-  
-=======
 
   def drop_tables
     Event.destroy_all
@@ -36,7 +33,6 @@ class Seed
     User.destroy_all
   end
 
->>>>>>> admin-build-out
   def generate_users
     20.times do |i|
       user = User.create!(

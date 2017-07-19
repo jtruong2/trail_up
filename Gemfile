@@ -33,6 +33,7 @@ gem 'faker'
 gem 'humanize'
 gem 'fog-aws'
 gem 'whenever', :require => false
+gem 'timecop'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

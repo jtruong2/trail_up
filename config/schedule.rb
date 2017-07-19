@@ -7,8 +7,14 @@ set :environment, "development"
 set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
 
 
-every 1.day, :at => '11:58 am' do
-  rake ':archive_events'
+every 1.day, :at => '11:59 pm' do
+  rake 'archive_events'
 end
 
-# Learn more: http://github.com/javan/whenever
+
+set :environment, "test"
+set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
+
+every 1.day, :at => '11:59 pm' do
+  rake "archive_events"
+end
