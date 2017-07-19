@@ -21,7 +21,7 @@ RSpec.describe "User can create trail" do
     expect(current_path).to eq(trail_path(Trail.first))
     expect(page).to have_content(trail.name)
     expect(page).to have_content(trail.description)
-    expect(page).to have_content(trail.difficulty)
+    expect(page).to have_content(trail.difficulty.rating)
     expect(page).to have_content(trail.location)
     expect(page).to have_content(trail.distance)
   end

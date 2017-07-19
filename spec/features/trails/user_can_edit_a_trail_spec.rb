@@ -21,11 +21,11 @@ RSpec.describe 'User can edit a trail' do
         expect(page).to have_selector("input[value='#{trail.description}']")
         expect(page).to have_selector("input[value='#{trail.distance}']")
         expect(page).to have_selector("input[value='#{trail.location}']")
-        expect(page).to have_select("trail_difficulty", selected: trail.difficulty)
+        expect(page).to have_select("trail_difficulty_id", selected: trail.difficulty.rating)
       end
     end
 
-    xit 'edits a trail' do
+    it 'edits a trail' do
       trail = create(:trail)
 
       visit(edit_trail_path(trail))
@@ -33,13 +33,13 @@ RSpec.describe 'User can edit a trail' do
       within('form') do
         fill_in "Name", with: 'Super Sick Trail'
         fill_in "Description", with: 'Its so good it hurts'
-        select "White", from: "trail[difficulty]"
+        select "White", from: "trail[difficulty_id]"
         fill_in "Location", with: 'Denver'
         fill_in "Distance", with: '45'
-        click_on 'Submit'
+        click_on 'Update Trail'
       end
 
-      expect(page).to have_current_path("trails/#{trail.id}")
+      expect(page).to have_current_path("/trails/#{trail.id}")
       expect(page).to have_content('Trail Updated')
 
       expect(page).to have_content('Super Sick Trail')
@@ -50,7 +50,7 @@ RSpec.describe 'User can edit a trail' do
     end
   end
 
-  xcontext 'Edits a trail sad path' do
+  context 'Edits a trail sad path' do
 
     it 'edits a trail with blank attributes' do
       trail = create(:trail)
