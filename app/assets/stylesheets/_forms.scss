@@ -122,7 +122,11 @@
       }
     }
 
-    .edit-delete-link {
+    .role-based-event-link {
       display: flex;
       justify-content: center;
+      font-family: 'Amatic SC';
+      font-weight: 600;
+      font-size: 40px;
+      padding: 20px;
     }
