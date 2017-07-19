@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @status = current_user ? current_user.event_status(@event.id) : "unauthorized"
-    @fitbit = Fitbit.new(current_user).collect_date(@event.date)
+    @fitbit = Fitbit.new(current_user).collect_date(@event.date) if session[:fitbit] =  true
   end
 
   def destroy

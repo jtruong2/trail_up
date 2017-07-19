@@ -55,10 +55,11 @@
 }
 .event-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   position: relative;
-  top: -180px;
-  left: 45%;
+  top: -24px;
+  left: 24%;
+  padding-left: 5px;
   .show-button {
     text-decoration: none;
     border-style: none;
@@ -66,12 +67,11 @@
     text-align: center;
     background-color: #BF392e;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 15px;
     font-family: 'Lato';
     height: auto;
-    width: 11%;
-    margin-top: 7px;
-    margin-bottom: 5px;
+    width: 15%;
+    margin-left: 2%;
   }
   a {
     text-decoration: none;
