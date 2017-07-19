@@ -5,10 +5,10 @@ describe "user that is a host can edit their event" do
     @user_guest = create(:user, username: "guest")
     @user = create(:user, email: "user@gmail.com")
     @user_host = create(:user, username: "host", email: "host@gmail.com")
-
+    @difficulty = create(:difficulty, rating: "Hard as Diamonds" )
     @trail_1 = Trail.create!(name: "The Hardest One of All",
                               description: "It is really hard",
-                              difficulty: "Hard as Diamonds",
+                              difficulty: @difficulty,
                               location: "Denver, CO",
                               distance: 5.5,
                               rating: 4.9,
@@ -25,7 +25,7 @@ describe "user that is a host can edit their event" do
 
     @trail_2 = Trail.create!(name: "The Hardest One of All2",
                               description: "It is really hard",
-                              difficulty: "Hard as Diamonds",
+                              difficulty: @difficulty,
                               location: "Boulder, CO",
                               distance: 5.5,
                               rating: 4.9,

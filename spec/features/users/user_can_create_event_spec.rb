@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "User creates an event" do
   scenario "user creates an event from a new trail" do
     user = create(:user)
+    create(:difficulty, rating: "Double Black Diamond")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     visit "/"
@@ -14,10 +15,10 @@ RSpec.describe "User creates an event" do
 
     fill_in "Name", with: "Totally Epic Trail"
     fill_in "Description", with: "This Trail is SOOO Epic"
-    select "Double Black Diamond", from: "trail[difficulty]"
+    select "Double Black Diamond", from: "trail[difficulty_id]"
     fill_in "Location", with: "Boulder, Colorado"
     fill_in "Distance", with: 30.0
-    click_on "Create New Trail"
+    click_on "Create Trail"
 
     expect(current_path).to eq(new_event_path)
     # I should be able to see my trail selection on a map (not yet implemented)
