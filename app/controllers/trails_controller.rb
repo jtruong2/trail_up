@@ -15,6 +15,7 @@ class TrailsController < ApplicationController
   end
 
   def create
+    binding.pry
     @trail = Trail.new(trail_params)
     if @trail.save
       Picture.create_many(pic_params[:images].merge({imageable_id: @trail.id})) if pic_params[:images][:images]
@@ -46,7 +47,7 @@ class TrailsController < ApplicationController
     end
 
     def trail_params
-      params.require(:trail).permit(:name, :description, :difficulty_id, :location, :distance, :rating)
+      params.require(:trail).permit(:name, :description, :difficulty_id, :location, :lat, :lng, :distance, :rating)
     end
 
     def pic_params

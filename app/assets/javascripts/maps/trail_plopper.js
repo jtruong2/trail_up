@@ -2,6 +2,7 @@ var map; // main google map object
 var plopMarker; // holds the user plopped marker for location of new trail
 var markers; // holds all markers built from HikingProject API call
 var zoom = 10; // default map zoom
+var geocoder; // holds instance of GoogleGeocoder
 
 // object that can act like a marker event so it can be used to create a plopMarker
 
@@ -69,6 +70,12 @@ var plopThatMarker = function(event) {
     plopThatMarker(event)
   });
 
+  let location = document.getElementById('trail_location');
+  let lat = document.getElementById('trail_latitude');
+  let lng = document.getElementById('trail_longitude');
+  lat.value = JSON.stringify(plopMarker.position.lat());
+  lng.value = JSON.stringify(plopMarker.position.lng());
+
   plopMarkerMap();
 };
 
@@ -81,6 +88,8 @@ function plopMarkerMap() {
         zoom: zoom
     });
 
+    geocoder = new google.maps.Geocoder;
+
     // Places plopMarker if it exists otherwise makes one from searchLocation
 
     if (plopMarker) {
@@ -88,6 +97,10 @@ function plopMarkerMap() {
     } else {
       plopThatMarker(searchLocation)
     };
+
+    geocoder.geocode({'location': plopMarker.position}, function(results, status) {
+      debugger
+    });
 
     // Request to HikingProject for trailheads near plopMarker
 
@@ -150,6 +163,8 @@ function plopMarkerMap() {
         });
     };
 
+
+
     // Places new plopMarker when user clicks on map
 
     google.maps.event.addListener(map, 'click', function(event) {
@@ -157,12 +172,9 @@ function plopMarkerMap() {
     });
 
     // Listen for form submit and add plopMarker location to form
-
     let submitButton = document.getElementById('submit');
-
     submitButton.addEventListener('click', function (){
-
-      let location = document.getElementById('plop_location');
-      location.value = JSON.stringify(plopMarker.latLng);
+      lat.value = JSON.stringify(plopMarker.position.lat);
+      lng.value = JSON.stringify(plopMarker.position.lng);
     });
 };

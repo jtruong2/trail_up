@@ -1,6 +1,8 @@
+
 <div class='form trail-form'>
   <%= form_for(@trail) do |f| %>
-    <%=hidden_field_tag :plop_location %>
+    <%=f.hidden_field :latitude %>
+    <%=f.hidden_field :longitude %>
     <%=f.label :name %>
     <%=f.text_field :name %>
     <%=f.label :description %>
@@ -12,6 +14,6 @@
     <%=f.label :distance %>
     <%=f.number_field(:distance, step: 0.1) %>
     <%=render partial: 'pictures/form_for_many', :locals => { f: f, object: @trail } %>
-    <%=f.submit%>
+    <%=f.submit id: 'submit'%>
   <%end%>
 </div>
