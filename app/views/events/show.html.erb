@@ -55,11 +55,7 @@
 </div>
 
 <div class="fitbit-information">
-  <% @fitbit.each do |fitbit| %>
-    Steps<%= fitbit.data[:summary][:steps] %>
-    Activity Calories<%= fitbit.data[:summary][:activityCalories] %>
-    Resting Heart Rate<%= fitbit.data[:summary][:restingHeartRate] %>
-  <% end %>
+  <%= render "events/fitbit/#{@fitbit.partial}" %>
 </div>
 
 <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'showTrailMap'} %>

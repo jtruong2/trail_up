@@ -8,16 +8,17 @@ class Fitbit
     @data = {}
   end
 
-  def collect
-    collect_events
-    collect_host_dates
-    collect_guest_dates
-    collect_activity_data
-  end
+  # def collect
+  #   collect_events
+  #   collect_host_dates
+  #   collect_guest_dates
+  #   collect_activity_data
+  # end
 
   def collect_date(date)
     @dates.push(date)
-    collect_activity_data
+    output = collect_activity_data if user != nil
+    sanitize(output)
   end
 
 
@@ -25,12 +26,21 @@ class Fitbit
 
     attr_reader :user, :hosted, :attended, :dates, :data
 
+    def sanitize(output)
+      nil_object = FitbitPresenter.new()
+      if output == nil
+        nil_object
+      else
+        output
+      end
+    end
+
     def collect_activity_data
-      output = []
+      output = nil
       @dates.each do |date|
         formatted_date = format_date(date)
         response = FitbitService.new(formatted_date, user).get_activity_data
-        output << FitbitPresenter.new(formatted_date, response)
+        output = FitbitPresenter.new(formatted_date, response)
       end
       output
     end
