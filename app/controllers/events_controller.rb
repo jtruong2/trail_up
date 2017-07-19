@@ -30,7 +30,6 @@ class EventsController < ApplicationController
     end
   end
 
-
   def show
     @event = Event.find(params[:id])
     @status = current_user ? current_user.event_status(@event.id) : "unauthorized"

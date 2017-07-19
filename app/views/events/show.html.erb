@@ -1,3 +1,4 @@
+<div hidden id='location'>{"lng": <%=@event.trail.longitude%>, "lat": <%=@event.trail.latitude%>}</div>
 <div class='event-show-container'>
 
     <section class='event-show-info'>
@@ -6,7 +7,7 @@
             Hosted by:
         </h5>
         <p>
-        
+
             <% @event.hosts.each do |host| %>
             <%= host.username%>
             <%end%>
@@ -19,9 +20,17 @@
             <%= @event.format_date %>
         </p>
     </section>
-        <h1> Event Name:
-            <%= @event.name %>
-        </h1>
+    <section class="trail-map-info">
+      <h1> Event Name:
+        <%= @event.name %>
+      </h1>
+    </section>
+    <br>
+    <section class= 'event-map'>
+      <div class='event-map-container'>
+        <div id="map" class='map'></div>
+      </div>
+    </section>
 
     <section class='trail-show-info'>
         <h3>Trail Details</h3>
@@ -43,3 +52,6 @@
 <div class='login-to-join'>
 <%= render "events/buttons/#{@status}" %>
 </div>
+
+<%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'showTrailMap'} %>
+<%= javascript_include_tag "maps/show_trail.js" %>
