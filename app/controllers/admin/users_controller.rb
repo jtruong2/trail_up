@@ -7,7 +7,7 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     @user.update_attribute(:role, "admin") if current_user.admin?
-    redirect_to admin_users_path
+    redirect_to admin_dashboard_index_path
   end
 
   def destroy
