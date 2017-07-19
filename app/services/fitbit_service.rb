@@ -16,6 +16,7 @@ class FitbitService
 
   def verify_or_refresh_token
     user.fitbit_token = token
+    user.fitbit_id = codes[1].split('=')[1]
     user.save
   end
 
@@ -27,10 +28,9 @@ class FitbitService
   end
 
   def get_activity_data
-    response = conn.get("/1/user/[user-id]/activities/date/#{codes}.json") do |request|
-      request.headers['Authorization'] = "Bearer #{token}"
+    response = conn.get("/1/user/#{user.fitbit_id}/activities/date/#{codes}.json") do |request|
+      request.headers['Authorization'] = "Bearer #{user.fitbit_token}"
     end
-    binding.pry
     JSON.parse(response.body, symbolize_names: true)
   end
 

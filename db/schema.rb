@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20170719032023) do
     t.string "slug"
     t.integer "role"
     t.string "fitbit_token"
+    t.string "fitbit_id"
     t.string "image"
   end
 

@@ -12,7 +12,6 @@ class FitbitPresenter
     collect_host_dates
     collect_guest_dates
     collect_activity_data
-    binding.pry
   end
 
 
@@ -23,7 +22,7 @@ class FitbitPresenter
     def collect_activity_data
       @dates.each do |date|
         formatted_date = format_date(date)
-        response = FitbitService.new(user).get_activity_data
+        response = FitbitService.new(formatted_date, user).get_activity_data
         binding.pry
       end
     end
