@@ -53,15 +53,13 @@ class User < ApplicationRecord
   end
   
   def self.create_with_omniauth(auth)
-    user = new(
+    create(
       login_meetup: true,
       provider: auth["provider"],
       uid: auth["uid"],
       username: auth["info"]["name"],
       password: SecureRandom.hex(8)
     )
-    binding.pry
-    user.save
   end
 
     
