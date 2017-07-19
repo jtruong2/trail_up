@@ -5,10 +5,11 @@ describe "users can see events and decide to join or not" do
     @user_guest = create(:user, username: "guest")
     @user = create(:user, email: "asdfad")
     @user_host = create(:user, username: "host", email: "host@gmail.com")
+    @difficulty = create(:difficulty, rating: "Hard as Diamonds" )
 
     @trail_1 = Trail.create!(name: "The Hardest One of All",
                               description: "It is really hard",
-                              difficulty: "Hard as Diamonds",
+                              difficulty: @difficulty,
                               location: "Denver, CO",
                               distance: 5.5,
                               rating: 4.9,
@@ -25,7 +26,7 @@ describe "users can see events and decide to join or not" do
 
     @trail_2 = Trail.create!(name: "The Hardest One of All2",
                               description: "It is really hard",
-                              difficulty: "Hard as Diamonds",
+                              difficulty: @difficulty,
                               location: "Boulder, CO",
                               distance: 5.5,
                               rating: 4.9,
