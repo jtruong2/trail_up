@@ -7,7 +7,7 @@ class FitbitController < ApplicationController
   end
 
   def show
-    binding.pry
+    @results = FitbitPresenter.new(current_user).collect
   end
 
   def login

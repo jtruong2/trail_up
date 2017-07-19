@@ -26,6 +26,14 @@ class FitbitService
     JSON.parse(response.body, symbolize_names: true)
   end
 
+  def get_activity_data
+    response = conn.get("/1/user/[user-id]/activities/date/#{codes}.json") do |request|
+      request.headers['Authorization'] = "Bearer #{token}"
+    end
+    binding.pry
+    JSON.parse(response.body, symbolize_names: true)
+  end
+
   private
 
   attr_reader :user, :conn, :fitbit_user, :token, :codes
