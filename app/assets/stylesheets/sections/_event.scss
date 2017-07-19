@@ -39,7 +39,7 @@
     .trail-map-info {
         position: relative;
         margin-top: -21%;
-        left: 16%;
+        left: 17%;
     }
     .event-map {
       .event-map-container {
@@ -52,4 +52,28 @@
         }
       }
     }
+}
+.event-buttons {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: -180px;
+  left: 45%;
+  .show-button {
+    text-decoration: none;
+    border-style: none;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #BF392e;
+    color: #ffffff;
+    font-size: 16px;
+    font-family: 'Lato';
+    height: auto;
+    width: 11%;
+    margin-top: 7px;
+    margin-bottom: 5px;
+  }
+  a {
+    text-decoration: none;
+  }
 }
