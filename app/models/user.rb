@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :slug, uniqueness: true
 
   has_one :picture, as: :imageable, dependent: :destroy
-  has_many :event_roles
+  has_many :event_roles, dependent: :destroy
   has_many :events, through: :event_roles
 
   accepts_nested_attributes_for :picture

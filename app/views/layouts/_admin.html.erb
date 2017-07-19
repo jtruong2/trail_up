@@ -1,0 +1,12 @@
+<li>
+    <%= link_to "Create Event", trails_select_index_path %>
+</li>
+<li>
+    <%= link_to current_user.username, user_path(current_user)%>
+</li>
+<li>
+    <%= link_to 'Dashboard', admin_dashboard_index_path%>
+</li>
+<li>
+    <%= link_to "Logout", logout_path, :method => :delete %>
+</li>

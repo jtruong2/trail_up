@@ -22,6 +22,7 @@ class Permission
   attr_reader :user, :controller, :action, :identifier
 
     def admin_permissions
+      return true if controller == "admin/dashboard"
       return true if controller == "admin/trails" && action.in?(%w(index new create show destroy))
       return true if controller == "admin/users"
       return true if controller == "admin/events" && action.in?(%w(index new create show destroy))
