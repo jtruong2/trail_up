@@ -1,22 +1,4 @@
-<%= render "events/buttons/#{@status}" %>
-
-<div>Created an event for this trail:</div>
-Trail Name: <%= @event.trail.name %>
-Trail Description: <%= @event.trail.description %>
-Trail Difficulty: <%= @event.trail.difficulty.rating %>
-Trail Location: <%= @event.trail.location %>
-Trail Distance: <%= @event.trail.distance %>
-Trail Rating: <%= @event.trail.rating %>
-<br>
-<div>Event details:</div>
-Hosted by:
-<% @event.hosts.each do |host| %>
-<%= host.username%>
-<%end%>
-Event Name: <%= @event.name %>
-Event Description: <%= @event.description %>
-Event Date: <%= @event.date %>
-=======
+<div hidden id='location'>{"lng": <%=@event.trail.longitude%>, "lat": <%=@event.trail.latitude%>}</div>
 <div class='event-show-container'>
 
     <section class='event-show-info'>
@@ -38,9 +20,17 @@ Event Date: <%= @event.date %>
             <%= @event.format_date %>
         </p>
     </section>
-        <h1> Event Name:
-            <%= @event.name %>
-        </h1>
+    <section class="trail-map-info">
+      <h1> Event Name:
+        <%= @event.name %>
+      </h1>
+    </section>
+    <br>
+    <section class= 'event-map'>
+      <div class='event-map-container'>
+        <div id="map" class='map'></div>
+      </div>
+    </section>
 
     <section class='trail-show-info'>
         <h3>Trail Details</h3>
@@ -59,3 +49,9 @@ Event Date: <%= @event.date %>
     </section>
 
 </div>
+<div class='login-to-join'>
+<%= render "events/buttons/#{@status}" %>
+</div>
+
+<%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'showTrailMap'} %>
+<%= javascript_include_tag "maps/show_trail.js" %>

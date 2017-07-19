@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "users can see events and decide to join or not" do
   before(:each) do
     @user_guest = create(:user, username: "guest")
-    @user = create(:user, email: "asdfad")
+    @user = create(:user, email: "email@gmail.com")
     @user_host = create(:user, username: "host", email: "host@gmail.com")
     @difficulty = create(:difficulty, rating: "Hard as Diamonds" )
 
