@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719151020) do
+ActiveRecord::Schema.define(version: 20170719212222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 20170719151020) do
     t.string "slug"
     t.integer "role"
     t.string "image"
+    t.string "provider"
+    t.integer "uid"
   end
 
   add_foreign_key "event_roles", "events"

@@ -34,6 +34,7 @@ gem 'humanize'
 gem 'fog-aws'
 gem 'whenever', :require => false
 gem 'timecop'
+gem 'omniauth-meetup'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
