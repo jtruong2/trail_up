@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Distance</th>
+    <th>Rating</th>
+    <th>Current Event Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @trails.each do |trail| %>
+      <tr class='trail-cell'>
+          <td><%=trail.name%></td>
+          <td><%=trail.location%></td>
+          <td><%=trail.distance%></td>
+          <td><%=trail.rating%></td>
+          <td><%=trail.events.count%></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

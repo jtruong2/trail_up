@@ -7,6 +7,7 @@ class Seed
 
   def self.start
     seed = Seed.new
+    seed.drop_tables
     seed.generate_users
     seed.generate_trails
     sleep 2
@@ -16,10 +17,14 @@ class Seed
     sleep 2
     seed.generate_events
     sleep 2
-    seed.generate_trails
-    sleep 2
-    seed.generate_events
+
     seed.most_active_user_events
+  end
+
+  def drop_tables
+    Event.delete_all
+    Trail.delete_all
+    User.delete_all
   end
 
   def generate_users
@@ -31,6 +36,12 @@ class Seed
       )
       puts "User #{i}: #{user.username} created!"
     end
+    admin = User.create!(
+      username: 'admin',
+      email: 'admin@admin.com',
+      password: 'password',
+      role: 'admin'
+    )
   end
 
   def generate_trails
@@ -58,7 +69,7 @@ class Seed
         description: Faker::Hobbit.quote,
         date: Faker::Date.between(Date.today, 1.year.from_now)
       )
-      EventRole.create(event_id: event.id, user_id: user.id, role: 1)
+      user.event_roles.create(event_id: event.id, role: 1)
       assign_guests(event)
       puts "Event #{i}: #{event.name} created!"
     end
