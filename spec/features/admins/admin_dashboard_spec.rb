@@ -10,8 +10,8 @@ RSpec.describe "As an admin" do
     click_on 'Submit'
 
     expect(current_path).to eq(admin_dashboard_index_path)
-    expect(page).to have_link("All Users")
-    expect(page).to have_link("All Events")
-    expect(page).to have_link("All Trails")
+    expect(page).to have_content("All Users")
+    expect(page).to have_content("All Events")
+    expect(page).to have_content("All Trails")
   end
 end
