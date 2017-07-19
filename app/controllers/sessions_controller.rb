@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(user_params[:password])
       session[:user_id] = user.id
       redirect_to session[:return_path]
+      session.delete(:return_path)
     else
       flash[:error] = ["Invalid credentials. Please check your email and password."]
       redirect_to "/login"

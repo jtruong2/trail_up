@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       Picture.create!(pic_params[:image].merge({imageable_id: user.id}))
       session[:user_id] = user.id
       redirect_to session[:return_path]
+      session.delete(:return_path)
     else
       flash[:error] = user.errors.full_messages
       redirect_to signup_path
