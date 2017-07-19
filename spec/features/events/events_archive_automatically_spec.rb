@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'date'
 
-describe "events auto archive after 2 days" do
+xdescribe "events auto archive after 2 days" do
   scenario "event auto archives" do
     @difficulty = Difficulty.create!(rating: 5)
     @trail_1 = Trail.create!(name: "The Hardest One of All",
