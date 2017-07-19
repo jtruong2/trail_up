@@ -16,7 +16,7 @@ class FitbitService
 
   def verify_or_refresh_token
     user.fitbit_token = token
-    user.fitbit_id = codes[1].split('=')[1]
+    user.fitbit_id = fitbit_user
     user.save
   end
 

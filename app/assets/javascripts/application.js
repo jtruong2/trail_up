@@ -14,3 +14,4 @@
 //= require jquery
 //= require vendor/marker_cluster/markerclusterer
 //= require landing/jumbotron
+//= require d3

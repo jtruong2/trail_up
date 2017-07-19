@@ -19,4 +19,5 @@ Rails.application.config.assets.precompile += %w( search/date_search.js
                                                   maps/simple_map.js
                                                   maps/trail_plopper.js
                                                   maps/show_trail.js
-                                                  fitbit/fitbit.js)
+                                                  fitbit/fitbit.js
+                                                  fitbit/fitbit_graph.js)
