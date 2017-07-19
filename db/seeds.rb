@@ -17,14 +17,17 @@ class Seed
     sleep 2
     seed.generate_events
     sleep 2
-
+    seed.generate_trails
+    sleep 2
+    seed.generate_events
+    sleep 2
     seed.most_active_user_events
   end
 
   def drop_tables
-    Event.delete_all
-    Trail.delete_all
-    User.delete_all
+    Event.destroy_all
+    Trail.destroy_all
+    User.destroy_all
   end
 
   def generate_users
@@ -77,6 +80,7 @@ class Seed
 
   def most_active_user_events
     user = User.create!(username: "Mr. Popular", email: "mrpopular@gmail.com", password: "password")
+    user_b = User.create!(username: "Mr. UnPopular", email: "mrunpopular@gmail.com", password: "password")
     5.times do |i|
       trail = Trail.order('Random()').first
       upcoming_host_event = Event.create(
@@ -107,6 +111,8 @@ class Seed
       )
       EventRole.create(event_id: upcoming_host_event.id, user_id: user.id, role: 0)
       EventRole.create(event_id: archived_host_event.id, user_id: user.id, role: 0)
+      EventRole.create(event_id: upcoming_host_event.id, user_id: user_b.id, role: 1)
+      EventRole.create(event_id: archived_host_event.id, user_id: user_b.id, role: 1)
       EventRole.create(event_id: upcoming_guest_event.id, user_id: user.id, role: 1)
       EventRole.create(event_id: archived_guest_event.id, user_id: user.id, role: 1)
     end
