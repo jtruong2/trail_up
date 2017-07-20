@@ -235,7 +235,6 @@ function plopMarkerMap() {
           reader.onload = function (e) {
             $('#img_prev').attr('src', e.target.result);
           }
-          debugger
           reader.readAsDataURL(input.files[0]);
         }
       }
