@@ -60,6 +60,19 @@
         padding: 20px;
 
         background-color: white;
+
+        .map-info {
+          width: 90%;
+
+          .map-info-header {
+            display: flex;
+            justify-content: space-around;
+
+            #img_prev {
+              padding: 0;
+            }
+          }
+        }
       }
 
       .trail-form {
@@ -87,4 +100,8 @@
       }
     }
   }
+}
+
+#img_prev {
+  padding: 0;
 }

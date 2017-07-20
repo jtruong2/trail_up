@@ -19,6 +19,7 @@ class Trail {
 
 var map; // main google map object
 var plopMarker; // holds the user plopped marker for location of new trail
+var trailInfo;
 var markers; // holds all markers built from HikingProject API call
 var zoom = 10; // default map zoom
 var geocoder; // holds instance of GoogleGeocoder
@@ -109,6 +110,11 @@ var plopThatMarker = function(event) {
     plopThatMarker(event)
   });
 
+  plopMarker.addListener('click', function() {
+      trailInfo.open(map, plopMarker);
+      map.setCenter(plopMarker.getPosition());
+  });
+
   let location_field = document.getElementById('trail_location');
   let lat = document.getElementById('trail_latitude');
   let lng = document.getElementById('trail_longitude');
@@ -152,6 +158,7 @@ function plopMarkerMap() {
     // Add listener to each marker for infoWindow popup
     let infoWindow = new google.maps.InfoWindow();
 
+
     // Places plopMarker if it exists otherwise makes one from searchLocation
 
     if (plopMarker) {
@@ -159,6 +166,12 @@ function plopMarkerMap() {
     } else {
       plopThatMarker(searchLocation)
     };
+
+    if (trailInfo == null) {
+      trailInfo = new google.maps.InfoWindow({
+        content: trailPreview(trail)
+      });
+    }
 
     // Request to HikingProject for trailheads near plopMarker
 
@@ -216,22 +229,19 @@ function plopMarkerMap() {
         });
     };
 
+    if( $(".map-info").length == 0) {
+      refreshPreview();
+    };
+
     // updates the trail preview box
-    refreshPreview();
 
     $('#new_trail').bind('input', function(){
       trail.name = $("#trail_name").val();
       trail.summary = $("#trail_description").val();
       trail.difficulty = $("#trail_difficulty_id").text().split('\n')[$("#trail_difficulty_id").val() - 1];
       trail.length = $("#trail_distance").val();
-
       refreshPreview();
-
-      google.maps.event.addListener(plopMarker, 'click', function() {
-          infoWindow.setContent(trailPreview(trail))
-          infoWindow.open(map, plopMarker);
-          map.setCenter(plopMarker.getPosition());
-      });
+      trailInfo.setContent(trailPreview(trail));
     });
 
     // preview a loaded image
