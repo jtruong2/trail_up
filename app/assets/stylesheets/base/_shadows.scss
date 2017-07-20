@@ -1,0 +1,11 @@
+$d-horz: 5px !default;
+$d-vert: 5px !default;
+$d-blur: 20px !default;
+$d-spread: 3px !default;
+$d-alpha: 0.2 !default;
+
+@mixin shadow($horz: $d-horz, $vert: $d-vert, $blur: $d-blur, $spread: $d-spread, $alpha: $d-alpha) {
+  -webkit-box-shadow: $horz $vert $blur $spread rgba(0, 0, 0, $alpha);
+    -moz-box-shadow: $horz $vert $blur $spread rgba(0, 0, 0, $alpha);
+      box-shadow: $horz $vert $blur $spread rgba(0, 0, 0, $alpha);
+}
