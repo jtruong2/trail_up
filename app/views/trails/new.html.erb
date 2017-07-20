@@ -1,25 +1,23 @@
-<section class='select-heading'>
-    <h1> Create A Trail </h1>
-    <p> Drop a pin to mark the trail head </p>
-    <p> Enter an address or zip code to dial in your search</p>
-    <p> Then fill out the form to create your event </p>
-</section>
-<section class='trail-event-page'>
-
-    <section class='select-trail-search'>
-        <div class='query'>
-            <div class='search-box'>
-                <input id="location-search-box" type="text" placeholder="location...">
-                <input id='location-search-button' type="submit" value="Find Trails">
-            </div>
-        </div>
-        <div class='select_map_holder'>
-            <div id="map" class='map'></div>
-        </div>
-    </section>
-    <div class='event-trail-form'>
-        <%= render partial: 'trails/form' %>
+<div class='new-trail-page'>
+  <header>
+    <div class='banner'>
+      <h1> Create A Trail </h1>
     </div>
-</section>
+    <div class='search'>
+      <input id="location-search-box" type="text" placeholder="go to...">
+      <input id='location-search-button' type="submit" value="Search">
+    </div>
+  </header>
+
+  <main>
+    <div class='new-map-holder'>
+      <div id="map" class='map'></div>
+    </div>
+    <div class='trail-preview'>
+      <%= render partial: 'trails/form' %>
+    </div>
+  </main>
+</div>
+
 <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'plopMarkerMap'} %>
 <%= javascript_include_tag "maps/trail_plopper.js" %>
