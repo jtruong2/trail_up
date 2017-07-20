@@ -60,7 +60,7 @@ const trailheadInfoWindow = function(datum) {
   return `
       <div class='map-info'>
       <div class='map-info-header'>
-      <img src=${image} alt='Trail Image'>
+      <img src=${image} alt='Trail Image' id='image_prev'>
       <h3>${datum.name}</h3>
       </div>
       <h5><span class='bolden'>Length:</span> ${datum.length} <span class='bolden'>| Difficulty:</span> ${datum.difficulty} <span class='bolden'>| Rating:</span> ${datum.hp_rating}</h5>
@@ -227,14 +227,24 @@ function plopMarkerMap() {
     });
 
     refreshPreview();
-    //   $("#trail_name").focus(function(){
-    //
-    //
-    //   });
-    //
-    // refreshPreview();
 
-    // Call plopMarker when user clicks on map
+    $(function() {
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $('#img_prev').attr('src', e.target.result);
+          }
+          debugger
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      $("#trail_images_images").change(function(){
+        $('#img_prev').removeClass('hidden');
+        readURL(this);
+      });
+    });
 
     google.maps.event.addListener(map, 'click', function(event) {
       plopThatMarker(event);
