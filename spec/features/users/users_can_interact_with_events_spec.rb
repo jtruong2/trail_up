@@ -90,7 +90,7 @@ describe "users can see events and decide to join or not" do
 
     expect(page).to have_content("Delete Event")
 
-    click_on "Delete Event"
+    all('.role-based-event-link').first.click
 
     expect(current_path).to eq(root_path)
   end

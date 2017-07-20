@@ -28,7 +28,7 @@ describe "host can complete an event" do
     visit "/events/#{@event_1.id}"
 
     expect(page).to have_content("Mark As Complete")
-    click_on "Mark As Complete"
+    all('.role-based-event-link').last.click
 
     expect(page).to have_content "Welcome #{@user_host.username}"
   end

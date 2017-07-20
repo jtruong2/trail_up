@@ -39,6 +39,7 @@ class Permission
       return true if controller == "admin/events" && action.in?(%w(index new create show destroy))
       return true if controller == "landing" && action == "index"
       return true if controller == "sessions" && action.in?(%w(new create destroy))
+      return true if controller == "meetup_sessions" && action.in?(%w(new create destroy))
       return true if controller == "dashboards" && action.in?(%w(show))
       return true if controller == "pictures" && action.in?(%w(create))
       return true if controller == "users" && action.in?(%w(edit update))
@@ -54,8 +55,11 @@ class Permission
     end
 
     def user_permissions
+      return true if controller == "fitbit_json" && action.in?(%w(index show))
+      return true if controller == "fitbit" && action.in?(%w(index login show))
       return true if controller == "events/event_status" && action.in?(%w(index))
       return true if controller == "landing" && action == "index"
+      return true if controller == "meetup_sessions" && action.in?(%w(new create destroy))
       return true if controller == "sessions" && action.in?(%w(new create destroy))
       return true if controller == "dashboards" && action.in?(%w(show))
       return true if controller == "pictures" && action.in?(%w(create))
@@ -77,6 +81,7 @@ class Permission
 
     def guest_permissions
       return true if controller == "sessions" && action.in?(%w(new create))
+      return true if controller == "meetup_sessions" && action.in?(%w(new create destroy))
       return true if controller == "landing" && action == "index"
       return true if controller == "users" && action.in?(%w(new create))
       return true if controller == "trails" && action.in?(%w(index show))

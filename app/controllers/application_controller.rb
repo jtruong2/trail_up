@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
     current_user && current_user.admin?
   end
 
+
   private
 
     def authorize!

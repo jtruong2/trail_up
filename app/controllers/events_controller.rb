@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
+
   def new
     @event = Event.new(trail_id: params[:trail_id])
   end
-
 
   def create
     @event = Event.new(event_params)
@@ -33,6 +33,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @status = current_user ? current_user.event_status(@event.id) : "unauthorized"
+    @fitbit = Fitbit.new(current_user).collect_date(@event.date)
   end
 
   def destroy

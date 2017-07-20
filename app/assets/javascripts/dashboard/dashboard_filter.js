@@ -1,15 +1,17 @@
-// add listener to upcoming
-var filterCategory = "upcoming";
+var filterCategories = ["upcoming"];
 
 var filterEvents = function() {
 
     var hideFilteredElements = function(element) {
-        if (!element.classList.value.includes(filterCategory)) {
+      Array.prototype.forEach.call(window.filterCategories, function(filter, index) {
+        if (!element.classList.value.includes(filter)) {
             element.style.display = "none";
         }
-        if (element.classList.value.includes(filterCategory) && element.style.display == "none") {
+        if (element.classList.value.includes(filter) && element.style.display == "none") {
             element.style.display = "";
         }
+      }
+      )
     }
 
     var domTraversal = function(events) {
@@ -21,29 +23,64 @@ var filterEvents = function() {
     var events = document.getElementsByClassName('event');
     domTraversal(events);
 
-
     var attending = document.getElementById("attending");
     attending.addEventListener("click", function() {
-        window.filterCategory = "upcoming guest";
-        domTraversal(events);
+      if (this.classList.value.includes('selected')) {
+        index = window.filterCategories.indexOf("attending");
+        window.filterCategories.splice(index, 1);
+      } else {
+        window.filterCategories.push("attending");
+      }
+      if ($("#hosting").hasClass("selected")) {
+        $("#hosting").toggleClass("selected")
+      }
+      $("#attending").toggleClass('selected');
+      domTraversal(events);
     });
 
     var hosting = document.getElementById("hosting");
     hosting.addEventListener("click", function() {
-        window.filterCategory = "upcoming host";
-        domTraversal(events);
+      if (this.classList.value.includes('selected')) {
+        index = window.filterCategories.indexOf("hosting");
+        window.filterCategories.splice(index, 1);
+      } else {
+        window.filterCategories.push("hosting");
+      }
+      if ($("#attending").hasClass("selected")) {
+        $("#attending").toggleClass("selected")
+      }
+      $("#hosting").toggleClass('selected');
+      domTraversal(events);
     });
 
     var upcoming = document.getElementById("upcoming");
     upcoming.addEventListener("click", function() {
-        window.filterCategory = "upcoming";
-        domTraversal(events);
+      if (this.classList.value.includes('selected')) {
+        index = window.filterCategories.indexOf("upcoming");
+        window.filterCategories.splice(index, 1);
+      } else {
+        window.filterCategories.push("upcoming");
+      }
+      if ($("#past").hasClass("selected")) {
+        $("#past").toggleClass("selected")
+      }
+      $("#upcoming").toggleClass('selected');
+      domTraversal(events);
     });
 
     var past = document.getElementById("past");
     past.addEventListener("click", function() {
-        window.filterCategory = "past";
-        domTraversal(events);
+      if (this.classList.value.includes('selected')) {
+        index = window.filterCategories.indexOf("past");
+        window.filterCategories.splice(index, 1);
+      } else {
+        window.filterCategories.push("past");
+      }
+      if ($("#upcoming").hasClass("selected")) {
+        $("#upcoming").toggleClass("selected")
+      }
+      $("#past").toggleClass('selected');
+      domTraversal(events);
     });
 }
 filterEvents();
