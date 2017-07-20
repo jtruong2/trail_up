@@ -34,7 +34,19 @@
     }
     .event {
         max-width: 300px;
+        height: 325px;
         text-align: center;
+        border-radius: 5px;
+        background: whitesmoke;
+        margin: 10px;
+        padding: 5px;
+        box-shadow: 7px 7px 5px #888888;
+    }
+    .event:focus {
+        box-shadow: 2px 2px 2px #888888;
+        position: relative;
+        left: 5px;
+        outline: none;
     }
 }
 
