@@ -7,22 +7,24 @@
 </div>
 <div class='event-search-results'>
     <% @events.each do |event|%>
-        <div class='event'>
-            <h3>
-                <%=link_to event.name, event_path(event.event_id) %>
-            </h3>
-            <h4>
-                <%=event.trail_name %>
-            </h4>
-            <h4>
-                <%=event.format_date %>
-            </h4>
-            <h4>
-                <%=event.location %>
-            </h4>
-            <p>
-                <%=event.description %>
-            </p>
-        </div>
-        <%end%>
+        <%= link_to event_path(event.event_id) do %>
+            <div class='event' , tabindex=<%=event.event_id%>>
+                <h3>
+                    <%=event.name %>
+                </h3>
+                <h4>
+                    <%=event.trail_name %>
+                </h4>
+                <h4>
+                    <%=event.format_date %>
+                </h4>
+                <h4>
+                    <%=event.location %>
+                </h4>
+                <p>
+                    <%=event.description %>
+                </p>
+            </div>
+            <%end%>
+                <%end%>
 </div>

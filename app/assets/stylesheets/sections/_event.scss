@@ -1,21 +1,15 @@
 .event-show {
-    border: 1px solid black;
     border-radius: 5px;
     max-width: 1100px;
     margin-right: auto;
     margin-left: auto;
     margin-top: 50px;
     margin-bottom: 25px;
+    background: #ffffff;
+    box-shadow: 7px 7px 5px #888888;
 }
 
 .event-show-container {
-    // border: 1px solid black;
-    // border-radius: 5px;
-    // max-width: 1100px;
-    // margin-right: auto;
-    // margin-left: auto;
-    // margin-top: 50px;
-    // margin-bottom: 25px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -85,28 +79,30 @@
         font-weight: 800;
     }
 }
-.fitbit-information-class {
-  display: flex;
-  align-items: center;
-}
-.fitbit-data-table {
-  display: flex;
-  align-items: center;
-  table {
-    margin: 0px auto;
-    text-align: center;
-  }
-  thead{
-    border-bottom: 1px solid black;
-  }
-  th{
-    font-size: 40px;
-    font-weight: 800;
-  }
-  th, td{
-    font-family: "Amatic SC";
-    font-size: 30px;
-    padding: 20px;
 
-  }
+.fitbit-information-class {
+    display: flex;
+    align-items: center;
+}
+
+.fitbit-data-table {
+    display: flex;
+    align-items: center;
+    table {
+        margin: 0px auto;
+        text-align: center;
+    }
+    thead {
+        border-bottom: 1px solid black;
+    }
+    th {
+        font-size: 40px;
+        font-weight: 800;
+    }
+    th,
+    td {
+        font-family: "Amatic SC";
+        font-size: 30px;
+        padding: 20px;
+    }
 }
