@@ -3,7 +3,7 @@ var zoom = 10;
 var marker;
 let label = 'Trailhead'
 
-function showTrailMap() {
+var showTrailMap = function() {
 
     let location = document.getElementById('location').textContent;
 

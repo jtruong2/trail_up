@@ -1,7 +1,12 @@
 class TrailsController < ApplicationController
   include Referrer
-  
+
+  before_action :find_trail, only: [:show, :edit, :update]
+
   def index
+  end
+
+  def show
   end
 
   def new
@@ -21,14 +26,27 @@ class TrailsController < ApplicationController
     end
   end
 
-  def show
-    @trail = Trail.find(params[:id])
+  def edit
+  end
+
+  def update
+    if @trail.update(trail_params)
+      flash[:success] = ["Trail Updated"]
+      redirect_to trail_path(@trail)
+    else
+      flash[:error] = @trail.errors.full_messages
+      render :edit
+    end
   end
 
   private
 
+    def find_trail
+      @trail = Trail.find(params[:id])
+    end
+
     def trail_params
-      params.require(:trail).permit(:name, :description, :difficulty, :location, :distance, :rating)
+      params.require(:trail).permit(:name, :description, :difficulty_id, :location, :lat, :lng, :distance, :rating)
     end
 
     def pic_params

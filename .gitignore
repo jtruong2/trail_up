@@ -18,6 +18,7 @@
 /spec/cassettes
 
 .byebug_history
+.DS_Store
 
 # Ignore application configuration
 /config/application.yml
@@ -27,5 +28,8 @@
 
 # Simplecov
 /coverage
+
+# Locally built assets
+/public/assets
 
 

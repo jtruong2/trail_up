@@ -1,8 +1,21 @@
-.event-show-container {
+.event-show {
     border: 1px solid black;
     border-radius: 5px;
     max-width: 1100px;
-    margin: 100px auto;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+.event-show-container {
+    // border: 1px solid black;
+    // border-radius: 5px;
+    // max-width: 1100px;
+    // margin-right: auto;
+    // margin-left: auto;
+    // margin-top: 50px;
+    // margin-bottom: 25px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -14,7 +27,9 @@
         padding: 20px;
     }
     h1 {
-        font-size: 40px;
+        font-size: 30px;
+        width: 100%;
+        text-align: center;
     }
     h3 {
         text-decoration: underline;
@@ -33,4 +48,65 @@
     p {
         margin-bottom: 15px;
     }
+    .trail-map-info {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        // position: relative;
+        // margin-top: -21%;
+        // left: 17%;
+    }
+    .event-map-container {
+        #map {
+            // position: relative;
+            // margin-top: 45%;
+            // left: -42%;
+            width: 300px;
+            height: 200px;
+        }
+    }
+}
+
+.event-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    button {
+        border-style: none;
+        border-radius: 5px;
+        background-color: #BF392e;
+        color: #ffffff;
+        margin: 0px auto;
+        font-family: "Amatic SC";
+        font-size: 20px;
+        font-weight: 800;
+    }
+}
+.fitbit-information-class {
+  display: flex;
+  align-items: center;
+}
+.fitbit-data-table {
+  display: flex;
+  align-items: center;
+  table {
+    margin: 0px auto;
+    text-align: center;
+  }
+  thead{
+    border-bottom: 1px solid black;
+  }
+  th{
+    font-size: 40px;
+    font-weight: 800;
+  }
+  th, td{
+    font-family: "Amatic SC";
+    font-size: 30px;
+    padding: 20px;
+
+  }
 }

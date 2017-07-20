@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_guest
-    current_user ? 'user' : 'guest'
+    Permission.status(current_user)
   end
 
   def current_admin?

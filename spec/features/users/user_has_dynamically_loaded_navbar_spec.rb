@@ -14,7 +14,7 @@ describe " user can login and see updated navbar " do
     fill_in("Password", with: user.password)
     expect(page).to have_button("Submit")
     click_on("Submit")
-    expect(page).to have_current_path("/dashboard")
+    expect(page).to have_current_path(root_path)
 
     expect(page).to_not have_content("Login")
     expect(page).to_not have_content("SignUp")

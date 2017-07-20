@@ -1,1 +1,12 @@
-<%= link_to "Delete Event", event_path(:id => params[:id]), :method => :delete %>
+<%= link_to event_path(:id => params[:id]), :method => :delete, class: "role-based-event-link"  do%>
+  <button>Delete Event</button>
+<%end%>
+
+
+<%= link_to edit_event_path(@event), class: "role-based-event-link" do%>
+  <button>Edit Event</button>
+<%end%>
+
+<%= link_to events_update_status_path(:id => @event.id), class: "role-based-event-link" do%>
+  <button>Mark As Complete</button>
+<%end%>
