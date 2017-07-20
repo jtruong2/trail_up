@@ -11,7 +11,7 @@ class Trail {
     this.name = 'Trail Name'
     this.length = 8
     this.difficulty = 'Blue'
-    this.rating = 4.5
+    this.rating = 'none'
     this.summary = 'A very nice walk in the park'
     this.image = '/assets/logo_trail_up.png'
   };
@@ -209,12 +209,30 @@ function plopMarkerMap() {
         });
     };
 
-    $("#new_trail").addListener('change')
     // updates the trail preview box
 
-    $("#trail-preview").empty();
-    preview = trailPreview(trail);
-    $("#trail-preview").append(preview);
+    const refreshPreview = function() {
+      $("#trail-preview").empty();
+      preview = trailPreview(trail);
+      $("#trail-preview").append(preview);
+    }
+
+
+    $('#new_trail').bind('input', function(){
+      trail.name = $("#trail_name").val();
+      trail.summary = $("#trail_description").val();
+      trail.difficulty = $("#trail_difficulty_id").text().split('\n')[$("#trail_difficulty_id").val() - 1];
+      trail.length = $("#trail_distance").val();
+      refreshPreview();
+    });
+
+    refreshPreview();
+    //   $("#trail_name").focus(function(){
+    //
+    //
+    //   });
+    //
+    // refreshPreview();
 
     // Call plopMarker when user clicks on map
 

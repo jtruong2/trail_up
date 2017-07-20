@@ -8,7 +8,6 @@ class Trail < ApplicationRecord
   # after_update :set_events
 
   reverse_geocoded_by :latitude, :longitude do |obj, results|
-    binding.pry
     if geo = results.first
       obj.location = "#{geo.city}, #{geo.state}"
     end

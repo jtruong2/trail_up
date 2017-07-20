@@ -28,5 +28,3 @@ var showTrailMap = function() {
 
     marker.setMap(map);
 };
-
-showTrailMap();

@@ -15,7 +15,6 @@ class TrailsController < ApplicationController
   end
 
   def create
-    binding.pry
     @trail = Trail.new(trail_params)
     if @trail.save
       Picture.create_many(pic_params[:images].merge({imageable_id: @trail.id})) if pic_params[:images][:images]
