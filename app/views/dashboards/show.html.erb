@@ -1,10 +1,13 @@
 <div class='dashboard'>
     <h3><%=current_user.username%>'s Events</h3>
-    
+
     <div class='display'>
 
         <section class='events-container'>
             <div id='events'>
+                <% if @event_presenter.empty? %>
+                  <div class="no-events-message">You have not yet created any events or signed up to attend any events.</div>
+                <% end %>
                 <% @event_presenter.each do |event| %>
                     <div class="event <%= event.get_identifiers %>">
                         <%= link_to event.name, event_path(event.event_id) %>
