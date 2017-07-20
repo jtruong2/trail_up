@@ -13,7 +13,7 @@ describe "user profile page has vanity url" do
     fill_in("Password", with: user.password)
     expect(page).to have_button("Submit")
     click_on("Submit")
-    expect(page).to have_current_path("/dashboard")
+    expect(page).to have_current_path(root_path)
 
     click_on(user.username)
     expect(current_path).to eq("/users/#{user.slug}")
