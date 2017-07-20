@@ -1,3 +1,18 @@
-Steps<%= @fitbit.data[:summary][:steps] %>
-Activity Calories<%= @fitbit.data[:summary][:activityCalories] %>
-Resting Heart Rate<%= @fitbit.data[:summary][:restingHeartRate] %>
+<div class="fitbit-data-table">
+  <table class='fitbit-data'>
+    <thead>
+      <tr>
+        <th>Steps</th>
+        <th>Activity Calories</th>
+        <th>Resting Heart Rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @fitbit.data[:summary][:steps] %></td>
+        <td><%= @fitbit.data[:summary][:activityCalories] %></td>
+        <td><%= @fitbit.data[:summary][:restingHeartRate] %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
