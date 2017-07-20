@@ -13,7 +13,7 @@
     <%=f.label :difficulty %>
     <%=f.collection_select(:difficulty_id, Difficulty.all, :id, :rating) %>
     <%=f.label :location %>
-    <%=f.text_field :location, :readonly => true %>
+    <%=f.text_field :location %>
     <%=f.label :distance %>
     <%=f.number_field(:distance, step: 0.1) %>
     <%=render partial: 'pictures/form_for_many', :locals => { f: f, object: @trail } %>
