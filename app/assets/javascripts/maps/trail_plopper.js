@@ -150,7 +150,7 @@ function plopMarkerMap() {
     // Add geocoder to make address API calls
     geocoder = new google.maps.Geocoder;
     // Add listener to each marker for infoWindow popup
-    let infoWindow = new google.maps.InfoWindow()
+    let infoWindow = new google.maps.InfoWindow();
 
     // Places plopMarker if it exists otherwise makes one from searchLocation
 
@@ -217,7 +217,6 @@ function plopMarkerMap() {
     };
 
     // updates the trail preview box
-
     refreshPreview();
 
     $('#new_trail').bind('input', function(){
@@ -225,12 +224,13 @@ function plopMarkerMap() {
       trail.summary = $("#trail_description").val();
       trail.difficulty = $("#trail_difficulty_id").text().split('\n')[$("#trail_difficulty_id").val() - 1];
       trail.length = $("#trail_distance").val();
+
       refreshPreview();
 
       google.maps.event.addListener(plopMarker, 'click', function() {
-        infoWindow.setContent(trailPreview(trail));
-        infoWindow.open(map, plopMarker);
-        map.setCenter(plopMarker.getPosition());
+          infoWindow.setContent(trailPreview(trail))
+          infoWindow.open(map, plopMarker);
+          map.setCenter(plopMarker.getPosition());
       });
     });
 

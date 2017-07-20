@@ -25,6 +25,9 @@ module TrailUp
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # Make .scss default syntax
+    config.sass.preferred_syntax = :scss
+
     # Don't generate system test files.
     config.generators.system_tests = nil
   end

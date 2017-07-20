@@ -26,10 +26,11 @@
     width: auto;
 
     .new-map-holder {
+      @include shadow();
       display: flex;
       flex-grow: 3;
       min-width: 50%;
-      padding: 20px;
+      margin: 20px;
 
       #map {
         width: 100%;
@@ -44,6 +45,7 @@
       padding: 20px;
 
       .trail-preview-box {
+        @include shadow();
         display: flex;
         justify-content: center;
         width: auto;
@@ -61,6 +63,8 @@
       }
 
       .trail-form {
+        @include shadow();
+        border-radius: 7px;
         display: flex;
         justify-content: center;
         width: auto;
