@@ -41,6 +41,7 @@ class EventPresenter
                                    FROM event_roles
                                    WHERE event_roles.event_id = #{self.event_id}
                                    AND event_roles.user_id = #{self.user_id};")
-    event[0].role
+    return "attending" if event[0].role == "guest"
+    return "hosting" if event[0].role == "host"
   end
 end

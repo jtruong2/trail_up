@@ -26,10 +26,10 @@ var filterEvents = function() {
     var attending = document.getElementById("attending");
     attending.addEventListener("click", function() {
       if (this.classList.value.includes('selected')) {
-        index = window.filterCategories.indexOf("guest");
+        index = window.filterCategories.indexOf("attending");
         window.filterCategories.splice(index, 1);
       } else {
-        window.filterCategories.push("guest");
+        window.filterCategories.push("attending");
       }
       if ($("#hosting").hasClass("selected")) {
         $("#hosting").toggleClass("selected")
@@ -41,10 +41,10 @@ var filterEvents = function() {
     var hosting = document.getElementById("hosting");
     hosting.addEventListener("click", function() {
       if (this.classList.value.includes('selected')) {
-        index = window.filterCategories.indexOf("host");
+        index = window.filterCategories.indexOf("hosting");
         window.filterCategories.splice(index, 1);
       } else {
-        window.filterCategories.push("host");
+        window.filterCategories.push("hosting");
       }
       if ($("#attending").hasClass("selected")) {
         $("#attending").toggleClass("selected")
