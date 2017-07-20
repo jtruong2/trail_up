@@ -47,7 +47,7 @@ describe "user that is a host can edit their event" do
 
     expect(page).to have_content("Edit Event")
 
-    click_on "Edit Event"
+    all('.role-based-event-link')[1].click
 
     expect(current_path).to eq("/events/#{@event_2.id}/edit")
     expect(page).to have_content("Edit #{@event_2.name}")
