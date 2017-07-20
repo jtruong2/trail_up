@@ -13,7 +13,7 @@ describe "existing user can login" do
     fill_in("Password", with: user.password)
     expect(page).to have_button("Submit")
     click_on("Submit")
-    expect(page).to have_current_path("/dashboard")
+    expect(page).to have_current_path(root_path)
   end
 
   scenario "existing user can login with email or username" do
@@ -28,7 +28,7 @@ describe "existing user can login" do
     fill_in("Password", with: user.password)
     expect(page).to have_button("Submit")
     click_on("Submit")
-    expect(page).to have_current_path("/dashboard")
+    expect(page).to have_current_path(root_path)
   end
 
   scenario "existing user is redirected if they provide the wrong password" do
