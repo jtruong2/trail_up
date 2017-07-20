@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20170719212222) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.integer "role"
+    t.string "fitbit_token"
+    t.string "fitbit_id"
     t.string "image"
     t.string "provider"
     t.integer "uid"

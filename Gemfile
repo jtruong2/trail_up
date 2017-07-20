@@ -32,6 +32,7 @@ gem 'geocoder'
 gem 'faker'
 gem 'humanize'
 gem 'fog-aws'
+gem "d3-rails"
 gem 'whenever', :require => false
 gem 'timecop'
 gem 'omniauth-meetup'

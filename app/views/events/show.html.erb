@@ -51,8 +51,11 @@
 </div>
 
 <div class='event-buttons'>
-
 <%= render "events/buttons/#{@status}" %>
+</div>
+
+<div class="fitbit-information">
+  <%= render "events/fitbit/#{@fitbit.partial}" %>
 </div>
 
 <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'showTrailMap'} %>

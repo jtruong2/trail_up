@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_guest
-    case 
-    when current_user.nil? 
+    case
+    when current_user.nil?
     'guest'
     when current_user.admin?
     'admin'
@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
   def current_admin?
     current_user && current_user.admin?
   end
+
 
   private
 

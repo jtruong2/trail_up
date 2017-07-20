@@ -34,6 +34,10 @@ class User < ApplicationRecord
     self.slug = username.parameterize if username
   end
 
+  def partials
+    
+  end
+
   def attending
     filter_by_role("guest")
   end

@@ -24,7 +24,63 @@ class Seed
     seed.generate_events(10)
     sleep 2
     seed.most_active_user_events
+    seed.fitbit_user
   end
+
+  def fitbit_user
+    user = User.create!(username: "Active User", email: "activeuser@gmail.com", password: "password")
+    difficulty = Difficulty.create!(rating: 5)
+      trail = Trail.create!(
+        name: "#{Faker::Hobbit.location}, #{Faker::Address.community}",
+        description: Faker::Hobbit.quote,
+        distance: %w(5,10,15,20,25,50,100).sample,
+        rating: %w(1,2,3,4).sample,
+        longitude: 39.7392,
+        latitude: 104.9903,
+        difficulty_id: difficulty.id
+      )
+      event_1 = Event.create!(
+        trail_id: trail.id,
+        name: Faker::Space.agency,
+        description: Faker::Hobbit.quote,
+        date: DateTime.new(2017, 7, 15),
+        longitude: 39.7392,
+        latitude: 104.9903,
+        archived: true
+      )
+      EventRole.create!(user_id: user.id, event_id: event_1.id, role: 1)
+      event_2 = Event.create!(
+        trail_id: trail.id,
+        name: Faker::Space.agency,
+        description: Faker::Hobbit.quote,
+        date: DateTime.new(2017, 7, 16),
+        longitude: 39.7392,
+        latitude: 104.9903,
+        archived: true
+      )
+      EventRole.create!(user_id: user.id, event_id: event_2.id, role: 1)
+      event_3 = Event.create!(
+        trail_id: trail.id,
+        name: Faker::Space.agency,
+        description: Faker::Hobbit.quote,
+        date: DateTime.new(2017, 7, 17),
+        longitude: 39.7392,
+        latitude: 104.9903,
+        archived: true
+      )
+      EventRole.create!(user_id: user.id, event_id: event_3.id, role: 1)
+      event_4 = Event.create!(
+        trail_id: trail.id,
+        name: Faker::Space.agency,
+        description: Faker::Hobbit.quote,
+        date: DateTime.new(2017, 7, 18),
+        longitude: 39.7392,
+        latitude: 104.9903,
+        archived: true
+      )
+      EventRole.create!(user_id: user.id, event_id: event_4.id, role: 1)
+    end
+
 
   def drop_tables
     Event.destroy_all
