@@ -1,10 +1,12 @@
-// object that can act like a marker event so it can be used to create a plopMarker
+// Object that can mimmics like a marker event so it can be used to create a plopMarker
 
 class PlopLocation {
   constructor(lat, lng) {
     this.latLng = { lat: lat, lng: lng}
   }
 };
+
+// Used to consolidate data for a trail
 
 class Trail {
   constructor() {
@@ -17,14 +19,16 @@ class Trail {
   };
 }
 
+
+
 var map; // main google map object
 var plopMarker; // holds the user plopped marker for location of new trail
-var trailInfo;
+var trailInfo; // holds the infoWindow for plopMarker
 var markers; // holds all markers built from HikingProject API call
 var zoom = 10; // default map zoom
 var geocoder; // holds instance of GoogleGeocoder
 var temp_location; // holds the autoCompleted location from geocoder
-var city;
+var city; // holds
 var state;
 var trail = new Trail;
 var searchLocation = new PlopLocation(39.742043, -104.991531);
@@ -244,11 +248,13 @@ function plopMarkerMap() {
       trailInfo.setContent(trailPreview(trail));
     });
 
-    // preview a loaded image
+    // if image file changes reload image file
 
     $("#trail_images_images").change(function() {
       readURL(this);
     });
+
+    // loads image file if it exists and attaches it to trail.image
 
     const readURL = function(input) {
       var reader;
@@ -263,6 +269,8 @@ function plopMarkerMap() {
         };
       }
     };
+
+    // listens for a click on the map and calls plopThatMarker in responce
 
     google.maps.event.addListener(map, 'click', function(event) {
       plopThatMarker(event);
