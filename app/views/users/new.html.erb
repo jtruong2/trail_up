@@ -1,20 +1,30 @@
-<section class='form sign-up'>
-  <%= form_for @user do |f| %>
+<div class='login-page'>
+    <section class='form login'>
+        <%= form_for @user do |f| %>
 
 
-    <%= f.label :username %>
-    <%= f.text_field :username %>
+            <%= f.label :username %>
+                <%= f.text_field :username %>
 
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+                    <%= f.label :email %>
+                        <%= f.email_field :email %>
 
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-    
-    <%= render partial: 'pictures/form_for_one', :locals => { f: f, object: @user } %>
+                            <%= f.label :password %>
+                                <%= f.password_field :password %>
 
-    <%= f.submit 'Submit' %>
-  <% end %>
-</section>
+                                    <%= render partial: 'pictures/form_for_one', :locals => { f: f, object: @user } %>
+
+                                        <%= f.submit 'Submit' %>
+                                            <% end %>
+    </section>
+    <section class='or'>
+        <h1>Or Login With:</h1>
+    </section>
+    <section class='meetup-login'>
+        <%= link_to meetup_login_path do %>
+            <%= image_tag  "meetup-logo.png" %>
+                <%end%>
+    </section>
+</div>
 
 <a href=""></a>

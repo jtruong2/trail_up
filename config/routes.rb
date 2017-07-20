@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   root 'landing#index'
 
   get '/signup', to: 'users#new'
+
+  get '/auth/meetup', as: :meetup_login
+  get "/auth/meetup/callback" => "meetup_sessions#create"
+  
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
