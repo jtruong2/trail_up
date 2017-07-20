@@ -37,6 +37,14 @@ const check_image = function(trail) {
     }
 };
 
+// refreshes trail info preview window
+
+const refreshPreview = function() {
+  $("#trail-preview").empty();
+  preview = trailPreview(trail);
+  $("#trail-preview").append(preview);
+}
+
 // clears plopped marker from map
 
 const clearPlopMarker = function() {
@@ -77,7 +85,7 @@ const trailPreview = function(trail) {
   return `
     <div class='map-info'>
       <div class='map-info-header'>
-        <img src=${trail.image} alt='Trail Image'>
+        <img src=${trail.image} alt='Trail Image' id='img_prev'>
         <h3>${trail.name}</h3>
       </div>
       <h5><span class='bolden'>Length:</span> ${trail.length} <span class='bolden'>| Difficulty:</span> ${trail.difficulty} <span class='bolden'>| Rating:</span> ${trail.rating}</h5>
@@ -139,7 +147,10 @@ function plopMarkerMap() {
         zoom: zoom
     });
 
+    // Add geocoder to make address API calls
     geocoder = new google.maps.Geocoder;
+    // Add listener to each marker for infoWindow popup
+    let infoWindow = new google.maps.InfoWindow();
 
     // Places plopMarker if it exists otherwise makes one from searchLocation
 
@@ -171,10 +182,6 @@ function plopMarkerMap() {
                 data_object: datum
             });
         });
-
-        // Add listener to each marker for infoWindow popup
-
-        let infoWindow = new google.maps.InfoWindow()
 
         markers.forEach(function(marker) {
             google.maps.event.addListener(marker, 'click', function() {
@@ -210,40 +217,42 @@ function plopMarkerMap() {
     };
 
     // updates the trail preview box
-
-    const refreshPreview = function() {
-      $("#trail-preview").empty();
-      preview = trailPreview(trail);
-      $("#trail-preview").append(preview);
-    }
-
+    refreshPreview();
 
     $('#new_trail').bind('input', function(){
       trail.name = $("#trail_name").val();
       trail.summary = $("#trail_description").val();
       trail.difficulty = $("#trail_difficulty_id").text().split('\n')[$("#trail_difficulty_id").val() - 1];
       trail.length = $("#trail_distance").val();
+
       refreshPreview();
-    });
 
-    refreshPreview();
-
-    $(function() {
-      function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            $('#img_prev').attr('src', e.target.result);
-          }
-          reader.readAsDataURL(input.files[0]);
-        }
-      }
-
-      $("#trail_images_images").change(function(){
-        $('#img_prev').removeClass('hidden');
-        readURL(this);
+      google.maps.event.addListener(plopMarker, 'click', function() {
+          infoWindow.setContent(trailPreview(trail))
+          infoWindow.open(map, plopMarker);
+          map.setCenter(plopMarker.getPosition());
       });
     });
+
+    // preview a loaded image
+
+    $("#trail_images_images").change(function() {
+      readURL(this);
+    });
+
+    const readURL = function(input) {
+      var reader;
+
+      if (input.files && input.files[0]) {
+        reader = new FileReader();
+        reader.readAsDataURL(input.files[0]);
+
+        reader.onload = function(e) {
+          trail.image = e.target.result;
+          refreshPreview();
+        };
+      }
+    };
 
     google.maps.event.addListener(map, 'click', function(event) {
       plopThatMarker(event);
