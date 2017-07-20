@@ -77,3 +77,28 @@
     text-decoration: none;
   }
 }
+.fitbit-information-class {
+  display: flex;
+  align-items: center;
+}
+.fitbit-data-table {
+  display: flex;
+  align-items: center;
+  table {
+    margin: 0px auto;
+    text-align: center;
+  }
+  thead{
+    border-bottom: 1px solid black;
+  }
+  th{
+    font-size: 40px;
+    font-weight: 800;
+  }
+  th, td{
+    font-family: "Amatic SC";
+    font-size: 30px;
+    padding: 20px;
+
+  }
+}
