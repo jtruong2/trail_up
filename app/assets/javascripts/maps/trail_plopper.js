@@ -1,4 +1,4 @@
-// Object that can mimmics like a marker event so it can be used to create a plopMarker
+// object that can mimmic a google map marker's latLng
 
 class PlopLocation {
   constructor(lat, lng) {
@@ -6,7 +6,7 @@ class PlopLocation {
   }
 };
 
-// Used to consolidate data for a trail
+// used to consolidate data for a trail
 
 class Trail {
   constructor() {
@@ -18,7 +18,6 @@ class Trail {
     this.image = '/assets/logo_trail_up.png'
   };
 }
-
 
 
 var map; // main google map object
@@ -42,7 +41,7 @@ const check_image = function(trail) {
     }
 };
 
-// refreshes trail info preview window
+// refreshes trail info preview window and adds it to preview box
 
 const refreshPreview = function() {
   $("#trail-preview").empty();
@@ -50,7 +49,7 @@ const refreshPreview = function() {
   $("#trail-preview").append(preview);
 }
 
-// clears plopped marker from map
+// clears plopped marker from map if it exists
 
 const clearPlopMarker = function() {
   if(plopMarker) { plopMarker.setMap(null) }
@@ -67,6 +66,8 @@ const makePlopMarker = function(event) {
       icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
   })
 };
+
+// builds html for infoWindow pop up based on data from HikingProject Api call
 
 const trailheadInfoWindow = function(datum) {
   let image = check_image(datum);
@@ -86,6 +87,8 @@ const trailheadInfoWindow = function(datum) {
     `
 };
 
+// builds html for trailInfo preview window based on Trail object
+
 const trailPreview = function(trail) {
   return `
     <div class='map-info'>
@@ -102,7 +105,8 @@ const trailPreview = function(trail) {
     </div>
   `
 }
-// plops a marker down at the events latLng and reloads map
+
+// plops a marker down at a map event (or PlopLocation) latLng and reloads map
 
 var plopThatMarker = function(event) {
   clearPlopMarker();
@@ -126,7 +130,7 @@ var plopThatMarker = function(event) {
   lng.value = JSON.stringify(plopMarker.position.lng());
 
   // makes a call to googleAPI geocoder based on plopMarker location and
-  // fills in location field with the city and state
+  // parses location field with the city and state
 
   geocoder.geocode({'location': plopMarker.position}, function(results, status) {
     results.forEach(function(result) {
@@ -157,19 +161,21 @@ function plopMarkerMap() {
         zoom: zoom
     });
 
-    // Add geocoder to make address API calls
+    // add geocoder to make address API calls
     geocoder = new google.maps.Geocoder;
-    // Add listener to each marker for infoWindow popup
+
+    // add listener to each marker for infoWindow popup
     let infoWindow = new google.maps.InfoWindow();
 
 
-    // Places plopMarker if it exists otherwise makes one from searchLocation
-
+    // places plopMarker if it exists otherwise makes one from searchLocation
     if (plopMarker) {
       plopMarker.setMap(map)
     } else {
       plopThatMarker(searchLocation)
     };
+
+    // if trailInfo does not exist build it
 
     if (trailInfo == null) {
       trailInfo = new google.maps.InfoWindow({
@@ -200,6 +206,8 @@ function plopMarkerMap() {
             });
         });
 
+        // populates each marker with a click listener that opens infoWindow
+
         markers.forEach(function(marker) {
             google.maps.event.addListener(marker, 'click', function() {
                 infoWindow.setContent(this.customInfo)
@@ -208,7 +216,7 @@ function plopMarkerMap() {
             });
         }, this);
 
-        // Add each marker to the map
+        // Add markers to the map
 
         markers.forEach(function(marker) {
           marker.setMap(map);
@@ -233,11 +241,13 @@ function plopMarkerMap() {
         });
     };
 
+    // refresh the trail preview if it does not exist yet
+
     if( $(".map-info").length == 0) {
       refreshPreview();
     };
 
-    // updates the trail preview box
+    // updates the trail preview box by binding it to corresponding input fields
 
     $('#new_trail').bind('input', function(){
       trail.name = $("#trail_name").val();
