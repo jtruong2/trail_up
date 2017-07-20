@@ -86,6 +86,7 @@ class Seed
     Event.destroy_all
     Trail.destroy_all
     User.destroy_all
+    Difficulty.destroy_all
   end
 
   def generate_users(n)

@@ -8,14 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_guest
-    case
-    when current_user.nil?
-    'guest'
-    when current_user.admin?
-    'admin'
-    else
-    'user'
-    end
+    Permission.status(current_user)
   end
 
   def current_admin?
