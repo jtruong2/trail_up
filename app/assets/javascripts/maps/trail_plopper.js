@@ -167,7 +167,6 @@ function plopMarkerMap() {
     // add listener to each marker for infoWindow popup
     let infoWindow = new google.maps.InfoWindow();
 
-
     // places plopMarker if it exists otherwise makes one from searchLocation
     if (plopMarker) {
       plopMarker.setMap(map)

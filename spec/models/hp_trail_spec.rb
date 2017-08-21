@@ -18,7 +18,7 @@ describe HPTrail do
       expect(hp_trail.lat).to eq(39.9787)
       expect(hp_trail.hp_image).to eq("https://cdn-files.apstatic.com/hike/7005712_small_1436317330.jpg")
       expect(hp_trail.hp_rating).to eq(4.6)
-      
+
     end
   end
 end
