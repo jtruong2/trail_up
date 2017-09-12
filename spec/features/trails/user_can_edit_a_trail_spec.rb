@@ -41,7 +41,6 @@ RSpec.describe 'User can edit a trail' do
 
       expect(page).to have_current_path("/trails/#{trail.id}")
       expect(page).to have_content('Trail Updated')
-
       expect(page).to have_content('Super Sick Trail')
       expect(page).to have_content('Its so good it hurts')
       expect(page).to have_content('White')
