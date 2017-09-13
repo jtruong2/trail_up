@@ -1,18 +1,17 @@
 class User < ApplicationRecord
   attr_accessor :login_meetup
+  validates :email, presence: true, uniqueness: true, unless: :login_meetup
+  validates :username, presence: true, uniqueness: true, unless: :login_meetup
+  validates :slug, uniqueness: true
+  has_one :picture, as: :imageable, dependent: :destroy
+  has_many :event_roles, dependent: :destroy
+  has_many :events, through: :event_roles
 
   has_secure_password
   before_save :generate_slug
 
   mount_uploader :image, ImageUploader
 
-  validates :email, presence: true, uniqueness: true, unless: :login_meetup
-  validates :username, presence: true, uniqueness: true, unless: :login_meetup
-  validates :slug, uniqueness: true
-
-  has_one :picture, as: :imageable, dependent: :destroy
-  has_many :event_roles, dependent: :destroy
-  has_many :events, through: :event_roles
 
   accepts_nested_attributes_for :picture
 
@@ -35,7 +34,7 @@ class User < ApplicationRecord
   end
 
   def partials
-    
+
   end
 
   def attending
@@ -55,7 +54,7 @@ class User < ApplicationRecord
     return "guest" unless attending.where(id: event_id).empty?
     return "authorized"
   end
-  
+
   def self.create_with_omniauth(auth)
     create(
       login_meetup: true,
@@ -66,5 +65,14 @@ class User < ApplicationRecord
     )
   end
 
-    
+  def self.from_omniauth(auth)
+    find_or_create_by(uid: auth[:uid][9...-1]) do |user|
+      byebug
+      user.uid        = auth["uid"][9...-1]
+      user.username   = auth["info"]["first_name"]
+      user.email      = auth["info"]["email"]
+      user.image      = auth["info"]["image"]
+      user.password   = "password"
+    end
+  end
 end

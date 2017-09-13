@@ -4,7 +4,7 @@ class Trail < ApplicationRecord
   accepts_nested_attributes_for :pictures
 
   reverse_geocoded_by :latitude, :longitude
-  after_validation :reverse_geocode, on: [ :create, :update ]
+  # after_validation :reverse_geocode, on: [ :create, :update ]
   # after_update :set_events
 
   reverse_geocoded_by :latitude, :longitude do |obj, results|

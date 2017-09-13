@@ -5,7 +5,10 @@ Rails.application.routes.draw do
 
   get '/auth/meetup', as: :meetup_login
   get "/auth/meetup/callback" => "meetup_sessions#create"
-  
+
+  get '/auth/google_oauth2', as: :google_login
+  get "/auth/google_oauth2/callback", to: "google_sessions#create"
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

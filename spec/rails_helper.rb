@@ -41,20 +41,38 @@ end
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
+
 OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:meetup] = OmniAuth::AuthHash.new(
   {"provider"=>"meetup",
-            "uid"=>1,
-            "info"=>
-              {"id"=>0,
-              "name"=>"Elvis Costello",
-              "photo_url"=>"http://photos3.meetupstatic.com/photos/member_pic_0.jpeg"},
-            "credentials"=>
-              {"token"=>"abc123...",       
-              "refresh_token"=>"bcd234...",
-              "expires_at"=>1324720198,    
-              "expires"=>true}
-            })
+    "uid"=>1,
+    "info"=>
+  {"id"=>0,
+    "name"=>"Elvis Costello",
+    "photo_url"=>"http://photos3.meetupstatic.com/photos/member_pic_0.jpeg"},
+    "credentials"=>
+  {"token"=>"abc123...",
+    "refresh_token"=>"bcd234...",
+    "expires_at"=>1324720198,
+    "expires"=>true}
+  })
+
+def stub_omniauth
+  OmniAuth.config.test_mode = true
+  OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new({
+    provider: "google",
+    uid: "12345678910",
+    info: {
+      email: "homies@shelteredhomies.com",
+      first_name: "Phillis",
+      last_name: "Holland"
+    },
+    credentials: {
+      token: "abcdefg12345",
+      refresh_token: "12345abcdefg"
+    }
+  })
+end
 
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
@@ -91,5 +109,5 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  
+
 end
