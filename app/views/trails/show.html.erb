@@ -18,12 +18,14 @@
         <div id="map" class='map'></div>
     </div>
   </section>
-
-  <h1>Weather Information</h1>
+  
+  <section class='weather'>
+  <h2>Weather Information</h2>
 
   <% @weather.each do |w|%>
     <%= w.summary %>
   <% end %>
+  </section>
 
   <div class='image'>
     <% @trail.get_pictures.each do |picture| %>
