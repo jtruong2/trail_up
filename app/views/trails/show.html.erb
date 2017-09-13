@@ -19,6 +19,12 @@
     </div>
   </section>
 
+  <h1>Weather Information</h1>
+
+  <% @weather.each do |w|%>
+    <%= w.summary %>
+  <% end %>
+
   <div class='image'>
     <% @trail.get_pictures.each do |picture| %>
       <%= image_tag("#{picture.image}") %>
