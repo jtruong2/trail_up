@@ -7,7 +7,8 @@ RSpec.describe "User google oauth" do
     within('.google-login') do
       click_link
     end
-
+    click_on "Dashboard"
+    
     expect(page).to have_content("Phillis")
     expect(User.count).to eq(1)
     expect(User.first.uid).to eq(1)

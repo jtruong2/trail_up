@@ -65,11 +65,21 @@ class User < ApplicationRecord
     )
   end
 
-  def self.from_omniauth(auth)
+  def self.from_google_omniauth(auth)
     find_or_create_by(uid: auth[:uid][9...-1]) do |user|
       user.uid        = auth["uid"][9...-1]
       user.username   = auth["info"]["first_name"]
       user.email      = auth["info"]["email"]
+      user.image      = auth["info"]["image"]
+      user.password   = "password"
+    end
+  end
+
+  def self.from_twitter_omniauth(auth)
+    find_or_create_by(uid: auth[:uid][9...-1]) do |user|
+      user.uid        = auth["uid"][9...-1]
+      user.username   = auth["info"]["name"]
+      user.email      = "noemail@email.com"
       user.image      = auth["info"]["image"]
       user.password   = "password"
     end

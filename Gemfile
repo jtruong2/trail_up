@@ -37,6 +37,7 @@ gem 'whenever', :require => false
 gem 'timecop'
 gem 'omniauth-meetup'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
