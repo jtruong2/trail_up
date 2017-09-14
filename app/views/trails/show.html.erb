@@ -11,6 +11,7 @@
       <span>Difficulty: <%= @trail.difficulty.rating%></span>
       <span>Distance: <%= @trail.distance%></span>
       <span>Rating: <%= @trail.rating%></span>
+      
       <%= link_to 'Edit Trail', edit_trail_path(@trail) %>
     </div>
 
@@ -19,13 +20,14 @@
     </div>
   </section>
   
-  <section class='weather'>
-  <h2>Weather Information</h2>
+    <div class='trail_info'>
 
-  <% @weather.each do |w|%>
-    <%= w.summary %>
-  <% end %>
-  </section>
+      <header><h3>Weather Information</h3>
+        </heaader>
+        <br>
+      <p>Forecast: <%= @weather.summary%></p>
+      <p>Temperature: <%= @weather.temp %></p>
+    </div>
 
   <div class='image'>
     <% @trail.get_pictures.each do |picture| %>

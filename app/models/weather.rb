@@ -1,9 +1,10 @@
 class Weather
 
-  attr_reader :summary, :icon
+  attr_reader :summary, :temp
   
   def initialize(weather_atts={})
-    binding.pry
+    @summary = weather_atts[:weather]
+    @temp = weather_atts[:temperature_string]
   end
 
   def self.weather_info(lat,lon)
