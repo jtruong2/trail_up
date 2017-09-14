@@ -1,12 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "As a user" do
-
-  before do
-    Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:meetup]
-  end
-
   it "can sign in with meetup" do
+    stub_meetup
     visit root_path
     click_link "Login"
     within('.meetup-login') do

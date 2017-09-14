@@ -41,7 +41,7 @@ end
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-
+def stub_meetup
 OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:meetup] = OmniAuth::AuthHash.new(
   {"provider"=>"meetup",
@@ -56,8 +56,9 @@ OmniAuth.config.mock_auth[:meetup] = OmniAuth::AuthHash.new(
     "expires_at"=>1324720198,
     "expires"=>true}
   })
+end
 
-def stub_omniauth
+def stub_google
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new({
     provider: "google",

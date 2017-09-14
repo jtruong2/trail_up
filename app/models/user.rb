@@ -67,7 +67,6 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     find_or_create_by(uid: auth[:uid][9...-1]) do |user|
-      byebug
       user.uid        = auth["uid"][9...-1]
       user.username   = auth["info"]["first_name"]
       user.email      = auth["info"]["email"]
