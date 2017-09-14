@@ -1,10 +1,11 @@
 class Weather
 
-  attr_reader :summary, :temp
+  attr_reader :summary, :temp, :wind
   
   def initialize(weather_atts={})
     @summary = weather_atts[:weather]
     @temp = weather_atts[:temperature_string]
+    @wind = weather_atts[:wind_mph]
   end
 
   def self.weather_info(lat,lon)

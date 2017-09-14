@@ -20,14 +20,15 @@
     </div>
   </section>
   
+  <section class='trail-card'>
     <div class='trail_info'>
 
-      <header><h3>Weather Information</h3>
-        </heaader>
-        <br>
-      <p>Forecast: <%= @weather.summary%></p>
-      <p>Temperature: <%= @weather.temp %></p>
+      <header><h3>Weather Information</h3></header>
+      <span>Forecast: <%= @weather.summary%></span>
+      <span>Temperature: <%= @weather.temp %></span>
+      <span>Wind: <%= @weather.wind %> mph</span>
     </div>
+  </section>
 
   <div class='image'>
     <% @trail.get_pictures.each do |picture| %>

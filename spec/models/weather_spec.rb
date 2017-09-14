@@ -4,8 +4,9 @@ describe 'weather info' do
   it 'returns weather info for a trail' do
     
     weather = Weather.weather_info(40.13,-103.01)
-    wea = weather.first
 
-    expect(wea).to respond_to(:name)
+    expect(weather).to respond_to(:summary)
+    expect(weather).to respond_to(:temp)  
+    expect(weather).to respond_to(:wind)
   end
 end
