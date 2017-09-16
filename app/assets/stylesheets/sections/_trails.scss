@@ -3,6 +3,7 @@
     flex-wrap: wrap;
 }
 
+
 .trail {
     text-align: center;
     margin: 20px auto;
@@ -91,4 +92,8 @@
     height: 200px;
     width: auto;
   }
+
+.nowrap {
+  white-space: nowrap; 
+}
 }
