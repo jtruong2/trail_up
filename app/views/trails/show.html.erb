@@ -19,6 +19,12 @@
     </div>
   </section>
 
+    <div class='trail-info'>
+
+  <h2>Comments</h2>
+  <%= render partial: 'trails/comment', collection: @trail.comments.reverse %>
+    </div>
+
   <div class='image'>
     <% @trail.get_pictures.each do |picture| %>
       <%= image_tag("#{picture.image}") %>
