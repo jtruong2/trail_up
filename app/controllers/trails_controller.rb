@@ -7,6 +7,8 @@ class TrailsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comment.trail_id = @trail.id
   end
 
   def new

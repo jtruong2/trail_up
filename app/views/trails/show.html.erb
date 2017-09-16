@@ -23,6 +23,7 @@
     <div class='trail-info'>
 
       <h3>Comments (<%= @trail.comments.count %>)</h3>
+  <%= render partial: 'comments/form' %>
   <%= render partial: 'trails/comment', collection: @trail.comments.reverse %>
     </div>
 </section>

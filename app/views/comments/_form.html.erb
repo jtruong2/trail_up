@@ -1,0 +1,15 @@
+<h3>Post a Comment</h3>
+
+<%= form_for [ @trail, @comment ] do |f| %>
+  <p>
+    <%= f.label :star_rating %><br/>
+    <%= f.select :star_rating, [1,2,3,4,5]%>
+  </p>
+  <p>
+    <%= f.label :body %><br/>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>
