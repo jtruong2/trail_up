@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_one :picture, as: :imageable, dependent: :destroy
   has_many :event_roles, dependent: :destroy
   has_many :events, through: :event_roles
+  has_many :comments
 
   accepts_nested_attributes_for :picture
 
