@@ -1,0 +1,16 @@
+require 'rails_helper'
+
+describe "Trail Comments" do
+  it "returns a trails comments" do
+    
+    user = User.create(username: "mcents", email: "thing@gmail.com")
+    trail = Trail.create(name: "Scary trail", description: "neat")
+    comment = Comment.create(star_rating: 4, body: "dope", trail_id: trail.id, user_id: user.id)
+    binding.pry
+
+    visit "/trails/1"
+    
+    expect(page).to have_content("Comments")
+    expect(page).to have_content("dope")
+  end
+end
