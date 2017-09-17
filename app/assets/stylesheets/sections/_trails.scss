@@ -9,34 +9,54 @@
 }
 
 .comments h2 {
-  font-size: 40px;
+  font-size: 30px;
+}
+
+.cform p {
+  font-size: 15px;
+  margin-left: -40px;
+}
+
+.cform h5 {
+  font-size: 20px;
+  margin-left: -20px;
+}
+
+input[type=submit] {
+  padding:5px 15px; 
+  background:#ccc; 
+  border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 10px; 
+  font-size: 15px
 }
 
 
 .trail {
-    text-align: center;
-    margin: 20px auto;
-    width: 300px;
-    display: flex;
-    flex-wrap: wrap;
-    img {
-        height: 100px;
-        width: 100px;
-        border-radius: 100%;
-        display: inline-block;
-    }
-    h3 {
-        color: black;
-        font-size: 16px;
-        font-family: "Lato";
-        width: 100px;
-    }
+  text-align: center;
+  margin: 20px auto;
+  width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  img {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    display: inline-block;
+  }
+  h3 {
+    color: black;
+    font-size: 16px;
+    font-family: "Lato";
+    width: 100px;
+  }
 }
 
 .trail-vital {
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
 }
 
 .trail-show {

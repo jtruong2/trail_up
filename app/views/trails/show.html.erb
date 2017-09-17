@@ -19,14 +19,12 @@
     </div>
   </section>
 
-<section class='trail-show'>
   <div class='comments'>
 
   <h2>Comments (<%= @trail.comments.count %>)</h2> 
   <%= render partial: 'comments/form' %>
   <%= render partial: 'trails/comment', collection: @trail.comments.reverse %>
   </div>
-</section>
 
   <div class='image'>
     <% @trail.get_pictures.each do |picture| %>
