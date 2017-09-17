@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'dashboards#show'
   get '/directions', to: 'directions#index'
+  get '/add_comment', to: 'trails#addcomment'
 
 
   get '/auth/fitbit/callback', to: 'fitbit#login'

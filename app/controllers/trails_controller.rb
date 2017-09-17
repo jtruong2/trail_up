@@ -41,17 +41,24 @@ class TrailsController < ApplicationController
     end
   end
 
+  def addcomment
+    respond_to do |format|               
+      format.js {render layout: false}
+    end
+  end
+
+
   private
 
-    def find_trail
-      @trail = Trail.find(params[:id])
-    end
+  def find_trail
+    @trail = Trail.find(params[:id])
+  end
 
-    def trail_params
-      params.require(:trail).permit(:name, :description, :difficulty_id, :location, :lat, :lng, :distance, :rating)
-    end
+  def trail_params
+    params.require(:trail).permit(:name, :description, :difficulty_id, :location, :lat, :lng, :distance, :rating)
+  end
 
-    def pic_params
-      params.require(:trail).permit(images: [ :imageable_id, :imageable_type, { images: [] } ] )
-    end
+  def pic_params
+    params.require(:trail).permit(images: [ :imageable_id, :imageable_type, { images: [] } ] )
+  end
 end
