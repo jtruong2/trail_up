@@ -1,7 +1,6 @@
-<div>
-  <h4>Comment by <%= comment.user.username %></h4>
-  <p class="star_rating"><% comment.star_rating.times do %>
-    &#9733
+<div class='comment'>
+  <p><%= comment.user.username.capitalize %> &nbsp &nbsp <% comment.star_rating.times do %>
+    &#9733</h4>
       <% end %>
   <p class="comment"><%= comment.body %></p>
 </div>
