@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :login_meetup
+
   validates :email, presence: true, uniqueness: true, unless: :login_meetup
   validates :username, presence: true, uniqueness: true, unless: :login_meetup
   validates :slug, uniqueness: true
@@ -72,16 +73,18 @@ class User < ApplicationRecord
       user.email      = auth["info"]["email"]
       user.image      = auth["info"]["image"]
       user.password   = "password"
+      user.provider   = auth["provider"]
     end
   end
 
   def self.from_twitter_omniauth(auth)
-    find_or_create_by(uid: auth[:uid][9...-1]) do |user|
-      user.uid        = auth["uid"][9...-1]
-      user.username   = auth["info"]["name"]
-      user.email      = "noemail@email.com"
+    find_or_create_by(uid: auth[:uid]) do |user|
+      user.uid        = auth["uid"]
+      user.username   = "#{auth["info"]["name"]} "
+      user.email      = "#{auth['info']['nickname']}@noemail.com"
       user.image      = auth["info"]["image"]
       user.password   = "password"
+      user.provider   = auth["provider"]
     end
   end
 end

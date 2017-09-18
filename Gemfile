@@ -38,6 +38,7 @@ gem 'timecop'
 gem 'omniauth-meetup'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
