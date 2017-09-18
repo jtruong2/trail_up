@@ -16,7 +16,7 @@
     </div>
 
     <div class='show-trail-map'>
-        <div id="map" class='map'></div>
+      <div id="map" class='map'></div>
     </div>
   </section>
   
@@ -29,6 +29,7 @@
       <span>Wind: <%= @weather.wind %> mph</span>
     </div>
   </section>
+  <div id="container">
     <div class='comments'>
 
       <h2>Comments (<%= @trail.comments.count %>)</h2> 
@@ -36,11 +37,22 @@
       <%= render partial: 'trails/comment', collection: @trail.comments.reverse %>
     </div>
 
+    <div class='right'>
+      <h2>Similar Trails</h2>
+      <% @trails.where(difficulty_id: "#{@trail.difficulty_id}").each do |t| %>
+        <p><%= t.name %>
+        <br>
+        <%= t.location %></p>
+      <% end %>
+    </div>
+  </div>
+
   <div class='image'>
     <% @trail.get_pictures.each do |picture| %>
       <%= image_tag("#{picture.image}") %>
     <% end %>
   </div>
+
 </section>
 
 <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'showTrailMap'} %>

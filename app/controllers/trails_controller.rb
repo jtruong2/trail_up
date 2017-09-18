@@ -12,6 +12,7 @@ class TrailsController < ApplicationController
     @lat = Trail.find(params[:id]).latitude
     @lon = Trail.find(params[:id]).longitude
     @weather = Weather.weather_info(@lat, @lon)
+    @trails = Trail.all
   end
 
   def new
@@ -23,8 +24,8 @@ class TrailsController < ApplicationController
     @trail = Trail.new(trail_params)
     if @trail.save
       Picture.create_many(pic_params[:images].merge({imageable_id: @trail.id})) if pic_params[:images][:images]
-        flash[:success] = ["Trail Created"]
-        redirect_to select_redirect(session[:referrer], @trail)
+      flash[:success] = ["Trail Created"]
+      redirect_to select_redirect(session[:referrer], @trail)
     else
       flash[:error] = @trail.errors.full_messages
       render :new
