@@ -38,7 +38,6 @@ RSpec.describe 'User can edit a trail' do
         fill_in "Distance", with: '45'
         click_on 'Update Trail'
       end
-
       expect(page).to have_current_path("/trails/#{trail.id}")
       expect(page).to have_content('Trail Updated')
       expect(page).to have_content('Super Sick Trail')
