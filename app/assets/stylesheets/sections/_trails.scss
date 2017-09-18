@@ -6,6 +6,8 @@
 .comments {
   margin: 20px;
   background-color: white;
+  float: left;
+  width: 50%;
 }
 
 .comment  {
@@ -18,9 +20,16 @@
   font-size: 20px;
 }
 
+.comment hr {
+  padding: 0px;
+  margin-left: 18px;
+}
+
 
 .comments h2 {
   font-size: 30px;
+  text-align: center;
+
 }
 
 .cform p {
@@ -41,6 +50,14 @@ input[type=submit] {
   -webkit-border-radius: 5px;
   border-radius: 10px; 
   font-size: 15px
+}
+
+.cform textarea {
+  padding:5px; 
+  height: 150px;
+  width: 93%;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 
 
