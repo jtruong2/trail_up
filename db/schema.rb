@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719212222) do
+ActiveRecord::Schema.define(version: 20170913222907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20170719212222) do
     t.string "fitbit_id"
     t.string "image"
     t.string "provider"
-    t.integer "uid"
+    t.bigint "uid"
   end
 
   add_foreign_key "event_roles", "events"

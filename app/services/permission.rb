@@ -82,6 +82,9 @@ class Permission
     def guest_permissions
       return true if controller == "sessions" && action.in?(%w(new create))
       return true if controller == "meetup_sessions" && action.in?(%w(new create destroy))
+      return true if controller == "google_sessions" && action.in?(%w(new create destroy))
+      return true if controller == "twitter_sessions" && action.in?(%w(new create destroy))
+      return true if controller == "facebook_sessions" && action.in?(%w(new create destroy))
       return true if controller == "landing" && action == "index"
       return true if controller == "users" && action.in?(%w(new create))
       return true if controller == "trails" && action.in?(%w(index show))
