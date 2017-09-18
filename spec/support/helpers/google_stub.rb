@@ -1,6 +1,6 @@
 def stub_google
   OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new({
+  OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
     provider: "google",
     uid: "12345678910",
     info: {

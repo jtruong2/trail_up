@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   attr_accessor :login_meetup
 
-  validates :email, presence: true, uniqueness: true, unless: :login_meetup
-  validates :username, presence: true, uniqueness: true, unless: :login_meetup
+  validates :email, presence: true, uniqueness: true, unless: :uid_exists
+  validates :username, presence: true, uniqueness: true, unless: :uid_exists
   validates :slug, uniqueness: true
   has_one :picture, as: :imageable, dependent: :destroy
   has_many :event_roles, dependent: :destroy
@@ -56,6 +56,10 @@ class User < ApplicationRecord
     return "authorized"
   end
 
+  def uid_exists
+    self["uid"]
+  end
+
   def self.create_with_omniauth(auth)
     create(
       login_meetup: true,
@@ -77,11 +81,11 @@ class User < ApplicationRecord
     end
   end
 
-  def self.from_twitter_omniauth(auth)
+  def self.from_twitter_or_facebook_omniauth(auth)
     find_or_create_by(uid: auth[:uid]) do |user|
       user.uid        = auth["uid"]
-      user.username   = "#{auth["info"]["name"]} "
-      user.email      = "#{auth['info']['nickname']}@noemail.com"
+      user.username   = auth["info"]["name"]
+      user.email      = auth["info"]["email"]
       user.image      = auth["info"]["image"]
       user.password   = "password"
       user.provider   = auth["provider"]

@@ -8,8 +8,8 @@ RSpec.describe "As a user" do
     within('.meetup-login') do
       click_link
     end
-    click_link 'Dashboard'
-    expect(page).to have_content("Welcome Elvis Costello")
+
+    expect(page).to have_content("Elvis Costello")
     expect(User.count).to eq(1)
     expect(User.first.uid).to eq(1)
   end

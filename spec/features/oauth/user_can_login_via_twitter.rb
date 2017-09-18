@@ -8,7 +8,6 @@ RSpec.describe "User twitter oauth" do
     within(".twitter-login") do
       click_link
     end
-    # click_on "Dashboard"
 
     expect(page).to have_content("John Q Public")
     expect(User.count).to eq(1)
