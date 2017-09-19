@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root 'landing#index'
 
-  post 'conversations/receive', to: "twilio#receive"
-  post 'conversations/send', to: "twilio#send"
+  post 'conversations/respond_and_receive', to: "twilio#respond_and_receive"
 
 
   get '/signup', to: 'users#new'
