@@ -9,9 +9,9 @@ class TrailsController < ApplicationController
   def show
     @comment = Comment.new
     @comment.trail_id = @trail.id
-    @lat = Trail.find(params[:id]).latitude
-    @lon = Trail.find(params[:id]).longitude
-    @weather = Weather.weather_info(@lat, @lon)
+    lat = Trail.find(params[:id]).latitude
+    lon = Trail.find(params[:id]).longitude
+    @weather = Weather.weather_info(lat, lon)
     @trails = Trail.all
   end
 

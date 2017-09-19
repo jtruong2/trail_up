@@ -7,7 +7,7 @@ class WeatherService
   end
 
   def weather_info(lat,lon)
-    parse(@conn.get("conditions/q/#{lat},#{lon}.json"))
+    parse(@conn.get("forecast/q/#{lat},#{lon}.json"))
   end
 
   def parse(response)

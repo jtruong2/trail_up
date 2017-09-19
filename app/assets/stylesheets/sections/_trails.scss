@@ -79,6 +79,26 @@ input[type=submit] {
 .weather-info {
   font-size: 20px;
   color: black;
+
+}
+
+.weather-info ul {
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 0;
+  text-align: center;
+}
+
+.weather-info li {
+  margin-top: -15px;
+  padding: 2px;
+  list-style: none;
+  text-align: center;
+}
+
+.weather-info img {
+  height: 40px;
+  width: 40px;
 }
 
 .trail {
@@ -168,10 +188,6 @@ input[type=submit] {
     }
   }
 
-  img {
-    height: 200px;
-    width: auto;
-  }
 
 .nowrap {
   white-space: nowrap; 

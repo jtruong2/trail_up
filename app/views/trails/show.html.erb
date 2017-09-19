@@ -20,15 +20,6 @@
     </div>
   </section>
   
-  <section class='trail-card'>
-    <div class='weather-info'>
-
-      <h3>Weather Information</h3>
-      <span>Forecast: <%= @weather.summary%></span>
-      <span>Temperature: <%= @weather.temp %></span>
-      <span>Wind: <%= @weather.wind %> mph</span>
-    </div>
-  </section>
   <div id="container">
     <div class='comments'>
 
@@ -44,6 +35,18 @@
         <br>
         <%= t.location %></p>
       <% end %>
+    <div class='weather-info'>
+
+      <h3>Weather Information</h3>
+      <% @weather.each do |w| %>
+        <ul style="list-style-type:none">
+          <li><%= w.date%></li>
+          <li><%=image_tag w.icon, size: "16x10"%></li>
+          <li><%= w.high %>/ <%= w.low %> F</li>
+        </ul>
+      <% end %>
+    </div>
+  </section>
     </div>
   </div>
 
