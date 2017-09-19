@@ -14,7 +14,7 @@
 .comments h3 {
   color: black;
   font-size: 35px;;
-  margin-bottom: -30px;
+  margin-bottom: -40px;
 }
 
 
@@ -83,6 +83,15 @@ input[type=submit] {
   font-size: 35px;
 }
 
+.weather-info hr {
+  margin-top: 30px;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
 .weather-info {
   font-size: 20px;
   color: black;
@@ -112,6 +121,10 @@ input[type=submit] {
 .weather-info img {
   height: 40px;
   width: 40px;
+}
+
+.similar h2 {
+  margin-top: -60px;
 }
 
 .trail {

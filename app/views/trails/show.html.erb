@@ -39,13 +39,20 @@
           <li><%= w.high %>/ <%= w.low %> F</li>
         </ul>
       <% end %>
+      <hr>
     </div>
+    <div class='similar'>
       <h2>Similar Trails</h2>
       <% @trails.where(difficulty_id: "#{@trail.difficulty_id}").each do |t| %>
-        <p><%= t.name %>
+        <p><%=link_to t.name, trail_path(t) %>
         <br>
         <%= t.location %></p>
       <% end %>
+      <% @trail.average_star.times do %>
+    &#9733
+  <% end %>
+
+    </div>
     </div>
   </div>
 

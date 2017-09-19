@@ -27,6 +27,10 @@ class Trail < ApplicationRecord
     end
   end
 
+  def average_star
+    comments.average(:star_rating).to_i
+  end
+
   def set_events
     coords = Geocoder.coordinates(location)
     if coords
