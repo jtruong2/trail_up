@@ -1,3 +1,4 @@
+<div class='page-hold'>
 <div hidden id='location'>{"lng": <%=@trail.longitude%>, "lat": <%=@trail.latitude%>}</div>
 <section class='trail-show'>
   <header>
@@ -23,14 +24,13 @@
   <div id="container">
     <div class='comments'>
 
-      <h2>Comments (<%= @trail.comments.count %>)</h2> 
+      <h3>Comments (<%= @trail.comments.count %>)</h3>
       <%= render partial: 'comments/form' %>
       <%= render partial: 'trails/comment', collection: @trail.comments.reverse %>
     </div>
 
     <div class='right'>
     <div class='weather-info'>
-
       <h3>Weather</h3>
       <% @weather.each do |w| %>
         <ul style="list-style-type:none">
@@ -59,3 +59,4 @@
 
 <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'showTrailMap'} %>
 <%= javascript_include_tag "maps/show_trail.js" %>
+</div>

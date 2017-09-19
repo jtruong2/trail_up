@@ -11,6 +11,12 @@
   border-radius: 20px;
 }
 
+.comments h3 {
+  color: black;
+  font-size: 35px;;
+  margin-bottom: -30px;
+}
+
 
 .right {
   margin-left: 53%;
@@ -65,7 +71,7 @@ input[type=submit] {
 
 .cform textarea {
   padding:5px; 
-  height: 150px;
+  height: 100px;
   width: 96%;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -74,12 +80,19 @@ input[type=submit] {
 
 .weather-info h3 {
   color: black;
+  font-size: 35px;
 }
 
 .weather-info {
   font-size: 20px;
   color: black;
   text-align: center;
+
+}
+
+.page-hold {
+  margin-left: 100px;
+  margin-right: 100px;
 
 }
 
