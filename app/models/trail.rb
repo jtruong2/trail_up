@@ -28,7 +28,7 @@ class Trail < ApplicationRecord
   end
 
   def average_star
-    comments.average(:star_rating).round.to_i
+    comments.average(:star_rating).to_i
   end
 
   def set_events

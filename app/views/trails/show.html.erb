@@ -7,10 +7,11 @@
   </header>
   <section class='trail-card'>
     <div class='trail-info'>
+      <span><% @trail.average_star.times do%>&#9733
+      <% end %></span>
       <span>Location: <%= @trail.location%></span>
       <span>Distance: <%= @trail.distance%></span>
       <span>Difficulty: <%= @trail.difficulty.rating%></span>
-      <span>Distance: <%= @trail.distance%></span>
       <span>Rating: <%= @trail.rating%></span>
       
       <%= link_to 'Edit Trail', edit_trail_path(@trail) %>
@@ -41,16 +42,14 @@
       <% end %>
       <hr>
     </div>
-    <div class='similar'>
       <h2>Similar Trails</h2>
+    <div class='similar'>
       <% @trails.where(difficulty_id: "#{@trail.difficulty_id}").each do |t| %>
-        <p><%=link_to t.name, trail_path(t) %>
-        <br>
-        <%= t.location %></p>
-      <% end %>
-      <%= @trail.average_star.times do %>
+      <p><%=link_to t.name, trail_path(t) %>
+        <% t.average_star.times do %>
     &#9733
-  <% end %>
+      <% end %>
+      <% end %></p>
 
     </div>
     </div>

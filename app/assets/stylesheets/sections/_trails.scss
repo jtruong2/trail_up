@@ -19,11 +19,10 @@
 
 
 .right {
-  margin-left: 53%;
+  margin-left: 59%;
   background-color: white;
   border-radius: 20px;
 }
-
 
 
 .comment h4 {
@@ -117,8 +116,10 @@ input[type=submit] {
   width: 40px;
 }
 
-.similar h2 {
-  margin-top: -60px;
+.similar p {
+  border: 5px solid #E7E5E5;
+  margin-bottom: 10px;
+  font-size: 23px;
 }
 
 .trail {
@@ -218,6 +219,7 @@ input[type=submit] {
 .comment p {
   margin-left: 13px;
 }
+
 
 
 .nowrap {
