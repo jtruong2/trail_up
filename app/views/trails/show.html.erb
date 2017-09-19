@@ -29,15 +29,9 @@
     </div>
 
     <div class='right'>
-      <h2>Similar Trails</h2>
-      <% @trails.where(difficulty_id: "#{@trail.difficulty_id}").each do |t| %>
-        <p><%= t.name %>
-        <br>
-        <%= t.location %></p>
-      <% end %>
     <div class='weather-info'>
 
-      <h3>Weather Information</h3>
+      <h3>Weather</h3>
       <% @weather.each do |w| %>
         <ul style="list-style-type:none">
           <li><%= w.date%></li>
@@ -46,7 +40,12 @@
         </ul>
       <% end %>
     </div>
-  </section>
+      <h2>Similar Trails</h2>
+      <% @trails.where(difficulty_id: "#{@trail.difficulty_id}").each do |t| %>
+        <p><%= t.name %>
+        <br>
+        <%= t.location %></p>
+      <% end %>
     </div>
   </div>
 

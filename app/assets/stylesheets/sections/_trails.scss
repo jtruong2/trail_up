@@ -79,6 +79,7 @@ input[type=submit] {
 .weather-info {
   font-size: 20px;
   color: black;
+  text-align: center;
 
 }
 
@@ -86,7 +87,6 @@ input[type=submit] {
   display: inline-block;
   vertical-align: top;
   padding-left: 0;
-  text-align: center;
 }
 
 .weather-info li {
