@@ -24,12 +24,6 @@
   border-radius: 20px;
 }
 
-.comment  {
-  background-color: #E7EAE9;
-  margin-bottom: 20px;
-  margin-top: -5px;
-  border-radius: 25px;
-}
 
 
 .comment h4 {
@@ -213,6 +207,17 @@ input[type=submit] {
       }
     }
   }
+.comment  {
+  padding: 5px;
+  background-color: #E7EAE9;
+  margin-bottom: 19px;
+  margin-top: 5px;
+  border-radius: 25px;
+}
+
+.comment p {
+  margin-left: 13px;
+}
 
 
 .nowrap {
