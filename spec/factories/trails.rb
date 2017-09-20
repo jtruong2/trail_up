@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :trail do
     name { generate(:trail_name) }
     description { generate(:description) }
-    difficulty
+    difficulty 
     distance 30.0
     rating 5.0
     latitude 40.13
