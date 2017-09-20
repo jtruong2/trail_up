@@ -145,11 +145,8 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_mime (0.1.4)
-<<<<<<< HEAD
-    mini_portile2 (2.3.0)
-=======
+
     mini_portile2 (2.2.0)
->>>>>>> development
     minitest (5.10.3)
     multi_json (1.12.2)
     multi_xml (0.6.0)
@@ -183,12 +180,10 @@ GEM
     omniauth-oauth2 (1.4.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
-<<<<<<< HEAD
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
-=======
->>>>>>> development
+
     parallel (1.12.0)
     parser (2.4.0.0)
       ast (~> 2.2)
@@ -278,10 +273,9 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-<<<<<<< HEAD
-=======
+
     slop (3.6.0)
->>>>>>> development
+
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
