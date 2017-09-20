@@ -11,11 +11,22 @@
       <span>Difficulty: <%= @trail.difficulty.rating%></span>
       <span>Distance: <%= @trail.distance%></span>
       <span>Rating: <%= @trail.rating%></span>
+      
       <%= link_to 'Edit Trail', edit_trail_path(@trail) %>
     </div>
 
     <div class='show-trail-map'>
         <div id="map" class='map'></div>
+    </div>
+  </section>
+  
+  <section class='trail-card'>
+    <div class='weather-info'>
+
+      <h3>Weather Information</h3>
+      <span>Forecast: <%= @weather.summary%></span>
+      <span>Temperature: <%= @weather.temp %></span>
+      <span>Wind: <%= @weather.wind %> mph</span>
     </div>
   </section>
 

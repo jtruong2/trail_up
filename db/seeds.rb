@@ -115,20 +115,32 @@ class Seed
   end
 
   def generate_trails(n)
-    n.times do |i|
-      trail = Trail.new(
-        name: "#{prefix} #{Faker::Zelda.location} #{suffix}",
-        description: Faker::Hobbit.quote,
-        distance: %w(5,10,15,20,25,50,100).sample,
-        rating: %w(1,2,3,4).sample,
-        longitude: longitude,
-        latitude: latitude
-      )
+    max_attrs =
+      {
+        lat: 39.742043,
+        lon: -104.991531,
+        maxResults: 500,
+        maxDistance: 200
+      }
+    HikingProjectService.search(max_attrs)[:trails].each do |trail|
+      1.times do |i|
+        valid_attrs = {
+          name: trail[:name],
+          description: trail[:summary],
+          location: trail[:location],
+          distance: trail[:length],
+          rating: trail[:difficulty],
+          longitude: trail[:longitude],
+          latitude: trail[:latitude],
+          hp_id: trail[:id]
+        }
+        trail = Trail.new(valid_attrs)
 
-      trail.difficulty = Difficulty.all.sample
-      trail.save
+        trail.difficulty = Difficulty.all.sample
+        trail.save
 
-      puts "User #{i}: #{trail.name} created!"
+        puts "#{Trail.last.id} Total Trails: #{trail.name} created!"
+      end
     end
   end
 

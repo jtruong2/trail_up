@@ -7,6 +7,9 @@ class TrailsController < ApplicationController
   end
 
   def show
+    @lat = Trail.find(params[:id]).latitude
+    @lon = Trail.find(params[:id]).longitude
+    @weather = Weather.weather_info(@lat, @lon)
   end
 
   def new

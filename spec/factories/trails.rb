@@ -5,8 +5,8 @@ FactoryGirl.define do
     difficulty
     distance 30.0
     rating 5.0
-    longitude 30.000
-    latitude -100.000
+    latitude 30.000
+    longitude -100.000
     location "Boulder, CO"
   end
 
