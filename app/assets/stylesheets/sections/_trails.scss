@@ -3,39 +3,149 @@
     flex-wrap: wrap;
 }
 
+.comments {
+  background-color: white;
+  border-radius: 20px;
+  float: left;
+  width: 50%;
+  border-radius: 20px;
+}
+
+.comments h3 {
+  color: black;
+  font-size: 35px;;
+  margin-bottom: -40px;
+}
+
+
+.right {
+  margin-left: 59%;
+  background-color: white;
+  border-radius: 20px;
+}
+
+
+.comment h4 {
+  font-size: 20px;
+}
+
+.comment hr {
+  padding: 0px;
+  margin-left: 18px;
+}
+
+
+.comments h2, .right h2 {
+  font-size: 40px;
+  text-align: center;
+  font-family: 'Amatic SC', cursive;
+
+}
+
+.cform p {
+  font-size: 15px;
+  margin-left: -40px;
+}
+
+.cform h5 {
+  font-size: 20px;
+  margin-left: -20px;
+}
+
+input[type=submit] {
+  padding:5px 15px; 
+  background:#EB4737; 
+  border:0 none;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 10px; 
+  font-size: 15px
+}
+
+.cform textarea {
+  padding:5px; 
+  height: 100px;
+  width: 96%;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+
 .weather-info h3 {
   color: black;
+  font-size: 35px;
 }
+
+.weather-info hr {
+  margin-top: 30px;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 
 .weather-info {
   font-size: 20px;
   color: black;
+  text-align: center;
+
+}
+
+.page-hold {
+  margin-left: 100px;
+  margin-right: 100px;
+
+}
+
+.weather-info ul {
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 0;
+}
+
+.weather-info li {
+  margin-top: -15px;
+  padding: 2px;
+  list-style: none;
+  text-align: center;
+}
+
+.weather-info img {
+  height: 40px;
+  width: 40px;
+}
+
+.similar p {
+  border: 5px solid #E7E5E5;
+  margin-bottom: 10px;
+  font-size: 23px;
 }
 
 .trail {
-    text-align: center;
-    margin: 20px auto;
-    width: 300px;
-    display: flex;
-    flex-wrap: wrap;
-    img {
-        height: 100px;
-        width: 100px;
-        border-radius: 100%;
-        display: inline-block;
-    }
-    h3 {
-        color: black;
-        font-size: 16px;
-        font-family: "Lato";
-        width: 100px;
-    }
+  text-align: center;
+  margin: 20px auto;
+  width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  img {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    display: inline-block;
+  }
+  h3 {
+    color: black;
+    font-size: 16px;
+    font-family: "Lato";
+    width: 100px;
+  }
 }
 
 .trail-vital {
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
 }
 
 .trail-show {
@@ -59,6 +169,9 @@
       width: auto;
     }
   }
+   .trail-info h3 {
+     color: black;
+   }
 
   header.create-trail-message {
     display: flex;
@@ -95,9 +208,21 @@
       }
     }
   }
+.comment  {
+  padding: 5px;
+  background-color: #E7EAE9;
+  margin-bottom: 19px;
+  margin-top: 5px;
+  border-radius: 25px;
+}
 
-  img {
-    height: 200px;
-    width: auto;
-  }
+.comment p {
+  margin-left: 13px;
+}
+
+
+
+.nowrap {
+  white-space: nowrap; 
+}
 }

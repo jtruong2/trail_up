@@ -7,7 +7,7 @@ describe WeatherService do
       weather = WeatherService.new.weather_info(40.13,-103.01)
 
       expect(weather.class).to eq(Hash)
-      expect(weather).to have_key(:current_observation)
+      expect(weather).to have_key(:forecast)
     end
   end
 end
