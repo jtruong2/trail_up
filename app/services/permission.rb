@@ -62,6 +62,7 @@ class Permission
       return true if controller == "meetup_sessions" && action.in?(%w(new create destroy))
       return true if controller == "sessions" && action.in?(%w(new create destroy))
       return true if controller == "dashboards" && action.in?(%w(show))
+      return true if controller == "support" && action.in?(%w(index))
       return true if controller == "pictures" && action.in?(%w(create))
       return true if controller == "users" && action.in?(%w(edit update))
       return true if controller == "users" && action == "show" && user_page_check == true
@@ -86,6 +87,7 @@ class Permission
       return true if controller == "google_sessions" && action.in?(%w(new create destroy))
       return true if controller == "twitter_sessions" && action.in?(%w(new create destroy))
       return true if controller == "facebook_sessions" && action.in?(%w(new create destroy))
+      return true if controller == "support" && action.in?(%w(index))
       return true if controller == "landing" && action == "index"
       return true if controller == "users" && action.in?(%w(new create))
       return true if controller == "trails" && action.in?(%w(index show))

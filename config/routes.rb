@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
 
+  get '/support', to: 'support#index'
+
   get '/auth/meetup', as: :meetup_login
   get "/auth/meetup/callback" => "meetup_sessions#create"
 
