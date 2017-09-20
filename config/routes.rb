@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
 
+  get '/support', to: 'support#index'
+
   get '/auth/meetup', as: :meetup_login
   get "/auth/meetup/callback" => "meetup_sessions#create"
 
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'dashboards#show'
   get '/directions', to: 'directions#index'
+  get '/add_comment', to: 'trails#addcomment'
 
 
   get '/auth/fitbit/callback', to: 'fitbit#login'
@@ -60,7 +63,9 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:create, :show, :edit, :update]
-  resources :trails
+  resources :trails do
+    resources :comments
+  end
   resources :pictures
   resources :events, only: [:index, :new, :create, :show, :destroy, :edit, :update]
 end
