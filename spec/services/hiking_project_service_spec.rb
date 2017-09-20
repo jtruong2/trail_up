@@ -44,18 +44,18 @@ describe HikingProjectService do
         expect(trails[:trails].count).to eq(50)
         expect(trails).to have_key(:trails)
         expect(trails).to have_key(:success)
-        expect(trail[:id]).to eq(7004681)
-        expect(trail[:name]).to eq("South Mesa Loop")
+        expect(trail[:id]).to eq(7000078)
+        expect(trail[:name]).to eq("Shanahan Ridge")
         expect(trail[:type]).to eq("Featured Hike")
-        expect(trail[:summary]).to eq("Stunning scenery and a little history...")
-        expect(trail[:difficulty]).to eq("greenBlue")
-        expect(trail[:stars]).to eq(3.7)
-        expect(trail[:location]).to eq("Superior, Colorado")
-        expect(trail[:url]).to eq("https://www.hikingproject.com/trail/7004681/south-mesa-loop")
-        expect(trail[:imgSmall]).to eq("https://cdn-files.apstatic.com/hike/7000477_small_1420779399.jpg")
-        expect(trail[:length]).to eq(3)
-        expect(trail[:longitude]).to eq(-105.2582)
-        expect(trail[:latitude]).to eq(39.9388)
+        expect(trail[:summary]).to eq("A straightforward hike on some of the best trail Boulder has to offer.")
+        expect(trail[:difficulty]).to eq("blue")
+        expect(trail[:stars]).to eq(3.5)
+        expect(trail[:location]).to eq("Boulder, Colorado")
+        expect(trail[:url]).to eq("https://www.hikingproject.com/trail/7000078/shanahan-ridge")
+        expect(trail[:imgSmall]).to eq("https://cdn-files.apstatic.com/hike/7000471_small_1420779033.jpg")
+        expect(trail[:length]).to eq(4)
+        expect(trail[:longitude]).to eq(-105.2668)
+        expect(trail[:latitude]).to eq(39.9746)
       end
     end
     it 'returns a list of trails based on all params' do
@@ -66,9 +66,8 @@ describe HikingProjectService do
 
         expect(trails[:trails].count).to eq(20)
         expect(trail_first[:id]).to eq(7003115)
-        expect(trail_last[:id]).to eq(7029735)
+        expect(trail_last[:id]).to eq(7011192)
       end
     end
   end
 end
-
