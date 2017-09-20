@@ -1,3 +1,4 @@
+<div class='page-hold'>
 <div hidden id='location'>{"lng": <%=@trail.longitude%>, "lat": <%=@trail.latitude%>}</div>
 <section class='trail-show'>
   <header>
@@ -6,36 +7,62 @@
   </header>
   <section class='trail-card'>
     <div class='trail-info'>
+      <span><% @trail.average_star.times do%>&#9733
+      <% end %></span>
       <span>Location: <%= @trail.location%></span>
       <span>Distance: <%= @trail.distance%></span>
       <span>Difficulty: <%= @trail.difficulty.rating%></span>
-      <span>Distance: <%= @trail.distance%></span>
       <span>Rating: <%= @trail.rating%></span>
-      
+
       <%= link_to 'Edit Trail', edit_trail_path(@trail) %>
     </div>
 
     <div class='show-trail-map'>
-        <div id="map" class='map'></div>
+      <div id="map" class='map'></div>
     </div>
   </section>
-  
-  <section class='trail-card'>
-    <div class='weather-info'>
 
-      <h3>Weather Information</h3>
-      <span>Forecast: <%= @weather.summary%></span>
-      <span>Temperature: <%= @weather.temp %></span>
-      <span>Wind: <%= @weather.wind %> mph</span>
+  <div id="container">
+    <div class='comments'>
+
+      <h3>Comments (<%= @trail.comments.count %>)</h3>
+      <%= render partial: 'comments/form' %>
+      <%= render partial: 'trails/comment', collection: @trail.comments.reverse %>
     </div>
-  </section>
+
+    <div class='right'>
+    <div class='weather-info'>
+      <h3>Weather</h3>
+      <% @weather.each do |w| %>
+        <ul style="list-style-type:none">
+          <li><%= w.date%></li>
+          <li><%=image_tag w.icon, size: "16x10"%></li>
+          <li><%= w.high %>/ <%= w.low %> F</li>
+        </ul>
+      <% end %>
+      <hr>
+    </div>
+      <h2>Similar Trails</h2>
+    <div class='similar'>
+      <% @trails.where(difficulty_id: "#{@trail.difficulty_id}").each do |t| %>
+      <p><%=link_to t.name, trail_path(t) %>
+        <% t.average_star.times do %>
+    &#9733
+      <% end %>
+      <% end %></p>
+
+    </div>
+    </div>
+  </div>
 
   <div class='image'>
     <% @trail.get_pictures.each do |picture| %>
       <%= image_tag("#{picture.image}") %>
     <% end %>
   </div>
+
 </section>
 
 <%= render partial: 'shared/googlemapcall', :locals => {googleMap: 'showTrailMap'} %>
 <%= javascript_include_tag "maps/show_trail.js" %>
+</div>

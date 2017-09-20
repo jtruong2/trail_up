@@ -1,0 +1,10 @@
+<div class='cform'>
+<%= form_for [ @trail, @comment ] do |f| %>
+  <h5>Create Comment</h5>
+    <%= f.text_area :body %>
+  <p><%= f.label :star_rating %>
+    <%= f.select :star_rating, ['select',1,2,3,4,5]%>
+  </p>
+    <%= f.submit 'Submit' %>
+<% end %>
+</div>

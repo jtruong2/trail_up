@@ -1,5 +1,5 @@
 class WeatherService
-  
+
   def initialize
     @conn ||= Faraday.new(url: "http://api.wunderground.com/api/#{ENV['WEATHER_KEY']}") do |faraday|
       faraday.adapter Faraday.default_adapter
@@ -7,7 +7,7 @@ class WeatherService
   end
 
   def weather_info(lat,lon)
-    parse(@conn.get("conditions/q/#{lat},#{lon}.json"))
+    parse(@conn.get("forecast/q/#{lat},#{lon}.json"))
   end
 
   def parse(response)

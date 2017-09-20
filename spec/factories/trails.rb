@@ -5,9 +5,8 @@ FactoryGirl.define do
     difficulty
     distance 30.0
     rating 5.0
-    latitude 30.000
-    longitude -100.000
-    location "Boulder, CO"
+    latitude 40.13
+    longitude -103.01
   end
 
   sequence :trail_name do |n|

@@ -1,15 +1,18 @@
 class Weather
 
-  attr_reader :summary, :temp, :wind
-  
+  attr_reader :high, :low, :condition, :icon, :date
+
   def initialize(weather_atts={})
-    @summary = weather_atts[:weather]
-    @temp = weather_atts[:temperature_string]
-    @wind = weather_atts[:wind_mph]
+    @date = weather_atts[:date][:weekday]
+    @high = weather_atts[:high][:fahrenheit]
+    @low = weather_atts[:low][:fahrenheit]
+    @condition = weather_atts[:conditions]
+    @icon = weather_atts[:icon_url]
   end
 
   def self.weather_info(lat,lon)
-    info = WeatherService.new.weather_info(lat,lon)[:current_observation]
+    WeatherService.new.weather_info(lat,lon)[:forecast][:simpleforecast][:forecastday].map do |info|
       Weather.new(info)
+    end
   end
 end

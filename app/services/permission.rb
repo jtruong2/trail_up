@@ -65,7 +65,8 @@ class Permission
       return true if controller == "pictures" && action.in?(%w(create))
       return true if controller == "users" && action.in?(%w(edit update))
       return true if controller == "users" && action == "show" && user_page_check == true
-      return true if controller == "trails" && action.in?(%w(index new create show edit update))
+      return true if controller == "comments" && action.in?(%w(create))
+      return true if controller == "trails" && action.in?(%w(index new create show edit update addcomment))
       return true if controller == "trails/select"
       return true if controller == "trails/search"
       return true if controller == "events" && action.in?(%w(select_or_create_trail new create show status destroy))

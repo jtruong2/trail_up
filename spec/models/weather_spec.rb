@@ -2,11 +2,13 @@ require 'rails_helper'
 
 describe 'weather info' do
   it 'returns weather info for a trail' do
-    
-    weather = Weather.weather_info(40.13,-103.01)
 
-    expect(weather).to respond_to(:summary)
-    expect(weather).to respond_to(:temp)  
-    expect(weather).to respond_to(:wind)
+    weather = Weather.weather_info(40.13,-103.01)
+    wea = weather.first
+
+    expect(wea).to respond_to(:date)
+    expect(wea).to respond_to(:low)
+    expect(wea).to respond_to(:high)
+    expect(wea).to respond_to(:icon)
   end
 end

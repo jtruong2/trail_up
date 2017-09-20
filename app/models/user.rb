@@ -13,6 +13,14 @@ class User < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  validates :email, presence: true, uniqueness: true, unless: :login_meetup
+  validates :username, presence: true, uniqueness: true, unless: :login_meetup
+  validates :slug, uniqueness: true
+
+  has_one :picture, as: :imageable, dependent: :destroy
+  has_many :event_roles, dependent: :destroy
+  has_many :events, through: :event_roles
+  has_many :comments
 
   accepts_nested_attributes_for :picture
 
