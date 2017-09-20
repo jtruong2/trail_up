@@ -15,3 +15,13 @@
 
 @import 'base/module';
 @import 'sections/module';
+
+.sup h2 {
+  color: black;
+  text-align: center;
+  font-family: 'Amatic SC', cursive;
+  font-weight: 600;
+  font-size: 100px;
+  padding: 20px;
+  margin-bottom: 20px;
+}

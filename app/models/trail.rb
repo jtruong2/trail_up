@@ -1,10 +1,11 @@
 class Trail < ApplicationRecord
   mount_uploader :image, ImageUploader
   has_many :pictures, as: :imageable
+  has_many :comments
   accepts_nested_attributes_for :pictures
 
   reverse_geocoded_by :latitude, :longitude
-  after_validation :reverse_geocode, on: [ :create, :update ]
+  # after_validation :reverse_geocode, on: [ :create, :update ]
   # after_update :set_events
 
   reverse_geocoded_by :latitude, :longitude do |obj, results|
@@ -24,6 +25,10 @@ class Trail < ApplicationRecord
     else
       pictures
     end
+  end
+
+  def average_star
+    comments.average(:star_rating).to_i
   end
 
   def set_events

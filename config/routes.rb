@@ -3,15 +3,27 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
 
+  get '/support', to: 'support#index'
+
   get '/auth/meetup', as: :meetup_login
   get "/auth/meetup/callback" => "meetup_sessions#create"
-  
+
+  get '/auth/google_oauth2', as: :google_login
+  get '/auth/google_oauth2/callback', to: "google_sessions#create"
+
+  get '/auth/twitter', as: :twitter_login
+  get '/auth/twitter/callback', to: "twitter_sessions#create"
+
+  get '/auth/facebook', as: :facebook_login
+  get '/auth/facebook/callback', to: "facebook_sessions#create"
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
   get '/dashboard', to: 'dashboards#show'
   get '/directions', to: 'directions#index'
+  get '/add_comment', to: 'trails#addcomment'
 
 
   get '/auth/fitbit/callback', to: 'fitbit#login'
@@ -51,7 +63,9 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:create, :show, :edit, :update]
-  resources :trails
+  resources :trails do
+    resources :comments
+  end
   resources :pictures
   resources :events, only: [:index, :new, :create, :show, :destroy, :edit, :update]
 end

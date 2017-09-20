@@ -36,6 +36,9 @@ gem "d3-rails"
 gem 'whenever', :require => false
 gem 'timecop'
 gem 'omniauth-meetup'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -49,6 +52,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'pry-rails'
+  gem 'byebug'
+  gem 'awesome_print'
 end
 
 group :test do

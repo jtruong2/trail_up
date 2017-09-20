@@ -1,6 +1,13 @@
 class User < ApplicationRecord
   attr_accessor :login_meetup
 
+  validates :email, presence: true, uniqueness: true, unless: :uid_exists
+  validates :username, presence: true, uniqueness: true, unless: :uid_exists
+  validates :slug, uniqueness: true
+  has_one :picture, as: :imageable, dependent: :destroy
+  has_many :event_roles, dependent: :destroy
+  has_many :events, through: :event_roles
+
   has_secure_password
   before_save :generate_slug
 
@@ -13,6 +20,7 @@ class User < ApplicationRecord
   has_one :picture, as: :imageable, dependent: :destroy
   has_many :event_roles, dependent: :destroy
   has_many :events, through: :event_roles
+  has_many :comments
 
   accepts_nested_attributes_for :picture
 
@@ -35,7 +43,7 @@ class User < ApplicationRecord
   end
 
   def partials
-    
+
   end
 
   def attending
@@ -55,7 +63,11 @@ class User < ApplicationRecord
     return "guest" unless attending.where(id: event_id).empty?
     return "authorized"
   end
-  
+
+  def uid_exists
+    self["uid"]
+  end
+
   def self.create_with_omniauth(auth)
     create(
       login_meetup: true,
@@ -66,5 +78,25 @@ class User < ApplicationRecord
     )
   end
 
-    
+  def self.from_google_omniauth(auth)
+    find_or_create_by(uid: auth[:uid][9...-1]) do |user|
+      user.uid        = auth["uid"][9...-1]
+      user.username   = auth["info"]["first_name"]
+      user.email      = auth["info"]["email"]
+      user.image      = auth["info"]["image"]
+      user.password   = "password"
+      user.provider   = auth["provider"]
+    end
+  end
+
+  def self.from_twitter_or_facebook_omniauth(auth)
+    find_or_create_by(uid: auth[:uid]) do |user|
+      user.uid        = auth["uid"]
+      user.username   = auth["info"]["name"]
+      user.email      = auth["info"]["email"]
+      user.image      = auth["info"]["image"]
+      user.password   = "password"
+      user.provider   = auth["provider"]
+    end
+  end
 end
