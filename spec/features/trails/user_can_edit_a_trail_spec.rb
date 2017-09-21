@@ -20,7 +20,6 @@ RSpec.describe 'User can edit a trail' do
         expect(page).to have_selector("input[value='#{trail.name}']")
         expect(page).to have_selector("input[value='#{trail.description}']")
         expect(page).to have_selector("input[value='#{trail.distance}']")
-        expect(page).to have_selector("input[value='#{trail.location}']")
         expect(page).to have_select("trail_difficulty_id", selected: trail.difficulty.rating)
       end
     end
