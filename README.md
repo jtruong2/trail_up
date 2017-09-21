@@ -73,5 +73,5 @@ You will need keys for the following...
 - [TRUDY_URL](https://developer.ibm.com/answers/questions/26886/how-to-get-an-api-key/)
 
 PLEASE MAKE SURE TO MATCH THE KEY NAMES BELOW, INCLUDE CASE SENSITIVITY. 
-ex. EXAMPLE_KEY: "1234567"
+- ex. EXAMPLE_KEY: "1234567"
 
