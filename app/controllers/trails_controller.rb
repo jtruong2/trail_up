@@ -46,7 +46,7 @@ class TrailsController < ApplicationController
   end
 
   def addcomment
-    respond_to do |format|               
+    respond_to do |format|
       format.js {render layout: false}
     end
   end

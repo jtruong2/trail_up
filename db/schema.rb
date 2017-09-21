@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 20170916012101) do
     t.string "fitbit_id"
     t.string "image"
     t.string "provider"
-    t.integer "uid"
+    t.bigint "uid"
   end
 
   add_foreign_key "comments", "trails"

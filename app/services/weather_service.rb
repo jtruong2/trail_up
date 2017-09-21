@@ -1,5 +1,5 @@
 class WeatherService
-  
+
   def initialize
     @conn ||= Faraday.new(url: "http://api.wunderground.com/api/#{ENV['WEATHER_KEY']}") do |faraday|
       faraday.adapter Faraday.default_adapter

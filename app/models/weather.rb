@@ -1,7 +1,7 @@
 class Weather
 
   attr_reader :high, :low, :condition, :icon, :date
-  
+
   def initialize(weather_atts={})
     @date = weather_atts[:date][:weekday]
     @high = weather_atts[:high][:fahrenheit]
