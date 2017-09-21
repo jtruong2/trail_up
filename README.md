@@ -75,3 +75,21 @@ You will need keys for the following...
 PLEASE MAKE SURE TO MATCH THE KEY NAMES BELOW, INCLUDE CASE SENSITIVITY. 
 - ex. EXAMPLE_KEY: "1234567"
 
+## Usage
+Once the above steps have been completed you should be good to give it the ol'
+```
+$ rails s
+```
+or just avoid all these steps and go straight to [OUR WEBSITE](https://trail-upv2.herokuapp.com/)...
+
+### From Here You Can...
+- Sign in with Facebook, Google, or Twitter
+- Find a list of, or a specific Hiking Trail(s) around Colorado
+  - Get directions to a spefic Trail
+  - Get multi-day weather forcasts for that trail
+- Organize `Events` to go on a group hikes at a trail
+  - Become the Primary organizer 
+  - Or just remain a user
+- Once you join an event, you can share through Twitter.
+- Text You Project Phone number (Through Twilio/Watson Conversations) a reccomended hike 
+- Review Trails after they
