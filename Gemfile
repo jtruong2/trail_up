@@ -36,6 +36,8 @@ gem "d3-rails"
 gem 'whenever', :require => false
 gem 'timecop'
 gem 'omniauth-meetup'
+gem 'sinatra'
+gem 'twilio-ruby'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
