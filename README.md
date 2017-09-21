@@ -1,10 +1,22 @@
-![Logo of the project](https://raw.githubusercontent.com/jehna/readme-best-practices/master/sample-logo.png)
+![Logo](https://github.com/MrAaronOlsen/trail-up/blob/master/app/assets/images/logo_trail_up.png)
 
-# Name of the project
-> Additional information or tagline
+# Trail Up
+The #1 Social Media service for Colorado hikers to connect, plan trips, go hiking, and review their trails! 
 
-A brief description of your project, what it is used for and how does life get
-awesome when someone starts to use it.
+![Neat](https://s-media-cache-ak0.pinimg.com/originals/b7/98/34/b79834e9c0c7779785ad73de99674b85.jpg)
+
+
+## The Team
+  
+- [Aaron Olsen](https://github.com/MrAaronOlsen) 
+- [Andrew Mossefin](https://github.com/frustratedswede) 
+- [Benjamin Jacobs](https://github.com/ACC25) 
+- [Carl Richmond](https://github.com/Benjaminpjacobs) 
+- [Nick Edwards](https://github.com/nickedwards109) 
+- [Michael Centrelli](https://github.com/Mcents) 
+- [Jimmy Truong](https://github.com/jtruong2) 
+- [Desislava Todorova](https://github.com/destodo)  
+- [Will Rattermann](https://github.com/wratterman) 
 
 ## Installing / Getting started
 
