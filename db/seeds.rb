@@ -123,24 +123,23 @@ class Seed
         maxDistance: 200
       }
     HikingProjectService.search(max_attrs)[:trails].each do |trail|
-      1.times do |i|
-        valid_attrs = {
-          name: trail[:name],
-          description: trail[:summary],
-          location: trail[:location],
-          distance: trail[:length],
-          rating: trail[:difficulty],
-          longitude: trail[:longitude],
-          latitude: trail[:latitude],
-          hp_id: trail[:id]
-        }
-        trail = Trail.new(valid_attrs)
+      valid_attrs = {
+        name: trail[:name],
+        description: trail[:summary],
+        location: trail[:location],
+        distance: trail[:length],
+        rating: trail[:difficulty],
+        longitude: trail[:longitude],
+        latitude: trail[:latitude],
+        
+        hp_id: trail[:id]
+      }
+      trail = Trail.new(valid_attrs)
 
-        trail.difficulty = Difficulty.all.sample
-        trail.save
+      trail.difficulty = Difficulty.all.sample
+      trail.save
 
-        puts "#{Trail.last.id} Total Trails: #{trail.name} created!"
-      end
+      puts "#{Trail.last.id} Total Trails: #{trail.name} created!"
     end
   end
 

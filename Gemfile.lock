@@ -133,6 +133,7 @@ GEM
     kaminari-core (1.0.1)
     launchy (2.4.3)
       addressable (~> 2.3)
+    libxml-ruby (3.0.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -151,6 +152,7 @@ GEM
     multi_json (1.12.2)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    mustermann (1.0.1)
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
@@ -196,6 +198,8 @@ GEM
     public_suffix (3.0.0)
     puma (3.10.0)
     rack (2.0.3)
+    rack-protection (2.0.0)
+      rack
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
     rails (5.1.4)
@@ -272,6 +276,14 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
+
+    sinatra (2.0.0)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.0)
+      tilt (~> 2.0)
+    slop (3.6.0)
+
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -283,6 +295,10 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.8)
     timecop (0.9.1)
+    twilio-ruby (5.2.3)
+      faraday (~> 0.9)
+      jwt (~> 1.5)
+      libxml-ruby (>= 2.0, < 4.0)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
@@ -342,7 +358,9 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   shoulda-matchers
   simplecov
+  sinatra
   timecop
+  twilio-ruby
   tzinfo-data
   uglifier (>= 1.3.0)
   vcr
