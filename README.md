@@ -29,7 +29,6 @@ $ git clone git@github.com:jtruong2/trail_up.git
 $ cd trail_up
 $ bundle
 $ rake db:setup
-$ rails s
 ```
 
 Here you cloning Trail Up, changing directories into the new `trail_up` directory, loading all of of [gems](https://rubygems.org/) from the Gemfile by running `bundle`.
@@ -51,95 +50,28 @@ Our database is made up of the following
   - Default Count: 214
   - Attrs: id, user_id, event_id, role
 
-## Developing
-
-Here's a brief intro about what a developer must do in order to start developing
-the project further:
-
-```shell
-git clone https://github.com/your/awesome-project.git
-cd awesome-project/
-packagemanager install
-```
-
-And state what happens step-by-step.
-
-### Building
-
-If your project needs some additional steps for the developer to build the
-project after some code changes, state them here:
-
-[image](Screen Shot 2017-09-20 at 7.00.17 PM copy)
-```shell
-./configure
-make
-make install
-```
-
-Here again you should state what actually happens when the code above gets
-executed.
-
-### Deploying / Publishing
-
-In case there's some step you have to take that publishes this project to a
-server, this is the right time to state it.
-
-```shell
-packagemanager deploy awesome-project -s server.com -u username -p password
-```
-
-And again you'd need to tell what the previous code actually does.
-
-## Features
-
-What's all the bells and whistles this project can perform?
-* What's the main functionality
-* You can also do another thing
-* If you get really randy, you can even do this
-
 ## Configuration
 
-Here you should write what are all of the configurations a user can enter when
-using the project.
+In order to get this program to run, there are a number of keys that you are going to want to have running in the background. 
 
-#### Argument 1
-Type: `String`  
-Default: `'default value'`
+You may have notice `gem "figaro"` in your Gemfile, this is what we will be using to hide our keys. Once `bundle` has been run, make sure you run `figaro install` from the terminal. This will create a `config/application.yml` file and add that file to your git ignore. 
 
-State what an argument does and how you can use it. If needed, you can provide
-an example below.
+You will need keys for the following...
+- [aws_access_key_id](http://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html)
+- [aws_secret_access_key](http://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html)
+- [hiking_project_api_key](https://www.hikingproject.com/data)
+- [MEETUP_KEY](https://secure.meetup.com/meetup_api/key/)
+- [MEETUP_SECRET](https://secure.meetup.com/meetup_api/key/)
+- [google_map_api_key](https://developers.google.com/maps/documentation/embed/get-api-key)
+- [WEATHER_KEY](https://www.wunderground.com/weather/api)
+- [PHONE_NUMBER](https://www.twilio.com/docs/api/rest/available-phone-numbers)
+- [ACCOUNT_SID](https://www.twilio.com/docs/api/rest)
+- [AUTH_TOKEN](https://www.twilio.com/docs/api/rest)
+- [PASSWORD](https://developer.ibm.com/answers/questions/182213/where-can-i-find-my-user-id-and-password.html)
+- [USERNAME](https://developer.ibm.com/answers/questions/182213/where-can-i-find-my-user-id-and-password.html)
+- [WORKSPACE_ID](https://developer.ibm.com/answers/questions/26886/how-to-get-an-api-key/)
+- [TRUDY_URL](https://developer.ibm.com/answers/questions/26886/how-to-get-an-api-key/)
 
-Example:
-```bash
-awesome-project "Some other value"  # Prints "You're nailing this readme!"
-```
+PLEASE MAKE SURE TO MATCH THE KEY NAMES BELOW, INCLUDE CASE SENSITIVITY. 
+ex. EXAMPLE_KEY: "1234567"
 
-#### Argument 2
-Type: `Number|Boolean`  
-Default: 100
-
-Copy-paste as many of these as you need.
-
-## Contributing
-
-When you publish something open source, one of the greatest motivations is that
-anyone can just jump in and start contributing to your project.
-
-These paragraphs are meant to welcome those kind souls to feel that they are
-needed. You should state something like:
-
-"If you'd like to contribute, please fork the repository and use a feature
-branch. Pull requests are warmly welcome."
-
-If there's anything else the developer needs to know (e.g. the code style
-guide), you should link it here. If there's a lot of things to take into
-consideration, it is common to separate this section to its own file called
-`CONTRIBUTING.md` (or similar). If so, you should say that it exists here.
-
-## Licensing
-
-One really important part: Give your project a proper license. Here you should
-state what the license is and how to find the text version of the license.
-Something like:
-
-"The code in this project is licensed under MIT license."
