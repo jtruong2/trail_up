@@ -20,16 +20,36 @@ The #1 Social Media service for Colorado hikers to connect, plan trips, go hikin
 
 ## Installing / Getting started
 
-A quick introduction of the minimal setup you need to get a hello world up &
-running.
+We reccomend using `Ruby 2.4.1` and `Rails 5.2.1`, as those were the versions used during the development of this app.
+
+To begin working with Trail Up, please run the following...
 
 ```shell
-packagemanager install awesome-project
-awesome-project start
-awesome-project "Do something!"  # prints "Nah."
+$ git clone git@github.com:jtruong2/trail_up.git 
+$ cd trail_up
+$ bundle
+$ rake db:setup
+$ rails s
 ```
 
-Here you should say what actually happens when you execute the code above.
+Here you cloning Trail Up, changing directories into the new `trail_up` directory, loading all of of [gems](https://rubygems.org/) from the Gemfile by running `bundle`.
+
+Our database is made up of the following
+- Users 
+  - Default Count: 24
+  - Attrs: id, username, email, password_digest, slug, role, uid, fitbit_token, fitbit_id, provider
+- Trails 
+  - Default Count: 31
+  - Attrs: id, name, description, location, distance, rating, longitude, latitude, hp_id, difficulty_id
+- Difficulties 
+  - Default Count: 9
+  - Attrs: id, rating
+- Events
+  - Default Count: 54
+  - Attrs: id, trail_id, name, description, location, distance, rating, longitude, latitude, hp_id, difficulty_id
+- Event Roles
+  - Default Count: 214
+  - Attrs: id, user_id, event_id, role
 
 ## Developing
 
@@ -49,6 +69,7 @@ And state what happens step-by-step.
 If your project needs some additional steps for the developer to build the
 project after some code changes, state them here:
 
+[image](Screen Shot 2017-09-20 at 7.00.17 PM copy)
 ```shell
 ./configure
 make
